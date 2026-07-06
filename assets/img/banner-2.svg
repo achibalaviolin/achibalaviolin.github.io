@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Banner placeholder: The Waltz of Chennai">
+  <defs>
+    <linearGradient id="b2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fdf9f0"/>
+      <stop offset="1" stop-color="#f3e8d2"/>
+    </linearGradient>
+    <radialGradient id="b2g" cx="0.7" cy="0.4" r="0.8">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="700" fill="url(#b2)"/>
+  <rect width="1600" height="700" fill="url(#b2g)"/>
+  <g fill="none" stroke="#29221a" stroke-opacity="0.3" stroke-width="1.4">
+    <path d="M840,170 h560 M840,200 h560 M840,230 h560 M840,260 h560 M840,290 h560"/>
+  </g>
+  <g>
+    <ellipse cx="980" cy="230" rx="12" ry="9" fill="#8a6420" fill-opacity="0.75"/>
+    <ellipse cx="1120" cy="200" rx="12" ry="9" fill="#b9892e" fill-opacity="0.85"/>
+    <ellipse cx="1260" cy="260" rx="12" ry="9" fill="#29221a" fill-opacity="0.55"/>
+  </g>
+  <g fill="none" stroke-linecap="round">
+    <path d="M1050,560 C980,470 1030,340 1120,300 C1210,260 1270,340 1225,405 C1185,462 1100,445 1095,375 C1090,310 1155,255 1220,235" stroke="#8a6420" stroke-opacity="0.6" stroke-width="4"/>
+    <path d="M1230,560 C1300,470 1255,350 1175,315" stroke="#b9892e" stroke-opacity="0.6" stroke-width="3"/>
+  </g>
+  <g fill="none" stroke="#b9892e" stroke-opacity="0.5" stroke-width="2">
+    <ellipse cx="420" cy="360" rx="230" ry="230" stroke-opacity="0.14"/>
+    <ellipse cx="420" cy="360" rx="165" ry="230" transform="rotate(22 420 360)" stroke-opacity="0.3"/>
+    <ellipse cx="420" cy="360" rx="100" ry="230" transform="rotate(44 420 360)" stroke-opacity="0.45"/>
+  </g>
+  <text x="1560" y="672" text-anchor="end" font-family="Helvetica, sans-serif" font-size="15" letter-spacing="3" fill="#9a9080">BANNER PLACEHOLDER 2 - REPLACE WITH WALTZ OF CHENNAI STILL</text>
+</svg>

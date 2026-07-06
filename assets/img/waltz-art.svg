@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" role="img" aria-label="Placeholder for The Waltz of Chennai artwork">
+  <defs>
+    <linearGradient id="wbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf5e9"/>
+      <stop offset="1" stop-color="#f1e6d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="900" fill="url(#wbg)"/>
+  <!-- waltzing couple abstract: two intertwined treble-like curls -->
+  <g fill="none" stroke="#9c3524" stroke-width="4" stroke-linecap="round">
+    <path d="M280,620 C220,540 260,420 340,380 C420,340 470,410 430,470 C395,520 320,505 315,440 C310,380 370,330 430,310"/>
+    <path d="M440,620 C500,540 460,430 390,395" stroke="#a97c2f" stroke-width="3"/>
+    <circle cx="430" cy="310" r="7" fill="#9c3524" stroke="none"/>
+  </g>
+  <g fill="none" stroke="#211a12" stroke-opacity="0.35" stroke-width="1.4">
+    <path d="M120,180 h480 M120,208 h480 M120,236 h480 M120,264 h480 M120,292 h480"/>
+    <ellipse cx="240" cy="236" rx="11" ry="8" fill="#211a12" fill-opacity="0.6" stroke="none"/>
+    <ellipse cx="360" cy="208" rx="11" ry="8" fill="#9c3524" fill-opacity="0.8" stroke="none"/>
+    <ellipse cx="480" cy="264" rx="11" ry="8" fill="#211a12" fill-opacity="0.6" stroke="none"/>
+  </g>
+  <g font-family="Georgia, serif" text-anchor="middle">
+    <text x="360" y="740" font-size="34" font-style="italic" fill="#211a12">The Waltz of Chennai</text>
+    <text x="360" y="782" font-size="15" letter-spacing="4" fill="#8d8471">PLACEHOLDER - REPLACE WITH POSTER / STILL</text>
+  </g>
+  <rect x="24" y="24" width="672" height="852" fill="none" stroke="#9c3524" stroke-opacity="0.35" stroke-width="2"/>
+</svg>

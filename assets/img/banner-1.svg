@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Banner placeholder: violin strings">
+  <defs>
+    <linearGradient id="b1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fdfaf3"/>
+      <stop offset="0.6" stop-color="#f6eedd"/>
+      <stop offset="1" stop-color="#efe3c9"/>
+    </linearGradient>
+    <radialGradient id="b1g" cx="0.72" cy="0.3" r="0.75">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="700" fill="url(#b1)"/>
+  <rect width="1600" height="700" fill="url(#b1g)"/>
+  <g fill="none" stroke-linecap="round">
+    <path d="M-40,240 C420,190 900,300 1660,220" stroke="#b9892e" stroke-opacity="0.55" stroke-width="2"/>
+    <path d="M-40,340 C480,290 980,400 1660,320" stroke="#8a6420" stroke-opacity="0.35" stroke-width="1.6"/>
+    <path d="M-40,440 C440,390 940,500 1660,420" stroke="#b9892e" stroke-opacity="0.45" stroke-width="1.6"/>
+    <path d="M-40,540 C500,490 1000,600 1660,520" stroke="#8a6420" stroke-opacity="0.25" stroke-width="1.4"/>
+  </g>
+  <g transform="translate(1210,350)" fill="none" stroke="#8a6420" stroke-opacity="0.55" stroke-width="3">
+    <path d="M0,-210 L0,-110"/>
+    <path d="M-13,-210 L13,-210 M-13,-188 L13,-188"/>
+    <path d="M0,-110 C70,-110 96,-58 74,-20 C60,6 60,30 80,54 C112,92 88,170 0,170 C-88,170 -112,92 -80,54 C-60,30 -60,6 -74,-20 C-96,-58 -70,-110 0,-110 Z"/>
+    <path d="M-26,8 C-36,20 -32,40 -18,44 M26,8 C36,20 32,40 18,44" stroke-width="2.2"/>
+  </g>
+  <text x="1560" y="672" text-anchor="end" font-family="Helvetica, sans-serif" font-size="15" letter-spacing="3" fill="#9a9080">BANNER PLACEHOLDER 1 - REPLACE WITH ORIGINAL BANNER IMAGE</text>
+</svg>
