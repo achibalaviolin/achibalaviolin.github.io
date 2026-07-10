@@ -41,20 +41,25 @@
     var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     var dots = [];
-    for (var i = 0; i < slides.length; i++) {
-      var dot = document.createElement("button");
-      dot.setAttribute("role", "tab");
-      dot.setAttribute("aria-label", "Go to slide " + (i + 1));
-      (function (idx) {
-        dot.addEventListener("click", function () { go(idx); restart(); });
-      })(i);
-      dotsEl.appendChild(dot);
-      dots.push(dot);
+    if (dotsEl) {
+      for (var i = 0; i < slides.length; i++) {
+        var dot = document.createElement("button");
+        dot.setAttribute("role", "tab");
+        dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+        (function (idx) {
+          dot.addEventListener("click", function () { go(idx); restart(); });
+        })(i);
+        dotsEl.appendChild(dot);
+        dots.push(dot);
+      }
     }
 
     var go = function (idx) {
       current = (idx + slides.length) % slides.length;
       slidesEl.style.transform = "translateX(-" + current * 100 + "%)";
+      for (var s = 0; s < slides.length; s++) {
+        slides[s].classList.toggle("is-active", s === current);
+      }
       dots.forEach(function (d, j) { d.classList.toggle("on", j === current); });
     };
 
@@ -68,23 +73,27 @@
     if (prev) prev.addEventListener("click", function () { go(current - 1); restart(); });
     if (next) next.addEventListener("click", function () { go(current + 1); restart(); });
 
-    var banner = slidesEl.closest(".banner");
-    banner.addEventListener("mouseenter", function () { if (timer) clearInterval(timer); });
-    banner.addEventListener("mouseleave", restart);
-    banner.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowLeft") { go(current - 1); restart(); }
-      if (e.key === "ArrowRight") { go(current + 1); restart(); }
-    });
+    var banner = slidesEl.closest(".hero") || slidesEl.parentElement;
+    if (banner) {
+      banner.addEventListener("mouseenter", function () { if (timer) clearInterval(timer); });
+      banner.addEventListener("mouseleave", restart);
+      banner.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") { go(current - 1); restart(); }
+        if (e.key === "ArrowRight") { go(current + 1); restart(); }
+      });
+    }
 
     /* swipe */
     var startX = null;
-    banner.addEventListener("touchstart", function (e) { startX = e.touches[0].clientX; }, { passive: true });
-    banner.addEventListener("touchend", function (e) {
-      if (startX === null) return;
-      var dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 50) { go(current + (dx < 0 ? 1 : -1)); restart(); }
-      startX = null;
-    }, { passive: true });
+    if (banner) {
+      banner.addEventListener("touchstart", function (e) { startX = e.touches[0].clientX; }, { passive: true });
+      banner.addEventListener("touchend", function (e) {
+        if (startX === null) return;
+        var dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 50) { go(current + (dx < 0 ? 1 : -1)); restart(); }
+        startX = null;
+      }, { passive: true });
+    }
 
     go(0);
     restart();
