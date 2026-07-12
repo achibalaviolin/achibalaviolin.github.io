@@ -368,6 +368,7 @@ button { font: inherit; }
   width: 100%;
   height: min(56vw, 520px);
   object-fit: cover;
+  object-position: center 20%;
 }
 
 .about-copy .display { margin: 14px 0 22px; }
