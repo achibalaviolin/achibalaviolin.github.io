@@ -225,6 +225,38 @@ button { font: inherit; }
   object-fit: cover;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Poster slides: the artwork carries the message, so keep it bright and
+   pin the actions to the clean bottom-right corner */
+.slide-poster { align-items: flex-end; }
+
+.slide-poster::after {
+  background: linear-gradient(0deg, rgba(9, 7, 5, 0.28), transparent 16%);
+}
+
+.slide-poster .hero-copy { padding-bottom: 84px; }
+.slide-poster .hero-actions { justify-content: flex-end; }
+
+.slide-poster .btn-secondary,
+.hero .slide-poster .btn-secondary {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(21, 16, 13, 0.34);
+}
+
+.hero .slide-poster .btn-secondary:hover { color: var(--wine); border-color: var(--wine); }
+
 .hero-copy {
   position: relative;
   z-index: 2;

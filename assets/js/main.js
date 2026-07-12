@@ -65,7 +65,7 @@
 
     var restart = function () {
       if (timer) clearInterval(timer);
-      if (!reduceMotion) timer = setInterval(function () { go(current + 1); }, 6500);
+      if (!reduceMotion) timer = setInterval(function () { go(current + 1); }, 5000);
     };
 
     var prev = document.getElementById("prevSlide");
