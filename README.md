@@ -9,7 +9,11 @@ events, awards, press, gallery) with the feedback rounds from this workspace.
 
 ```
 index.html                     Main site (one page, anchored sections)
+roopa-fine-arts/index.html     Roopa Fine Arts — Carnatic lessons landing page (SEO/GEO)
 achritique/                    Achritique blog (index + article pages)
+sitemap.xml                    Sitemap (submit in Google Search Console)
+robots.txt                     Crawl rules + sitemap pointer
+llms.txt                       Plain-text site summary for AI crawlers (GEO)
 assets/css/main.css            Main site styles
 assets/css/achritique.css      Blog styles
 assets/js/main.js              Nav, hero carousel, scroll reveal
