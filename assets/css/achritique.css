@@ -344,6 +344,27 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 26px auto;
 }
 
+.article-body figure {
+  margin: 48px 0;
+}
+
+.article-body figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(33, 26, 18, 0.12);
+}
+
+.article-body figcaption {
+  margin-top: 14px;
+  font-family: var(--font-ui, inherit);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  text-align: center;
+  font-style: italic;
+}
+
 .note {
   background: var(--paper-deep);
   border: 1px solid var(--rule);
