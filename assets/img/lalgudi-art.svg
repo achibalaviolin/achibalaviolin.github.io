@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" role="img" aria-label="Abstract artwork of an agraharam corridor with a hanging pankha, for The Lalgudi Bani">
+  <defs>
+    <linearGradient id="lbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf5e9"/>
+      <stop offset="1" stop-color="#f1e6d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="900" fill="url(#lbg)"/>
+  <!-- rezhi: a corridor of receding arches -->
+  <g fill="none" stroke="#9c3524" stroke-linecap="round">
+    <path d="M150,640 L150,330 Q360,190 570,330 L570,640" stroke-width="4"/>
+    <path d="M210,640 L210,360 Q360,250 510,360 L510,640" stroke-width="3" stroke-opacity="0.75"/>
+    <path d="M265,640 L265,388 Q360,305 455,388 L455,640" stroke-width="2.5" stroke-opacity="0.55"/>
+    <path d="M312,640 L312,412 Q360,352 408,412 L408,640" stroke-width="2" stroke-opacity="0.4"/>
+  </g>
+  <!-- floor lines receding -->
+  <g stroke="#211a12" stroke-opacity="0.3" stroke-width="1.4">
+    <path d="M120,640 h480"/>
+    <path d="M170,668 h380"/>
+    <path d="M220,696 h280"/>
+  </g>
+  <!-- pankha: cloth fan hanging across the first arch -->
+  <g stroke="#a97c2f" fill="none">
+    <path d="M235,300 h250" stroke-width="4" stroke-linecap="round"/>
+    <path d="M245,300 v34 M270,300 v38 M295,300 v35 M320,300 v39 M345,300 v36 M370,300 v39 M395,300 v35 M420,300 v38 M445,300 v34 M470,300 v37" stroke-width="2.4" stroke-opacity="0.85"/>
+    <path d="M245,334 Q247,340 250,336 M320,339 Q322,345 325,341 M395,335 Q397,341 400,337" stroke-width="1.6" stroke-opacity="0.7"/>
+    <path d="M360,300 v-52" stroke-width="2.4"/>
+  </g>
+  <!-- lamp glow at corridor's end -->
+  <circle cx="360" cy="560" r="16" fill="#a97c2f" fill-opacity="0.55"/>
+  <path d="M360,545 q-6,-14 0,-24 q6,10 0,24" fill="#9c3524" fill-opacity="0.8"/>
+  <g font-family="Georgia, serif" text-anchor="middle">
+    <text x="360" y="756" font-size="34" font-style="italic" fill="#211a12">The Lalgudi Bani</text>
+    <text x="360" y="800" font-size="17" letter-spacing="6" fill="#8d8471">&#2992;&#3015;&#2996;&#3007; &#183; &#2346;&#2306;&#2326;&#2366;</text>
+  </g>
+  <rect x="24" y="24" width="672" height="852" fill="none" stroke="#9c3524" stroke-opacity="0.35" stroke-width="2"/>
+</svg>
