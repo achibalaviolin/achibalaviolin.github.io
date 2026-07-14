@@ -225,6 +225,12 @@ button { font: inherit; }
   object-fit: cover;
 }
 
+.poster-video-link {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
