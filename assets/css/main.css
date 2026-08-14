@@ -501,6 +501,8 @@ button { font: inherit; }
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
+  width: min(100%, 900px);
+  margin-inline: auto;
 }
 
 .arangetram-card {
@@ -1073,7 +1075,6 @@ footer {
   .arrow { display: none; }
   .about-grid,
   .event-grid,
-  .arangetram-grid,
   .post-list {
     grid-template-columns: 1fr;
   }
@@ -1123,6 +1124,22 @@ footer {
   .award-tile {
     height: 260px;
     margin-bottom: 12px;
+  }
+  .arangetram-grid { gap: 10px; }
+  .arangetram-card > div:last-child { padding: 14px 12px; }
+  .arangetram-card h3 {
+    margin: 7px 0 8px;
+    font-size: clamp(17px, 5vw, 22px);
+  }
+  .arangetram-card .eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.08em;
+  }
+  .arangetram-card p:not(.eyebrow) { font-size: 12px; }
+  .arangetram-placeholder span {
+    padding: 10px;
+    font-size: 9px;
+    text-align: center;
   }
   .thumb-grid { grid-template-columns: 1fr; }
   .email-cta { overflow-wrap: anywhere; }
