@@ -118,6 +118,47 @@
     revealEls.forEach(function (el) { el.classList.add("visible"); });
   }
 
+  /* Award image lightbox */
+  var lightbox = document.getElementById("awardLightbox");
+  if (lightbox) {
+    var lightboxImage = lightbox.querySelector(".award-lightbox-image");
+    var lightboxClose = lightbox.querySelector(".award-lightbox-close");
+    var awardButtons = document.querySelectorAll(".award-open");
+    var lastAwardButton = null;
+
+    var closeLightbox = function () {
+      if (lightbox.hidden) return;
+      lightbox.hidden = true;
+      lightboxImage.src = "";
+      document.body.classList.remove("lightbox-open");
+      if (lastAwardButton) lastAwardButton.focus();
+    };
+
+    awardButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var image = button.querySelector("img");
+        lastAwardButton = button;
+        lightboxImage.src = image.currentSrc || image.src;
+        lightboxImage.alt = image.alt;
+        lightbox.hidden = false;
+        document.body.classList.add("lightbox-open");
+        lightboxClose.focus();
+      });
+    });
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (!lightbox.hidden && e.key === "Escape") closeLightbox();
+      if (!lightbox.hidden && e.key === "Tab") {
+        e.preventDefault();
+        lightboxClose.focus();
+      }
+    });
+  }
+
   /* Footer year */
   var year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
