@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { PageOverture } from '@/components/layout/page-overture'
 import { NextStep } from '@/components/layout/next-step'
 import { RevealItem, RevealList } from '@/components/animations/reveal'
+import { TurnIn } from '@/components/animations/depth'
 import { Section } from '@/components/ui/section'
 import { works } from '@/content/works'
 import { site } from '@/content/site'
@@ -49,9 +50,10 @@ export default function WorksPage() {
         <RevealList as="ol" className="border-t border-rule-soft">
           {works.map((work, i) => (
             <RevealItem as="li" key={work.slug} className="border-b border-rule-soft">
+              <TurnIn from={20}>
               <Link
                 href={`/works/${work.slug}/`}
-                className="group block transition-colors duration-500 hover:bg-surface/60"
+                className="group block transition-colors duration-500 hover:bg-mist/60"
               >
                 <div className="wrap grid gap-5 py-12 md:grid-cols-[4rem_1fr_9rem_auto] md:items-baseline md:gap-10 md:py-16">
                   <span className="font-display text-sm text-faint tabular-nums">
@@ -59,7 +61,7 @@ export default function WorksPage() {
                   </span>
 
                   <div>
-                    <h2 className="font-display text-monumental transition-colors duration-500 group-hover:text-ember-lit">
+                    <h2 className="font-display text-monumental transition-colors duration-500 group-hover:text-ember">
                       {work.title}
                     </h2>
                     {work.subtitle ? (
@@ -68,7 +70,7 @@ export default function WorksPage() {
                     <p className="mt-5 max-w-2xl text-muted">{work.summary}</p>
                   </div>
 
-                  <span className="text-xs tracking-slate text-ember-lit uppercase">
+                  <span className="text-xs tracking-slate text-ember uppercase">
                     {work.kind}
                   </span>
 
@@ -77,6 +79,7 @@ export default function WorksPage() {
                   </span>
                 </div>
               </Link>
+              </TurnIn>
             </RevealItem>
           ))}
         </RevealList>

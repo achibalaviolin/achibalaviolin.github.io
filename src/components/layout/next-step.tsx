@@ -46,18 +46,18 @@ export function NextStep({
         {steps?.length ? (
           <ul className="mt-20 grid gap-px border-y border-rule-soft bg-rule-soft sm:grid-cols-2 lg:grid-cols-3">
             {steps.map((s) => (
-              <li key={s.href} className="bg-void">
+              <li key={s.href} className="bg-paper">
                 <Link
                   href={s.href}
-                  className="group flex h-full flex-col gap-2 p-8 transition-colors duration-500 hover:bg-surface/70"
+                  className="group flex h-full flex-col gap-2 p-8 transition-colors duration-500 hover:bg-mist/70"
                 >
-                  <span className="font-display text-recital transition-colors duration-300 group-hover:text-ember-lit">
+                  <span className="font-display text-recital transition-colors duration-300 group-hover:text-ember">
                     {s.label}
                   </span>
                   <span className="text-sm text-muted">{s.note}</span>
                   <span
                     aria-hidden="true"
-                    className="mt-auto pt-6 text-ember-lit transition-transform duration-500 group-hover:translate-x-1"
+                    className="mt-auto pt-6 text-ember transition-transform duration-500 group-hover:translate-x-1"
                   >
                     &rarr;
                   </span>

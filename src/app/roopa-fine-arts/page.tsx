@@ -63,7 +63,7 @@ export default function RoopaFineArtsPage() {
         />
         <div className="wrap relative">
           <nav aria-label="Breadcrumb" className="text-sm text-faint">
-            <Link href="/" className="bow-link hover:text-ivory">
+            <Link href="/" className="bow-link hover:text-ink">
               {site.name}
             </Link>
             <span aria-hidden="true" className="px-2">
@@ -83,7 +83,7 @@ export default function RoopaFineArtsPage() {
           <Reveal delay={0.16}>
             <p className="mt-8 max-w-2xl text-lede text-muted">
               Roopa Fine Arts is the teaching school of violinist{' '}
-              <Link href="/" className="bow-link text-ember-lit">
+              <Link href="/" className="bow-link text-ember">
                 Achi Bala
               </Link>
               : Carnatic violin, Carnatic vocal, and music theory with exam preparation, in
@@ -122,10 +122,10 @@ export default function RoopaFineArtsPage() {
 
           <RevealList as="dl" className="grid h-fit grid-cols-2 gap-px bg-rule-soft">
             {schoolStats.map((stat) => (
-              <RevealItem as="div" key={`${stat.value}-${stat.label}`} className="bg-void p-8">
+              <RevealItem as="div" key={`${stat.value}-${stat.label}`} className="bg-paper p-8">
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
-                  <span className="block font-display text-4xl text-ember-lit">
+                  <span className="block font-display text-4xl text-ember">
                     {stat.countTo ? <Counter to={stat.countTo} /> : stat.value}
                   </span>
                   <span className="mt-2 block text-xs tracking-wider text-faint uppercase">
@@ -148,11 +148,11 @@ export default function RoopaFineArtsPage() {
         <RevealList className="mt-16 grid gap-px bg-rule-soft md:grid-cols-3">
           {programs.map((p) => (
             <RevealItem key={p.number}>
-              <article className="flex h-full flex-col bg-void p-9 transition-colors duration-700 hover:bg-surface/70 md:p-11">
-                <span className="font-display text-sm text-ember-lit tabular-nums">{p.number}</span>
+              <article className="flex h-full flex-col bg-paper p-9 transition-colors duration-700 hover:bg-mist/70 md:p-11">
+                <span className="font-display text-sm text-ember tabular-nums">{p.number}</span>
                 <h3 className="mt-6 font-display text-recital">{p.title}</h3>
                 <p className="mt-4 text-muted">{p.description}</p>
-                <a href={enquireHref} className="bow-link mt-auto w-fit pt-10 text-sm text-ember-lit">
+                <a href={enquireHref} className="bow-link mt-auto w-fit pt-10 text-sm text-ember">
                   {p.cta}
                 </a>
               </article>
@@ -170,7 +170,7 @@ export default function RoopaFineArtsPage() {
         <RevealList className="mt-16 grid gap-6 md:grid-cols-2">
           {arangetrams.map((a) => (
             <RevealItem key={a.student}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-rule bg-surface/60">
+              <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-rule bg-mist/60">
                 {a.image ? (
                   <div className="overflow-hidden">
                     <MediaImage
@@ -183,9 +183,9 @@ export default function RoopaFineArtsPage() {
                 ) : (
                   <div
                     aria-hidden="true"
-                    className="staff flex aspect-[4/5] items-center justify-center bg-surface-2"
+                    className="staff flex aspect-[4/5] items-center justify-center bg-shade"
                   >
-                    <span className="rounded-full border border-rule bg-void px-5 py-2 text-xs tracking-wider text-faint uppercase">
+                    <span className="rounded-full border border-rule bg-paper px-5 py-2 text-xs tracking-wider text-faint uppercase">
                       Flyer coming soon
                     </span>
                   </div>
@@ -235,10 +235,10 @@ export default function RoopaFineArtsPage() {
 
           <RevealList as="dl" className="grid h-fit grid-cols-2 gap-px bg-rule-soft">
             {locationStats.map((stat) => (
-              <RevealItem as="div" key={`${stat.value}-${stat.label}`} className="bg-void p-8">
+              <RevealItem as="div" key={`${stat.value}-${stat.label}`} className="bg-paper p-8">
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
-                  <span className="block font-display text-3xl text-ember-lit">{stat.value}</span>
+                  <span className="block font-display text-3xl text-ember">{stat.value}</span>
                   <span className="mt-2 block text-xs tracking-wider text-faint uppercase">
                     {stat.label}
                   </span>
@@ -261,7 +261,7 @@ export default function RoopaFineArtsPage() {
                   {f.question}
                   <span
                     aria-hidden="true"
-                    className="shrink-0 text-ember-lit transition-transform duration-500 group-open:rotate-45"
+                    className="shrink-0 text-ember transition-transform duration-500 group-open:rotate-45"
                   >
                     +
                   </span>
@@ -284,7 +284,7 @@ export default function RoopaFineArtsPage() {
         <Reveal delay={0.16}>
           <a
             href={enquireHref}
-            className="mt-12 inline-block font-display text-[clamp(1.35rem,3.5vw,2.5rem)] text-ember-lit transition-colors duration-500 hover:text-ember-lit"
+            className="mt-12 inline-block font-display text-[clamp(1.35rem,3.5vw,2.5rem)] text-ember transition-colors duration-500 hover:text-ember"
           >
             <span className="bow-link">{roopa.email}</span>
           </a>

@@ -59,7 +59,7 @@ export function Transport() {
       animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 14 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="relative border-t border-rule-soft bg-void/70 backdrop-blur-md">
+      <div className="relative border-t border-rule-soft bg-paper/70 backdrop-blur-md">
         <div className="relative h-8">
           <Waveform
             seed={seed}
@@ -72,10 +72,10 @@ export function Transport() {
 
           {/* The playhead itself. */}
           <motion.span
-            className="absolute inset-y-0 w-px bg-ember-lit"
+            className="absolute inset-y-0 w-px bg-ember"
             style={{ left: `${progress * 100}%` }}
           >
-            <span className="absolute -top-px left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-ember-lit" />
+            <span className="absolute -top-px left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-ember" />
           </motion.span>
         </div>
       </div>

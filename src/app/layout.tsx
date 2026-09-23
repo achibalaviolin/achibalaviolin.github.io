@@ -98,7 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-full focus:bg-ember focus:px-5 focus:py-2.5 focus:text-void"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-full focus:bg-ember focus:px-5 focus:py-2.5 focus:text-paper"
         >
           Skip to content
         </a>

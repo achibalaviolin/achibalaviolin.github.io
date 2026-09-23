@@ -66,7 +66,7 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
       >
         {announcement ? (
           <motion.div
-            className="overflow-hidden border-b border-rule-soft bg-void/85 backdrop-blur-xl"
+            className="overflow-hidden border-b border-rule-soft bg-paper/85 backdrop-blur-xl"
             animate={{ height: atTop && !open ? 'auto' : 0, opacity: atTop && !open ? 1 : 0 }}
             initial={false}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -79,7 +79,7 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
           className={`transition-colors duration-500 ${
             atTop && !open
               ? 'bg-transparent'
-              : 'border-b border-rule-soft bg-void/85 backdrop-blur-xl'
+              : 'border-b border-rule-soft bg-paper/85 backdrop-blur-xl'
           }`}
         >
           <div className="wrap flex h-[4.5rem] items-center justify-between gap-6">
@@ -88,7 +88,7 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
               className="font-display text-lg tracking-tight whitespace-nowrap"
               aria-label={`${site.name}, home`}
             >
-              Achi Bala <span className="text-ember-lit">Violin</span>
+              Achi Bala <span className="text-ember">Violin</span>
             </Link>
 
             <nav aria-label="Primary" className="hidden xl:block">
@@ -101,14 +101,14 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
                         href={link.href}
                         aria-current={current ? 'page' : undefined}
                         className={`relative py-1 transition-colors duration-300 ${
-                          current ? 'text-ember-lit' : 'text-ivory/70 hover:text-ivory'
+                          current ? 'text-ember' : 'text-ink/70 hover:text-ink'
                         }`}
                       >
                         {link.label}
                         {current ? (
                           <motion.span
                             layoutId="nav-indicator"
-                            className="absolute -bottom-0.5 left-0 h-px w-full bg-ember-lit"
+                            className="absolute -bottom-0.5 left-0 h-px w-full bg-ember"
                             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                           />
                         ) : null}
@@ -122,7 +122,7 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
             <div className="flex items-center gap-3">
               <Link
                 href={primaryActions.book.href}
-                className="hidden rounded-full border border-ember/40 px-5 py-2 text-sm text-ember-lit transition-colors duration-500 hover:bg-ember hover:text-void sm:inline-block"
+                className="hidden rounded-full border border-ember/40 px-5 py-2 text-sm text-ember transition-colors duration-500 hover:bg-ember hover:text-paper sm:inline-block"
               >
                 Book
               </Link>
@@ -136,12 +136,12 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
               >
                 <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
                 <motion.span
-                  className="block h-px w-6 bg-ivory"
+                  className="block h-px w-6 bg-ink"
                   animate={{ rotate: open ? 45 : 0, y: open ? 3 : 0 }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 />
                 <motion.span
-                  className="block h-px w-6 bg-ivory"
+                  className="block h-px w-6 bg-ink"
                   animate={{ rotate: open ? -45 : 0, y: open ? -3 : 0 }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 />
@@ -155,7 +155,7 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
         {open ? (
           <motion.div
             id="site-menu"
-            className="fixed inset-0 z-40 flex flex-col justify-center overflow-y-auto bg-void pt-24 pb-10 xl:hidden"
+            className="fixed inset-0 z-40 flex flex-col justify-center overflow-y-auto bg-paper pt-24 pb-10 xl:hidden"
             initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
             animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
             exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
@@ -179,8 +179,8 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
                       aria-current={isCurrent(link.href) ? 'page' : undefined}
                       className={`block py-2 font-display text-[clamp(1.75rem,7vw,3rem)] transition-colors duration-300 ${
                         isCurrent(link.href)
-                          ? 'text-ember-lit'
-                          : 'text-ivory hover:text-ember-lit'
+                          ? 'text-ember'
+                          : 'text-ink hover:text-ember'
                       }`}
                     >
                       {link.label}
@@ -191,11 +191,11 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
 
               <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-rule-soft pt-8 text-sm">
                 {secondaryLinks.map((l) => (
-                  <Link key={l.href} href={l.href} className="bow-link text-muted hover:text-ivory">
+                  <Link key={l.href} href={l.href} className="bow-link text-muted hover:text-ink">
                     {l.label}
                   </Link>
                 ))}
-                <a href={primaryActions.lessons.href} className="bow-link text-ember-lit">
+                <a href={primaryActions.lessons.href} className="bow-link text-ember">
                   {primaryActions.lessons.label}
                 </a>
               </div>

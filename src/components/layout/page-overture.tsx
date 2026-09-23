@@ -48,17 +48,18 @@ export function PageOverture({
             />
           </div>
           {/*
-           * Ivory type over a photograph is unreadable wherever the image
-           * goes pale, so the page colour is carried across it. Heavier at
-           * the foot, where the waveform and the lede sit.
+           * Ink type over a photograph is unreadable wherever the image goes
+           * dark, so the page colour is carried across it, hardest on the
+           * left where the headline sits and clearing to the right so the
+           * photograph is actually seen.
            */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-gradient-to-t from-void via-void/92 to-void/70"
+            className="absolute inset-0 -z-10 bg-gradient-to-r from-paper via-paper/80 to-paper/25"
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-gradient-to-r from-void via-void/75 to-void/45"
+            className="absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-gradient-to-t from-paper to-transparent"
           />
         </>
       ) : null}
@@ -66,7 +67,7 @@ export function PageOverture({
       <div className="wrap">
         {breadcrumb ? (
           <nav aria-label="Breadcrumb" className="mb-10 font-mono text-xs text-faint">
-            <Link href={breadcrumb.href} className="bow-link hover:text-ivory">
+            <Link href={breadcrumb.href} className="bow-link hover:text-ink">
               {breadcrumb.label}
             </Link>
           </nav>

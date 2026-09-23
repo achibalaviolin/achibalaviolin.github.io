@@ -92,14 +92,19 @@ export function Hero() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Stage-light vignette: dark at the foot so the type always holds. */}
+        {/*
+          * The scrim lightens rather than darkens now: the type is ink on a
+          * light ground, so it needs the photograph pulled UP behind it, and
+          * hardest on the left where the headline sits.
+          */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-void via-void/55 to-void/25"
+          className="absolute inset-0 bg-gradient-to-r from-paper via-paper/72 to-transparent"
         />
+        {/* Just enough at the foot to seat the photograph on the page. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(75%_55%_at_50%_0%,rgba(212,162,76,.16),transparent_65%)]"
+          className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-paper to-transparent"
         />
       </motion.div>
 
@@ -107,7 +112,7 @@ export function Hero() {
         * Four strings across the frame. They sit above the image and below the
         * type, and pluck where the pointer crosses them.
         */}
-      <Strings className="pointer-events-auto absolute inset-x-0 top-[30%] z-[5] h-[46%] text-ivory/45" />
+      <Strings className="pointer-events-auto absolute inset-x-0 top-[30%] z-[5] h-[46%] text-ink/45" />
 
       {/* --- copy --- */}
       <motion.div
@@ -131,7 +136,7 @@ export function Hero() {
         />
 
         <motion.p
-          className="mt-7 max-w-xl text-lede text-ivory/80"
+          className="mt-7 max-w-xl text-lede text-muted"
           initial={reduced ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.95, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -164,7 +169,7 @@ export function Hero() {
             >
               <span
                 className={`block h-px w-10 transition-colors duration-500 ${
-                  i === index ? 'bg-ember-lit' : 'bg-ivory/30 group-hover:bg-ivory/60'
+                  i === index ? 'bg-ember' : 'bg-ink/30 group-hover:bg-ink/60'
                 }`}
               />
             </button>
@@ -187,12 +192,12 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6, duration: 1 }}
       >
-        <span className="font-mono text-[10px] tracking-[0.3em] text-ivory/45 uppercase transition-colors group-hover:text-ember-lit">
+        <span className="font-mono text-[10px] tracking-[0.3em] text-ink/45 uppercase transition-colors group-hover:text-ember">
           Scroll
         </span>
         <span
           aria-hidden="true"
-          className="block h-6 w-px bg-gradient-to-b from-ivory/45 to-transparent transition-colors group-hover:from-ember-lit"
+          className="block h-6 w-px bg-gradient-to-b from-ink/40 to-transparent transition-colors group-hover:from-ember"
         />
       </motion.button>
     </section>

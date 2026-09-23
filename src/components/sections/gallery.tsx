@@ -106,7 +106,7 @@ export function GalleryGrid() {
               />
               <span
                 aria-hidden="true"
-                className="absolute inset-0 bg-void/35 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+                className="absolute inset-0 bg-paper/35 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
               />
             </button>
           </RevealItem>
@@ -120,7 +120,7 @@ export function GalleryGrid() {
             role="dialog"
             aria-modal="true"
             aria-label="Image viewer"
-            className="fixed inset-0 z-[120] flex items-center justify-center bg-void/96 p-4 backdrop-blur-sm sm:p-8"
+            className="fixed inset-0 z-[120] flex items-center justify-center bg-paper/96 p-4 backdrop-blur-sm sm:p-8"
             initial={reduced ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -157,7 +157,7 @@ export function GalleryGrid() {
             <button
               type="button"
               onClick={() => step(-1)}
-              className="absolute top-1/2 left-3 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-rule text-ivory transition-colors hover:border-ember hover:text-ember-lit sm:left-6"
+              className="absolute top-1/2 left-3 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-rule text-ink transition-colors hover:border-ember hover:text-ember sm:left-6"
               aria-label="Previous image"
             >
               &#8249;
@@ -165,7 +165,7 @@ export function GalleryGrid() {
             <button
               type="button"
               onClick={() => step(1)}
-              className="absolute top-1/2 right-3 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-rule text-ivory transition-colors hover:border-ember hover:text-ember-lit sm:right-6"
+              className="absolute top-1/2 right-3 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-rule text-ink transition-colors hover:border-ember hover:text-ember sm:right-6"
               aria-label="Next image"
             >
               &#8250;
@@ -174,7 +174,7 @@ export function GalleryGrid() {
               ref={closeRef}
               type="button"
               onClick={close}
-              className="absolute top-4 right-4 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-rule text-ivory transition-colors hover:border-ember hover:text-ember-lit sm:top-6 sm:right-6"
+              className="absolute top-4 right-4 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-rule text-ink transition-colors hover:border-ember hover:text-ember sm:top-6 sm:right-6"
               aria-label="Close image viewer"
             >
               &times;

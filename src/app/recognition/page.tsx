@@ -4,6 +4,7 @@ import { NextStep } from '@/components/layout/next-step'
 import { Reveal, RevealItem, RevealList } from '@/components/animations/reveal'
 import { MediaImage } from '@/components/ui/media-image'
 import { Section } from '@/components/ui/section'
+import { Card3D } from '@/components/animations/depth'
 import { additionalRecognition, awards, festivalCount } from '@/content/awards'
 import { formatPressDate, leadQuote, press } from '@/content/press'
 import { site } from '@/content/site'
@@ -52,8 +53,9 @@ export default function RecognitionPage() {
         <RevealList as="ul" className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {awards.map((award) => (
             <RevealItem as="li" key={award.id}>
-              <figure className="group flex h-full flex-col overflow-hidden rounded-lg border border-rule bg-surface/50 transition-colors duration-700 hover:border-ember/40">
-                <div className="aspect-[4/3] overflow-hidden bg-surface-2">
+              <Card3D className="h-full">
+              <figure className="group flex h-full flex-col overflow-hidden rounded-lg border border-rule bg-mist/50 transition-colors duration-700 hover:border-ember/40">
+                <div className="aspect-[4/3] overflow-hidden bg-shade">
                   <MediaImage
                     img={award.image}
                     alt={award.alt}
@@ -63,7 +65,7 @@ export default function RecognitionPage() {
                 </div>
 
                 <figcaption className="flex flex-1 flex-col p-7">
-                  <span className="text-xs tracking-slate text-ember-lit uppercase">
+                  <span className="text-xs tracking-slate text-ember uppercase">
                     {award.category}
                   </span>
                   <span className="mt-3 font-display text-recital">{award.festival}</span>
@@ -77,6 +79,7 @@ export default function RecognitionPage() {
                   </span>
                 </figcaption>
               </figure>
+              </Card3D>
             </RevealItem>
           ))}
         </RevealList>
@@ -88,7 +91,7 @@ export default function RecognitionPage() {
               <ul className="mt-5 flex flex-wrap gap-x-10 gap-y-3 text-sm text-muted">
                 {additionalRecognition.map((r) => (
                   <li key={r.festival}>
-                    <span className="text-ember-lit/80">{r.category}</span> · {r.festival}
+                    <span className="text-ember/80">{r.category}</span> · {r.festival}
                     {r.place ? (
                       <span className="text-faint"> · {r.place}</span>
                     ) : null}
@@ -122,7 +125,7 @@ export default function RecognitionPage() {
                 href={leadQuote.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bow-link text-ember-lit"
+                className="bow-link text-ember"
               >
                 {leadQuote.publication}
               </a>
@@ -142,7 +145,7 @@ export default function RecognitionPage() {
                 className="group grid gap-4 py-10 transition-colors duration-500 md:grid-cols-[12rem_1fr] md:gap-12"
               >
                 <span className="text-sm">
-                  <span className="block text-ember-lit/80">{item.publication}</span>
+                  <span className="block text-ember/80">{item.publication}</span>
                   <span className="block text-xs text-faint tabular-nums">
                     <time dateTime={item.date}>{formatPressDate(item.date)}</time>
                   </span>
@@ -152,7 +155,7 @@ export default function RecognitionPage() {
                 </span>
 
                 <span>
-                  <span className="block font-display text-recital transition-colors duration-500 group-hover:text-ember-lit">
+                  <span className="block font-display text-recital transition-colors duration-500 group-hover:text-ember">
                     {item.headline}
                   </span>
                   <blockquote className="mt-4 max-w-2xl text-muted italic">

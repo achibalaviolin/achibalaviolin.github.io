@@ -101,14 +101,14 @@ export default function ListenPage() {
         </Reveal>
         <RevealList as="ul" className="mt-10 grid gap-px bg-rule-soft sm:grid-cols-2 lg:grid-cols-5">
           {socials.map((s) => (
-            <RevealItem as="li" key={s.label} className="bg-void">
+            <RevealItem as="li" key={s.label} className="bg-paper">
               <a
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex h-full flex-col gap-2 p-7 transition-colors duration-500 hover:bg-surface/70"
+                className="group flex h-full flex-col gap-2 p-7 transition-colors duration-500 hover:bg-mist/70"
               >
-                <span className="font-display text-recital transition-colors duration-300 group-hover:text-ember-lit">
+                <span className="font-display text-recital transition-colors duration-300 group-hover:text-ember">
                   {s.label}
                 </span>
                 <span className="text-sm text-faint">{s.handle}</span>

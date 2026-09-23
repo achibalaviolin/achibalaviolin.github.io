@@ -5,19 +5,19 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="rule-top bg-surface/40">
+    <footer className="rule-top bg-mist/40">
       <div className="wrap py-20">
         <div className="grid gap-14 lg:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <p className="font-display text-recital">
-              Achi Bala <span className="text-ember-lit">Violin</span>
+              Achi Bala <span className="text-ember">Violin</span>
             </p>
             <p className="mt-5 max-w-sm text-muted">
               Carnatic, film and world music, between Chennai and Texas.
             </p>
             <a
               href={`mailto:${site.email}`}
-              className="bow-link mt-7 inline-block text-ember-lit"
+              className="bow-link mt-7 inline-block text-ember"
             >
               {site.email}
             </a>
@@ -33,7 +33,7 @@ export function Footer() {
             <ul className="mt-6 space-y-2.5 text-sm text-muted">
               {[...navLinks, ...secondaryLinks].map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="bow-link hover:text-ivory">
+                  <Link href={l.href} className="bow-link hover:text-ink">
                     {l.label}
                   </Link>
                 </li>
@@ -50,7 +50,7 @@ export function Footer() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bow-link hover:text-ivory"
+                    className="bow-link hover:text-ink"
                   >
                     {s.label}
                     <span className="sr-only">, {s.handle}</span>

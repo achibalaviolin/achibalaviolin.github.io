@@ -63,8 +63,8 @@ export default function AboutPage() {
 
         <RevealList as="dl" className="mt-20 grid grid-cols-1 gap-px bg-rule-soft sm:grid-cols-3">
           {places.map((p) => (
-            <RevealItem as="div" key={p.city} className="bg-void p-8">
-              <dt className="font-display text-grand text-ember-lit">{p.city}</dt>
+            <RevealItem as="div" key={p.city} className="bg-paper p-8">
+              <dt className="font-display text-grand text-ember">{p.city}</dt>
               <dd className="mt-2 text-sm text-faint">{p.note}</dd>
             </RevealItem>
           ))}
@@ -125,7 +125,7 @@ export default function AboutPage() {
               key={m.year + m.title}
               className="grid gap-4 border-b border-rule-soft py-10 md:grid-cols-[8rem_1fr_auto] md:gap-12"
             >
-              <span className="font-display text-grand text-ember-lit tabular-nums">{m.year}</span>
+              <span className="font-display text-grand text-ember tabular-nums">{m.year}</span>
               <div>
                 <h3 className="font-display text-recital">{m.title}</h3>
                 <p className="mt-3 max-w-2xl text-muted">{m.detail}</p>

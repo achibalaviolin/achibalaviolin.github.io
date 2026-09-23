@@ -46,7 +46,7 @@ export default function AchritiqueIndex() {
           </Reveal>
           <Reveal delay={0.08}>
             <h1 className="mt-6 font-display text-colossal">
-              Achri<span className="text-ember-lit">tique</span>
+              Achri<span className="text-ember">tique</span>
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
@@ -66,13 +66,13 @@ export default function AchritiqueIndex() {
         <Reveal delay={0.08}>
           <article className="mt-10 border-b border-rule-soft pb-16">
             <p className="flex items-center gap-3 text-xs tracking-wider text-faint uppercase">
-              <span className="text-ember-lit">{featured.category}</span>
+              <span className="text-ember">{featured.category}</span>
               <span>{featured.displayDate}</span>
             </p>
             <h2 className="mt-5 max-w-3xl text-monumental">
               <Link
                 href={`/achritique/${featured.slug}/`}
-                className="transition-colors duration-500 hover:text-ember-lit"
+                className="transition-colors duration-500 hover:text-ember"
               >
                 {featured.title}
               </Link>
@@ -80,7 +80,7 @@ export default function AchritiqueIndex() {
             <p className="mt-6 max-w-2xl text-lede text-muted">{featured.excerpt}</p>
             <Link
               href={`/achritique/${featured.slug}/`}
-              className="bow-link mt-8 inline-block text-ember-lit"
+              className="bow-link mt-8 inline-block text-ember"
             >
               Read the essay &rarr;
             </Link>
@@ -103,10 +103,10 @@ export default function AchritiqueIndex() {
                 </span>
                 <span className="flex-1">
                   <span className="flex items-center gap-3 text-xs tracking-wider text-faint uppercase">
-                    <span className="text-ember-lit">{a.category}</span>
+                    <span className="text-ember">{a.category}</span>
                     <span>{a.displayDate}</span>
                   </span>
-                  <span className="mt-3 block font-display text-recital transition-colors duration-500 group-hover:text-ember-lit">
+                  <span className="mt-3 block font-display text-recital transition-colors duration-500 group-hover:text-ember">
                     {a.title}
                   </span>
                   <span className="mt-3 block max-w-2xl text-muted">{a.excerpt}</span>

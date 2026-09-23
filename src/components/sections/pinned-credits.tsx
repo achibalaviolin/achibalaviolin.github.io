@@ -102,7 +102,7 @@ export function PinnedCredits({ work }: { work: Work }) {
                 <div key={s.label} data-stat>
                   <dt className="sr-only">{s.label}</dt>
                   <dd>
-                    <span className="block font-display text-colossal text-ember-lit tabular-nums">
+                    <span className="block font-display text-colossal text-ember tabular-nums">
                       {numeric ? (
                         <span data-count={s.value}>0</span>
                       ) : (
@@ -131,7 +131,7 @@ export function PinnedCredits({ work }: { work: Work }) {
               <dt className="w-44 shrink-0 font-mono text-xs tracking-wide text-faint uppercase">
                 {c.role}
               </dt>
-              <dd className="text-ivory/90">{c.names.join(', ')}</dd>
+              <dd className="text-ink/90">{c.names.join(', ')}</dd>
             </div>
           ))}
         </dl>

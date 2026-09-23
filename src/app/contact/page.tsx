@@ -53,12 +53,12 @@ export default function ContactPage() {
       <Section divider>
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <div className="flex h-full flex-col rounded-lg border border-rule bg-surface/50 p-9 md:p-12">
+            <div className="flex h-full flex-col rounded-lg border border-rule bg-mist/50 p-9 md:p-12">
               <p className="slate">Music, performance and studio</p>
               <Magnetic strength={0.14}>
                 <a
                   href={`mailto:${site.email}`}
-                  className="mt-7 inline-block font-display text-[clamp(1.25rem,2.6vw,2rem)] break-all text-ember-lit transition-colors duration-500 hover:text-ember-lit"
+                  className="mt-7 inline-block font-display text-[clamp(1.25rem,2.6vw,2rem)] break-all text-ember transition-colors duration-500 hover:text-ember"
                 >
                   <span className="bow-link">{site.email}</span>
                 </a>
@@ -71,12 +71,12 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="flex h-full flex-col rounded-lg border border-rule bg-surface/50 p-9 md:p-12">
+            <div className="flex h-full flex-col rounded-lg border border-rule bg-mist/50 p-9 md:p-12">
               <p className="slate">Lessons</p>
               <Magnetic strength={0.14}>
                 <a
                   href={lessonsHref}
-                  className="mt-7 inline-block font-display text-[clamp(1.25rem,2.6vw,2rem)] break-all text-ember-lit transition-colors duration-500 hover:text-ember-lit"
+                  className="mt-7 inline-block font-display text-[clamp(1.25rem,2.6vw,2rem)] break-all text-ember transition-colors duration-500 hover:text-ember"
                 >
                   <span className="bow-link">{roopa.email}</span>
                 </a>
@@ -106,15 +106,15 @@ export default function ContactPage() {
         <RevealList className="mt-14 grid gap-px bg-rule-soft md:grid-cols-3">
           {services.map((service) => (
             <RevealItem key={service.number}>
-              <article className="flex h-full flex-col bg-void p-9 transition-colors duration-700 hover:bg-surface/70 md:p-11">
-                <span className="font-display text-sm text-ember-lit tabular-nums">
+              <article className="flex h-full flex-col bg-paper p-9 transition-colors duration-700 hover:bg-mist/70 md:p-11">
+                <span className="font-display text-sm text-ember tabular-nums">
                   {service.number}
                 </span>
                 <h3 className="mt-6 font-display text-recital">{service.title}</h3>
                 <p className="mt-4 text-muted">{service.description}</p>
                 <a
                   href={serviceMailto(service.subject)}
-                  className="bow-link mt-auto w-fit pt-10 text-sm text-ember-lit"
+                  className="bow-link mt-auto w-fit pt-10 text-sm text-ember"
                 >
                   {service.cta}
                 </a>
@@ -138,7 +138,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="group flex items-baseline gap-3"
               >
-                <span className="bow-link font-display text-recital group-hover:text-ember-lit">
+                <span className="bow-link font-display text-recital group-hover:text-ember">
                   {s.label}
                 </span>
                 <span className="text-xs text-faint">{s.handle}</span>

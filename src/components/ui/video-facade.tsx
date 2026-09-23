@@ -33,7 +33,7 @@ export function VideoFacade({
 
   return (
     <div
-      className={`group relative isolate overflow-hidden rounded-xl bg-surface-2 ${className ?? ''}`}
+      className={`group relative isolate overflow-hidden rounded-xl bg-shade ${className ?? ''}`}
     >
       {playing ? (
         <iframe
@@ -60,11 +60,11 @@ export function VideoFacade({
           />
           <span
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-void/85 via-void/20 to-transparent"
+            className="absolute inset-0 bg-gradient-to-t from-paper/85 via-paper/20 to-transparent"
           />
           <span
             aria-hidden="true"
-            className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-ember/60 bg-void/55 backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 group-hover:border-ember group-hover:bg-ember group-hover:text-void"
+            className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-ember/60 bg-paper/55 backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 group-hover:border-ember group-hover:bg-ember group-hover:text-paper"
           >
             <svg viewBox="0 0 24 24" className="ml-0.5 h-5 w-5 fill-current">
               <path d="M8 5v14l11-7z" />

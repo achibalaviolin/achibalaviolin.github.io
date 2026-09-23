@@ -5,7 +5,7 @@ import type { MediaKey } from '@/content/generated/media'
 /** A pulled-out line, set large between paragraphs. */
 function Pull({ children }: { children: React.ReactNode }) {
   return (
-    <p className="my-12 border-l-2 border-ember/50 py-1 pl-6 font-display text-[clamp(1.35rem,2.6vw,2rem)] leading-snug text-ivory md:pl-8">
+    <p className="my-12 border-l-2 border-ember/50 py-1 pl-6 font-display text-[clamp(1.35rem,2.6vw,2rem)] leading-snug text-ink md:pl-8">
       {children}
     </p>
   )
@@ -54,12 +54,12 @@ export const mdxComponents: MDXComponents = {
   ),
   h3: (props) => <h3 className="mt-10 mb-4 font-display text-xl" {...props} />,
   em: (props) => <em className="italic" {...props} />,
-  strong: (props) => <strong className="font-semibold text-ivory" {...props} />,
+  strong: (props) => <strong className="font-semibold text-ink" {...props} />,
   a: (props) => {
     const external = props.href?.startsWith('http')
     return (
       <a
-        className="bow-link text-ember-lit"
+        className="bow-link text-ember"
         {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         {...props}
       />

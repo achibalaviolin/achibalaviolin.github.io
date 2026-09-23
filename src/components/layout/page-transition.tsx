@@ -79,7 +79,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
             transition={{ duration: 0.52, ease: [0.65, 0, 0.35, 1] }}
           >
             <motion.span
-              className="font-display text-[clamp(2rem,6vw,5rem)] text-ivory"
+              className="font-display text-[clamp(2rem,6vw,5rem)] text-paper"
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
@@ -91,14 +91,17 @@ export function PageTransition({ children }: { children: ReactNode }) {
         ) : null}
       </AnimatePresence>
 
-      <motion.div
-        key={pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.35, delay: 0.12 }}
-      >
-        {children}
-      </motion.div>
+      {/*
+        * The page content is NOT wrapped in a fade.
+        *
+        * It used to mount at opacity 0 and animate up, and when that
+        * animation did not run the entire body of every page was invisible
+        * while the header still painted, which looks like a blank site rather
+        * than like a broken effect. The curtain above already covers the
+        * swap, so the fade bought nothing and risked everything. Content
+        * defaults to visible; motion is layered on top of it, never under it.
+        */}
+      {children}
     </>
   )
 }

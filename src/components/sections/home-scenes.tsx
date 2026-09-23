@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Reveal, RevealItem, RevealList } from '@/components/animations/reveal'
 import { ClipReveal, Parallax } from '@/components/animations/parallax'
+import { Layer } from '@/components/animations/depth'
 import { MediaImage } from '@/components/ui/media-image'
 import { ButtonLink } from '@/components/ui/button'
 import { Waveform } from '@/components/ui/waveform'
@@ -37,7 +38,7 @@ export function SceneNextDate() {
             <h2 className="mt-6 text-monumental">{next.title}</h2>
           </Reveal>
           <Reveal delay={0.14}>
-            <p className="mt-7 font-display text-recital text-ember-lit">
+            <p className="mt-7 font-display text-recital text-ember">
               {next.date ? (
                 <time dateTime={next.date}>{formatEventDate(next.date)}</time>
               ) : null}
@@ -141,10 +142,10 @@ export function SceneFilm() {
       {film.stats ? (
         <RevealList as="dl" className="relative mt-16 grid gap-px bg-rule-soft sm:grid-cols-3">
           {film.stats.map((s) => (
-            <RevealItem as="div" key={s.label} className="bg-void p-10">
+            <RevealItem as="div" key={s.label} className="bg-paper p-10">
               <dt className="sr-only">{s.label}</dt>
               <dd>
-                <span className="block font-display text-grand text-ember-lit tabular-nums">
+                <span className="block font-display text-grand text-ember tabular-nums">
                   {s.value}
                 </span>
                 <span className="mt-3 block text-xs tracking-slate text-faint uppercase">
@@ -193,7 +194,7 @@ export function SceneProof() {
 
         <div className="flex flex-col justify-end border-t border-rule-soft pt-8 lg:border-t-0 lg:border-l lg:border-l-rule-soft lg:pt-0 lg:pl-12">
           <Reveal>
-            <p className="font-display text-colossal text-ember-lit tabular-nums">
+            <p className="font-display text-colossal text-ember tabular-nums">
               {festivalCount}
             </p>
           </Reveal>
@@ -204,7 +205,7 @@ export function SceneProof() {
             </p>
           </Reveal>
           <Reveal delay={0.16}>
-            <Link href="/recognition/" className="bow-link mt-8 w-fit text-ember-lit">
+            <Link href="/recognition/" className="bow-link mt-8 w-fit text-ember">
               See the recognition &rarr;
             </Link>
           </Reveal>
@@ -286,8 +287,8 @@ export function SceneStills() {
        */}
       <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-5 md:gap-5">
         {stills.map((img, i) => (
+          <Layer key={img.key} depth={i % 2 === 1 ? 0.85 : 0.25}>
           <ClipReveal
-            key={img.key}
             delay={i * 0.07}
             className={
               i % 2 === 1
@@ -302,6 +303,7 @@ export function SceneStills() {
               className="aspect-[3/4] w-full object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(.16,1,.3,1)] hover:scale-[1.05]"
             />
           </ClipReveal>
+          </Layer>
         ))}
       </div>
     </Section>

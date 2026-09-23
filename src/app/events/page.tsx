@@ -79,7 +79,7 @@ export default function EventsPage() {
 
               {lead.date ? (
                 <Reveal delay={0.14}>
-                  <p className="mt-8 font-display text-recital text-ember-lit">
+                  <p className="mt-8 font-display text-recital text-ember">
                     <time dateTime={lead.date}>{formatEventDate(lead.date)}</time>
                   </p>
                 </Reveal>
@@ -164,7 +164,7 @@ function EventRow({
   return (
     <div className="grid gap-3 py-8 md:grid-cols-[14rem_1fr_auto] md:items-baseline md:gap-10">
       <span
-        className={`text-sm tabular-nums ${muted ? 'text-faint' : 'text-ember-lit'}`}
+        className={`text-sm tabular-nums ${muted ? 'text-faint' : 'text-ember'}`}
       >
         {event.date ? (
           <time dateTime={event.date}>{formatEventDate(event.date)}</time>

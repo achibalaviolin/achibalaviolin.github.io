@@ -74,7 +74,7 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
         breadcrumb={{ label: 'All works', href: '/works/' }}
         lede={work.summary}
       >
-        {work.venue ? <p className="mt-6 text-sm text-ember-lit">{work.venue}</p> : null}
+        {work.venue ? <p className="mt-6 text-sm text-ember">{work.venue}</p> : null}
       </PageOverture>
 
       <Section divider>
@@ -82,7 +82,7 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
           <div className="space-y-6 text-lede text-muted">
             {work.subtitle ? (
               <Reveal>
-                <p className="font-display text-recital text-ivory italic">{work.subtitle}</p>
+                <p className="font-display text-recital text-ink italic">{work.subtitle}</p>
               </Reveal>
             ) : null}
             {work.body.map((p, i) => (
@@ -149,7 +149,7 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
                 className="grid gap-2 border-b border-rule-soft py-6 md:grid-cols-[1fr_auto] md:gap-10"
               >
                 <span>
-                  <span className="block text-xs tracking-slate text-ember-lit uppercase">
+                  <span className="block text-xs tracking-slate text-ember uppercase">
                     {a.category}
                   </span>
                   <span className="mt-2 block font-display text-recital">{a.festival}</span>
@@ -163,7 +163,7 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
             ))}
           </RevealList>
           <Reveal>
-            <Link href="/recognition/" className="bow-link mt-8 inline-block text-ember-lit">
+            <Link href="/recognition/" className="bow-link mt-8 inline-block text-ember">
               All recognition &rarr;
             </Link>
           </Reveal>

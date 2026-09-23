@@ -41,20 +41,24 @@ const ratio = (a, b) => {
  * distinguishable.
  */
 const PAIRS = [
-  ['ivory', 'void', 4.5, 'body text'],
-  ['muted', 'void', 4.5, 'secondary text'],
-  ['faint', 'void', 4.5, 'dates, sources, meta'],
-  ['ember-lit', 'void', 4.5, 'accent text and links'],
-  ['brass', 'void', 4.5, 'award text'],
-  ['ivory', 'ember-press', 4.5, 'primary button label'],
-  ['ivory', 'surface', 4.5, 'text on a raised panel'],
-  ['muted', 'surface', 4.5, 'secondary text on a panel'],
-  ['faint', 'surface', 4.5, 'meta on a panel'],
-  ['ember', 'void', 3, 'waveform and rules (mark, not text)'],
+  ['ink', 'paper', 4.5, 'body text'],
+  ['muted', 'paper', 4.5, 'secondary text'],
+  ['faint', 'paper', 4.5, 'dates, sources, meta'],
+  ['ember', 'paper', 4.5, 'accent text and links'],
+  ['ember-deep', 'paper', 4.5, 'accent headings'],
+  ['brass', 'paper', 4.5, 'award text'],
+  ['paper', 'ember-press', 4.5, 'primary button label'],
+  ['ink', 'mist', 4.5, 'text on the tinted band'],
+  ['muted', 'mist', 4.5, 'secondary text on the band'],
+  ['faint', 'mist', 4.5, 'meta on the band'],
+  ['ink', 'raised', 4.5, 'text on a raised panel'],
+  ['faint', 'raised', 4.5, 'meta on a raised panel'],
+  ['ink', 'shade', 4.5, 'text in a recessed well'],
+  ['ember', 'mist', 3, 'waveform and rules (mark, not text)'],
 ]
 
-/** These must NOT be used for text; the check asserts they stay unused. */
-const FILL_ONLY = ['ember']
+/** A wash, never under text. The check records it so the rule is visible. */
+const FILL_ONLY = ['ember-soft']
 
 async function main() {
   const css = await readFile(CSS, 'utf8')

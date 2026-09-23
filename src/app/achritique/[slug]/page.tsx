@@ -77,7 +77,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
       <article className="font-read">
         <header className="rule-top pt-36 pb-14 md:pt-44">
           <div className="wrap-read">
-            <p className="font-sans text-xs tracking-[0.2em] text-ember-lit uppercase">
+            <p className="font-sans text-xs tracking-[0.2em] text-ember uppercase">
               {article.kicker}
             </p>
             <h1 className="mt-6 font-display text-monumental">{article.title}</h1>
@@ -87,13 +87,13 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
               </p>
             ) : null}
             <p className="mt-8 font-sans text-sm text-faint">
-              By <span className="text-ivory">Achi Bala</span> · {article.displayDate}
+              By <span className="text-ink">Achi Bala</span> · {article.displayDate}
               {article.readingTime ? <span> · {article.readingTime}</span> : null}
             </p>
           </div>
         </header>
 
-        <div className="wrap-read pb-8 text-ivory/90">
+        <div className="wrap-read pb-8 text-ink/90">
           <MDXRemote source={article.body} components={mdxComponents} />
 
           <p aria-hidden="true" className="mt-14 text-center text-2xl text-ember/50">
@@ -105,10 +105,10 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
               <strong className="text-muted">A note on this text:</strong> this page was
               rebuilt from the original post. To restore it word-for-word, replace the body
               of{' '}
-              <code className="text-ivory/70">
+              <code className="text-ink/70">
                 src/content/achritique/{article.slug}.mdx
               </code>{' '}
-              and delete its <code className="text-ivory/70">needsOriginal</code>{' '}
+              and delete its <code className="text-ink/70">needsOriginal</code>{' '}
               frontmatter flag.
             </p>
           ) : null}
@@ -118,13 +118,13 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
           aria-label="Article"
           className="wrap-read flex items-center justify-between gap-6 border-t border-rule-soft py-10 font-sans text-sm"
         >
-          <Link href={achritique.path} className="bow-link text-muted hover:text-ivory">
+          <Link href={achritique.path} className="bow-link text-muted hover:text-ink">
             &larr; All essays
           </Link>
           {next && next.slug !== slug ? (
             <Link
               href={`/achritique/${next.slug}/`}
-              className="bow-link text-right text-ember-lit"
+              className="bow-link text-right text-ember"
             >
               {next.title} &rarr;
             </Link>
