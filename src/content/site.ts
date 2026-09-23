@@ -64,24 +64,6 @@ export const socials: SocialLink[] = [
   },
 ]
 
-/**
- * The hero's moving panel.
- *
- * `framing` picks which encode is used:
- *
- *   'ribbon'  the right of the frame only: the glowing sound-ribbon, with
- *             no performer in shot. This is the default, because the
- *             footage is stock and the violinist in it is NOT Achi Bala,
- *             and anyone landing on the page would reasonably assume the
- *             person in the hero is him.
- *   'full'    the whole frame, performer included.
- *
- * Switch to 'full' only if that is a deliberate choice.
- */
-export const heroVideo = {
-  framing: 'ribbon' as 'ribbon' | 'full',
-} as const
-
 /** Spotify artist id, reused by the player facade and the JSON-LD `sameAs`. */
 export const spotifyArtistId = '2E2Nkbb3jFT0d6SYp9jwjK'
 

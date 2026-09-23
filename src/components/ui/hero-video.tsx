@@ -1,37 +1,53 @@
 'use client'
 
+import { useMotionValue, type MotionValue } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { useReducedMotion } from '@/components/animations/use-reduced-motion'
-import { heroVideo } from '@/content/site'
 
 /**
- * The hero's moving panel.
+ * The hero's moving frame, and the clock the headline animates against.
  *
- * Framed rather than full-bleed. The footage is near-black and the page is
- * white, so behind the headline it would need light type over it and would
- * invert the whole page; in a frame it reads as a screen on a white wall,
- * which is the register the rest of the site is already in.
+ * The footage is shot on white, so it sits full-bleed behind the type rather
+ * than in a panel: the subject is in the right of frame and the left half is
+ * empty wall, which is where the headline goes.
  *
- * It starts from the poster, so first paint is a 50KB image rather than a
- * 1.9MB download, and the video is only fetched once the element is actually
- * on screen. No audio track exists in the file at all.
+ * `time` is a MotionValue carrying playback position in seconds. It is driven
+ * from `requestVideoFrameCallback` where that exists, so the headline sweep is
+ * locked to actual presented frames rather than to a timer that drifts against
+ * them. A MotionValue rather than state, because this updates 24 times a
+ * second and must not re-render React.
  *
- * It does not play if the visitor asked for less motion or has Save-Data on.
- * In those cases the poster is the hero, which is a still from the same
- * footage and loses nothing.
+ * Poster first, fetched only once on screen, paused when the tab is hidden,
+ * and not played at all under reduced motion or Save-Data.
  */
-export function HeroVideo({ className }: { className?: string }) {
+
+type WithRVFC = HTMLVideoElement & {
+  requestVideoFrameCallback?: (cb: (now: number, meta: { mediaTime: number }) => void) => number
+  cancelVideoFrameCallback?: (handle: number) => void
+}
+
+export function useHeroVideo() {
+  return useMotionValue(0)
+}
+
+export function HeroVideo({
+  className,
+  time,
+  poster = '/video/hero-white-poster.webp',
+  src = '/video/hero-white.mp4',
+}: {
+  className?: string
+  time?: MotionValue<number>
+  poster?: string
+  src?: string
+}) {
   const ref = useRef<HTMLVideoElement>(null)
   const reduced = useReducedMotion()
   const [play, setPlay] = useState(false)
 
-  const src = `/video/hero-${heroVideo.framing}.mp4`
-  const poster = `/video/hero-${heroVideo.framing}-poster.webp`
-
   useEffect(() => {
     if (reduced) return
 
-    // `saveData` is not in the standard Navigator type.
     const conn = (navigator as Navigator & { connection?: { saveData?: boolean } })
       .connection
     if (conn?.saveData) return
@@ -52,7 +68,37 @@ export function HeroVideo({ className }: { className?: string }) {
     return () => io.disconnect()
   }, [reduced])
 
-  /* Pause while the tab is hidden; a looping background need not run there. */
+  /* Publish playback position for anything animating against the footage. */
+  useEffect(() => {
+    if (!play || !time) return
+    const el = ref.current as WithRVFC | null
+    if (!el) return
+
+    let handle = 0
+    let raf = 0
+
+    if (typeof el.requestVideoFrameCallback === 'function') {
+      const onFrame = (_now: number, meta: { mediaTime: number }) => {
+        time.set(meta.mediaTime)
+        handle = el.requestVideoFrameCallback!(onFrame)
+      }
+      handle = el.requestVideoFrameCallback(onFrame)
+    } else {
+      // Safari below 15.4 and older Firefox: a rAF loop reading currentTime.
+      const tick = () => {
+        time.set(el.currentTime)
+        raf = requestAnimationFrame(tick)
+      }
+      raf = requestAnimationFrame(tick)
+    }
+
+    return () => {
+      if (handle && el.cancelVideoFrameCallback) el.cancelVideoFrameCallback(handle)
+      if (raf) cancelAnimationFrame(raf)
+    }
+  }, [play, time])
+
+  /* A looping background need not run in a hidden tab. */
   useEffect(() => {
     if (!play) return
     const el = ref.current
@@ -70,13 +116,11 @@ export function HeroVideo({ className }: { className?: string }) {
       ref={ref}
       className={className}
       poster={poster}
-      /* Metadata only until it is worth more. */
       preload="none"
       muted
       loop
       playsInline
       autoPlay={play}
-      // A decorative loop with no narrative content and no audio.
       aria-hidden="true"
       tabIndex={-1}
       {...(play ? { src } : {})}

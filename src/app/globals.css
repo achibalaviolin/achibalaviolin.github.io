@@ -292,3 +292,51 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ============================================================
+   Hero headline sweep
+
+   The lit band that follows the ribbon in the hero footage. The text
+   is ink by default and STAYS ink unless the clip is actually
+   supported: `-webkit-text-fill-color: transparent` with a background
+   that never paints would render an invisible headline, which is the
+   failure this codebase has already had four times elsewhere.
+   ============================================================ */
+
+.hero-sweep {
+  color: var(--color-ink);
+}
+
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  /*
+   * The lit band is a moving pair of stops, not a moving oversized image.
+   *
+   * The first attempt used `background-size: 300%` with an animated
+   * `background-position-x`, and the leading characters of each line rendered
+   * transparent: the image did not cover the box at every position, and with
+   * `background-clip: text` anything the image does not cover is simply not
+   * painted. Sizing the gradient to the element and moving the stops instead
+   * means the box is always fully covered, so the worst case is flat ink.
+   */
+  .hero-sweep {
+    --sweep: 120%;
+    background-image: linear-gradient(
+      100deg,
+      var(--color-ink) calc(var(--sweep) - 22%),
+      var(--color-ember) var(--sweep),
+      var(--color-ink) calc(var(--sweep) + 22%)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-sweep {
+    background-image: none;
+    -webkit-text-fill-color: var(--color-ink);
+    color: var(--color-ink);
+  }
+}

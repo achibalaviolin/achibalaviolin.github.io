@@ -2,60 +2,87 @@
 
 import { motion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
-import { SplitText } from '@/components/animations/split-text'
 import { useReducedMotion } from '@/components/animations/use-reduced-motion'
 import { ButtonLink } from '@/components/ui/button'
 import { Strings } from '@/components/ui/strings'
-import { HeroVideo } from '@/components/ui/hero-video'
+import { HeroVideo, useHeroVideo } from '@/components/ui/hero-video'
 import { Waveform } from '@/components/ui/waveform'
+import { HeroHeadline, SWEEP_IN, SWEEP_OUT } from './hero-headline'
 import { primaryActions } from '@/content/site'
 
 /**
  * The opening frame.
  *
- * Headline on the page, moving panel beside it. The photographic slider that
- * used to sit here full-bleed has moved to the inner pages, where each frame
- * heads the section it belongs to rather than cycling past in six seconds.
+ * Full-bleed footage shot on white, with the headline over the empty left half
+ * of it. The subject stands in the right of frame and a pale ribbon leaves the
+ * violin and crosses the type, so the copy is aligned to the composition
+ * rather than dropped on top of it: nothing sits where the performer is.
  *
- * The panel is framed rather than full-bleed because the footage is near
- * black: behind the headline it would need light type over it and would
- * invert a white page. In a frame it reads as a screen on a white wall.
+ * The headline and the wave animate against the video's own clock, so the
+ * light crossing the words is the light in the footage rather than a timer
+ * that happens to look close.
  *
- * The heading is a real, visible h1. The previous site's only h1 was
- * screen-reader-only, which left the page with no visible top-level heading.
+ * The photographic slider that used to sit here has moved to the inner pages,
+ * where each frame heads the section it belongs to.
  */
 export function Hero() {
   const reduced = useReducedMotion()
   const ref = useRef<HTMLElement>(null)
+  const time = useHeroVideo()
 
   /*
    * Driven by raw page scroll rather than the section's own progress. A
    * target-relative `useScroll` has to measure the element, and the hero is
    * the first thing painted: the measurement lands before hydration and
-   * reports the section as already scrolled past, which fades the headline to
-   * zero while the page is still at the top.
+   * reports the section as already scrolled past.
    */
   const { scrollY } = useScroll()
-  const panelY = useTransform(scrollY, [0, 700], ['0%', '-7%'], { clamp: true })
-  const copyY = useTransform(scrollY, [0, 700], ['0%', '12%'], { clamp: true })
+  const copyY = useTransform(scrollY, [0, 700], ['0%', '10%'], { clamp: true })
+  const videoY = useTransform(scrollY, [0, 700], ['0%', '6%'], { clamp: true })
+
+  /* The wave under the copy swells as the ribbon passes, then settles. */
+  const waveOpacity = useTransform(
+    time,
+    [SWEEP_IN - 1, SWEEP_IN + 1.2, SWEEP_OUT, SWEEP_OUT + 1],
+    [0.35, 1, 1, 0.35],
+    { clamp: true }
+  )
 
   return (
     <section
       ref={ref}
       id="top"
-      className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20"
+      className="relative flex min-h-[94svh] items-center overflow-hidden pt-28 pb-20 md:pt-32"
       aria-label="Introduction"
     >
-      {/* A wash of his vermilion behind the panel, so the dark frame sits on
-          something rather than being dropped onto bare white. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-0 right-0 h-full w-3/5 bg-[radial-gradient(60%_60%_at_70%_35%,var(--color-ember-soft),transparent_70%)]"
-      />
+      {/* --- the footage, full bleed --- */}
+      <motion.div className="absolute inset-0" style={reduced ? undefined : { y: videoY }}>
+        <HeroVideo time={time} className="h-full w-full object-cover object-right" />
 
-      <div className="wrap relative grid items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
-        {/* --- copy --- */}
-        <motion.div className="relative z-10" style={reduced ? undefined : { y: copyY }}>
+        {/*
+          * The wall in shot is bright but not page-white, and it darkens
+          * toward the left edge. This carries the page colour under the
+          * headline column and clears by 55%, so the type has a clean ground
+          * and the performer is untouched.
+          */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-r from-paper from-0% via-paper/72 via-30% to-transparent to-55%"
+        />
+        {/* The header has no background of its own at the top of the page. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-paper to-transparent"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-paper to-transparent"
+        />
+      </motion.div>
+
+      {/* --- copy, in the empty half of the frame --- */}
+      <motion.div className="wrap relative z-10" style={reduced ? undefined : { y: copyY }}>
+        <div className="max-w-xl">
           <motion.p
             className="slate"
             initial={reduced ? false : { opacity: 0 }}
@@ -65,27 +92,36 @@ export function Hero() {
             Violinist · Composer · Storyteller
           </motion.p>
 
-          <SplitText
-            as="h1"
+          <HeroHeadline
             lines={['Carnatic roots,', 'global voice.']}
+            time={time}
             className="mt-6 font-display text-hero"
-            delay={0.3}
           />
 
           <motion.p
             className="mt-7 max-w-md text-lede text-muted"
             initial={reduced ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.85, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.9, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
             Film-music energy and a performance language shaped between Chennai and Texas.
           </motion.p>
 
+          {/* The wave answers the ribbon. */}
+          <motion.div style={reduced ? undefined : { opacity: waveOpacity }}>
+            <Waveform
+              seed={41}
+              bars={90}
+              intensity={0.5}
+              className="mt-8 h-9 w-full text-ember"
+            />
+          </motion.div>
+
           <motion.div
-            className="mt-9 flex flex-wrap items-center gap-4"
+            className="mt-8 flex flex-wrap items-center gap-4"
             initial={reduced ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 1.05, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
             <ButtonLink href={primaryActions.watch.href}>Watch performances</ButtonLink>
             <ButtonLink href={primaryActions.book.href} variant="secondary">
@@ -93,31 +129,9 @@ export function Hero() {
             </ButtonLink>
           </motion.div>
 
-          {/* The four strings, under the copy rather than across the frame. */}
-          <Strings className="pointer-events-auto mt-12 hidden h-16 w-full text-ink/70 md:block" />
-        </motion.div>
-
-        {/* --- the moving panel --- */}
-        <motion.div
-          className="relative"
-          style={reduced ? undefined : { y: panelY }}
-          initial={reduced ? false : { opacity: 0, scale: 0.97 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="relative overflow-hidden rounded-sm bg-ink shadow-[0_40px_90px_-50px_rgba(20,17,14,.6)]">
-            <HeroVideo className="aspect-[4/3] w-full object-cover lg:aspect-[1200/922]" />
-          </div>
-
-          {/* The wave, tucked under the panel's foot. */}
-          <Waveform
-            seed={41}
-            bars={110}
-            intensity={0.5}
-            className="mt-5 h-10 w-full text-ember/70"
-          />
-        </motion.div>
-      </div>
+          <Strings className="pointer-events-auto mt-9 hidden h-10 w-full text-ink/60 md:block" />
+        </div>
+      </motion.div>
 
       {/*
         * A real control, not a decorative label. It read as something to
@@ -131,10 +145,10 @@ export function Hero() {
             block: 'start',
           })
         }}
-        className="group mx-auto mt-16 hidden flex-col items-center gap-2 py-2 md:flex"
+        className="group absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 py-2 md:flex"
         initial={reduced ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
       >
         <span className="font-mono text-[10px] tracking-[0.3em] text-faint uppercase transition-colors group-hover:text-ember">
           Scroll
