@@ -7,6 +7,7 @@ import { NextStep } from '@/components/layout/next-step'
 import { Reveal, RevealItem, RevealList } from '@/components/animations/reveal'
 import { Section } from '@/components/ui/section'
 import { VideoFacade } from '@/components/ui/video-facade'
+import { PinnedCredits } from '@/components/sections/pinned-credits'
 import { ButtonLink } from '@/components/ui/button'
 import { works } from '@/content/works'
 import { videos } from '@/content/videos'
@@ -109,47 +110,16 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
 
           <div>
             <Reveal>
-              <h2 className="slate">Credits</h2>
+              <h2 className="slate">Source</h2>
             </Reveal>
-            <RevealList as="dl" className="mt-8 border-t border-rule-soft">
-              {work.credits.map((c) => (
-                <RevealItem
-                  as="div"
-                  key={c.role}
-                  className="grid gap-1 border-b border-rule-soft py-4 sm:grid-cols-[10rem_1fr] sm:gap-6"
-                >
-                  <dt className="text-sm text-faint">{c.role}</dt>
-                  <dd className="text-ivory/90">{c.names.join(', ')}</dd>
-                </RevealItem>
-              ))}
-            </RevealList>
-
-            <Reveal delay={0.1}>
-              <p className="mt-8 text-xs text-faint">Source: {work.source}</p>
+            <Reveal delay={0.08}>
+              <p className="mt-6 text-sm text-muted">{work.source}</p>
             </Reveal>
           </div>
         </div>
       </Section>
 
-      {work.stats?.length ? (
-        <Section divider>
-          <RevealList as="dl" className="grid gap-px bg-rule-soft sm:grid-cols-3">
-            {work.stats.map((s) => (
-              <RevealItem as="div" key={s.label} className="bg-void p-10 text-center">
-                <dt className="sr-only">{s.label}</dt>
-                <dd>
-                  <span className="block font-display text-colossal text-ember-lit tabular-nums">
-                    {s.value}
-                  </span>
-                  <span className="mt-3 block text-xs tracking-slate text-faint uppercase">
-                    {s.label}
-                  </span>
-                </dd>
-              </RevealItem>
-            ))}
-          </RevealList>
-        </Section>
-      ) : null}
+      <PinnedCredits work={work} />
 
       {video ? (
         <Section divider>

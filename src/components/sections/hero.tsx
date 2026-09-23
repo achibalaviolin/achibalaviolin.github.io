@@ -6,6 +6,7 @@ import { SplitText } from '@/components/animations/split-text'
 import { useReducedMotion } from '@/components/animations/use-reduced-motion'
 import { MediaImage } from '@/components/ui/media-image'
 import { ButtonLink } from '@/components/ui/button'
+import { Strings } from '@/components/ui/strings'
 import { heroSlides } from '@/content/gallery'
 import { primaryActions } from '@/content/site'
 
@@ -95,6 +96,12 @@ export function Hero() {
           className="absolute inset-0 bg-[radial-gradient(75%_55%_at_50%_0%,rgba(212,162,76,.16),transparent_65%)]"
         />
       </motion.div>
+
+      {/*
+        * Four strings across the frame. They sit above the image and below the
+        * type, and pluck where the pointer crosses them.
+        */}
+      <Strings className="pointer-events-auto absolute inset-x-0 top-[30%] z-[5] h-[46%] text-ivory/45" />
 
       {/* --- copy --- */}
       <motion.div

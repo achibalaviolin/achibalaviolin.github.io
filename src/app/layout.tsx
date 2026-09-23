@@ -8,6 +8,7 @@ import { Footer } from '@/components/layout/footer'
 import { SmoothScroll } from '@/components/animations/smooth-scroll'
 import { Cursor } from '@/components/ui/cursor'
 import { PageTransition } from '@/components/layout/page-transition'
+import { Transport } from '@/components/layout/transport'
 import { site } from '@/content/site'
 import { jsonLd, personSchema } from '@/lib/structured-data'
 
@@ -103,6 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
 
         <SmoothScroll />
+        <Transport />
         <Cursor />
         <Header announcement={<Announcement />} />
 

@@ -51,7 +51,11 @@ export function Parallax({
 /**
  * Wipes an image in behind a travelling clip-path.
  *
- * Kept separate from `Reveal` because a clip reveal must not also fade — the
+ * The wipe runs left to right, on the same axis as the bow stroke, the
+ * waveform and the page transition. An upward wipe would be the only vertical
+ * movement on the site and would read as borrowed from somewhere else.
+ *
+ * Kept separate from `Reveal` because a clip reveal must not also fade: the
  * two together read as a mistake rather than an effect.
  */
 export function ClipReveal({
@@ -72,10 +76,10 @@ export function ClipReveal({
   return (
     <motion.div
       className={className}
-      initial={{ clipPath: 'inset(0 0 100% 0)' }}
-      whileInView={{ clipPath: 'inset(0 0 0% 0)' }}
+      initial={{ clipPath: 'inset(0 100% 0 0)' }}
+      whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 1.1, delay, ease: [0.65, 0, 0.35, 1] }}
     >
       {children}
     </motion.div>
