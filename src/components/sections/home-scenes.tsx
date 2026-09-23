@@ -11,6 +11,7 @@ import { leadQuote, formatPressDate } from '@/content/press'
 import { festivalCount } from '@/content/awards'
 import { bio, gurus } from '@/content/bio'
 import { roopa } from '@/content/roopa'
+import { gallery } from '@/content/gallery'
 
 /*
  * The homepage is a trailer, not a summary.
@@ -249,6 +250,59 @@ export function SceneTeaching() {
             />
           </div>
         </ClipReveal>
+      </div>
+    </Section>
+  )
+}
+
+
+/**
+ * Scene 6: the photographs.
+ *
+ * The trailer was carrying only two images, which for a performer reads as a
+ * CV rather than as a stage. This is a band of stills at their own
+ * proportions, wiping in left to right on the site's axis, ending at the
+ * gallery.
+ */
+export function SceneStills() {
+  const stills = gallery.slice(0, 5)
+
+  return (
+    <Section divider>
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        <Reveal>
+          <h2 className="text-monumental">On stage,<br />and on the street.</h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <ButtonLink href="/gallery/" variant="secondary">
+            Open the gallery
+          </ButtonLink>
+        </Reveal>
+      </div>
+
+      {/*
+       * Deliberately uneven: every other frame is dropped and widened so the
+       * row reads as a contact sheet rather than a grid of equal boxes.
+       */}
+      <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-5 md:gap-5">
+        {stills.map((img, i) => (
+          <ClipReveal
+            key={img.key}
+            delay={i * 0.07}
+            className={
+              i % 2 === 1
+                ? 'md:mt-14 overflow-hidden rounded-sm'
+                : 'overflow-hidden rounded-sm'
+            }
+          >
+            <MediaImage
+              img={img.key}
+              alt={img.alt}
+              sizes="(min-width: 768px) 19vw, 45vw"
+              className="aspect-[3/4] w-full object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(.16,1,.3,1)] hover:scale-[1.05]"
+            />
+          </ClipReveal>
+        ))}
       </div>
     </Section>
   )

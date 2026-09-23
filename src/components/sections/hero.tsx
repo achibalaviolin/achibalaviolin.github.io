@@ -38,9 +38,15 @@ export function Hero() {
    * so the two are equivalent here.
    */
   const { scrollY } = useScroll()
-  const imageY = useTransform(scrollY, [0, 900], ['0%', '18%'], { clamp: true })
-  const copyY = useTransform(scrollY, [0, 900], ['0%', '38%'], { clamp: true })
-  const copyOpacity = useTransform(scrollY, [0, 520], [1, 0], { clamp: true })
+  /*
+   * Gentle. An earlier pass sank the copy 38% of its own height over 900px,
+   * which keeps the headline on screen while the page moves underneath it and
+   * makes the hero feel like it will not end. The copy now clears the fold at
+   * roughly the rate the page does.
+   */
+  const imageY = useTransform(scrollY, [0, 700], ['0%', '10%'], { clamp: true })
+  const copyY = useTransform(scrollY, [0, 700], ['0%', '12%'], { clamp: true })
+  const copyOpacity = useTransform(scrollY, [0, 420], [1, 0], { clamp: true })
 
   useEffect(() => {
     if (reduced) return
@@ -166,15 +172,29 @@ export function Hero() {
         </div>
       </motion.div>
 
-      <motion.span
-        aria-hidden="true"
-        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 text-[10px] tracking-[0.3em] text-ivory/45 uppercase md:block"
+      {/*
+        * A real control, not a decorative label. It read as something to
+        * press, so it now is: it moves the page to the first section.
+        */}
+      <motion.button
+        type="button"
+        onClick={() => {
+          const next = ref.current?.nextElementSibling
+          next?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }}
+        className="group absolute bottom-6 left-1/2 hidden -translate-x-1/2 cursor-pointer flex-col items-center gap-2 py-2 md:flex"
         initial={reduced ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6, duration: 1 }}
       >
-        Scroll
-      </motion.span>
+        <span className="font-mono text-[10px] tracking-[0.3em] text-ivory/45 uppercase transition-colors group-hover:text-ember-lit">
+          Scroll
+        </span>
+        <span
+          aria-hidden="true"
+          className="block h-6 w-px bg-gradient-to-b from-ivory/45 to-transparent transition-colors group-hover:from-ember-lit"
+        />
+      </motion.button>
     </section>
   )
 }

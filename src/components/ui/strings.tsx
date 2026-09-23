@@ -31,6 +31,8 @@ const STRINGS = [
   { note: 'E', y: 0.8, decay: 7.5, thickness: 0.8 },
 ]
 
+const round = (n: number) => Math.round(n * 1000) / 1000
+
 type Ring = { amp: number; phase: number; at: number; freq: number }
 
 export function Strings({ className }: { className?: string }) {
@@ -64,6 +66,7 @@ export function Strings({ className }: { className?: string }) {
           if (ring) {
             rings[i] = null
             path.setAttribute('d', `M0 ${y} L${W} ${y}`)
+            path.setAttribute('opacity', String(round(0.14 - i * 0.015)))
           }
           return
         }
@@ -71,6 +74,14 @@ export function Strings({ className }: { className?: string }) {
         alive = true
         ring.phase += dt * ring.freq
         ring.amp *= Math.exp(-s.decay * dt)
+
+        // Light the string in proportion to how hard it is still ringing, so
+        // the pluck is what draws the eye rather than the resting lines.
+        const rest = 0.14 - i * 0.015
+        path.setAttribute(
+          'opacity',
+          String(round(rest + Math.min(1, ring.amp / 11) * 0.5))
+        )
 
         // A plucked string is a standing wave pinned at both ends, with the
         // antinode at the pluck point. Quadratics either side of `at` give
@@ -155,7 +166,10 @@ export function Strings({ className }: { className?: string }) {
             stroke="currentColor"
             strokeWidth={s.thickness}
             vectorEffect="non-scaling-stroke"
-            opacity={0.55 - i * 0.07}
+            // Near-invisible at rest so the photograph is never veiled; the
+            // ring handler raises this on the string being touched and eases
+            // it back down as the note decays.
+            opacity={0.14 - i * 0.015}
           />
         ))}
       </svg>

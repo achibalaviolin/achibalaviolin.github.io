@@ -1,7 +1,7 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'motion/react'
-import { useRef, type ReactNode } from 'react'
+import { motion, useInView, useScroll, useTransform } from 'motion/react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { useReducedMotion } from './use-reduced-motion'
 
 /**
@@ -49,11 +49,15 @@ export function Parallax({
 }
 
 /**
- * Wipes an image in behind a travelling clip-path.
+ * Wipes an image in behind a travelling clip-path, left to right, on the same
+ * axis as the bow stroke and the page transition.
  *
- * The wipe runs left to right, on the same axis as the bow stroke, the
- * waveform and the page transition. An upward wipe would be the only vertical
- * movement on the site and would read as borrowed from somewhere else.
+ * It fails OPEN. The clip is driven by state that a safety timer will clear
+ * even if the viewport observer never fires, because the alternative failure
+ * is an image that stays 100% clipped and is simply gone from the page: that
+ * happened to the whole stills band on the homepage, and to the awards rail
+ * before it. An effect that does not run should cost the effect, never the
+ * content.
  *
  * Kept separate from `Reveal` because a clip reveal must not also fade: the
  * two together read as a mistake rather than an effect.
@@ -67,7 +71,25 @@ export function ClipReveal({
   className?: string
   delay?: number
 }) {
+  const ref = useRef<HTMLDivElement>(null)
   const reduced = useReducedMotion()
+  const inView = useInView(ref, { once: true, amount: 0.15 })
+  const [shown, setShown] = useState(false)
+
+  useEffect(() => {
+    if (reduced) {
+      setShown(true)
+      return
+    }
+    if (inView) {
+      setShown(true)
+      return
+    }
+    // Backstop: reveal regardless after a beat, so a missed observer can
+    // never leave the image hidden.
+    const t = setTimeout(() => setShown(true), 2500)
+    return () => clearTimeout(t)
+  }, [inView, reduced])
 
   if (reduced) {
     return <div className={className}>{children}</div>
@@ -75,11 +97,11 @@ export function ClipReveal({
 
   return (
     <motion.div
+      ref={ref}
       className={className}
-      initial={{ clipPath: 'inset(0 100% 0 0)' }}
-      whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 1.1, delay, ease: [0.65, 0, 0.35, 1] }}
+      initial={false}
+      animate={{ clipPath: shown ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)' }}
+      transition={{ duration: 1.1, delay: shown ? delay : 0, ease: [0.65, 0, 0.35, 1] }}
     >
       {children}
     </motion.div>
