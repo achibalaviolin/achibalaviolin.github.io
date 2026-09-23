@@ -6,7 +6,7 @@ import { useReducedMotion } from '@/components/animations/use-reduced-motion'
 import { ButtonLink } from '@/components/ui/button'
 import { Strings } from '@/components/ui/strings'
 import { HeroVideo, useHeroSound, useHeroVideo } from '@/components/ui/hero-video'
-import { SoundToggle } from '@/components/ui/sound-toggle'
+import { useAudioLevels } from '@/components/ui/use-audio-levels'
 import { Waveform } from '@/components/ui/waveform'
 import { HeroHeadline, SWEEP_IN, SWEEP_OUT } from './hero-headline'
 import { primaryActions } from '@/content/site'
@@ -31,6 +31,8 @@ export function Hero() {
   const ref = useRef<HTMLElement>(null)
   const time = useHeroVideo()
   const sound = useHeroSound()
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const levels = useAudioLevels(videoRef, sound.on)
 
   /*
    * Driven by raw page scroll rather than the section's own progress. A
@@ -62,6 +64,7 @@ export function Hero() {
         <HeroVideo
           time={time}
           soundOn={sound.on}
+          videoRef={videoRef}
           className="h-full w-full object-cover object-right"
         />
 
@@ -113,15 +116,45 @@ export function Hero() {
             Film-music energy and a performance language shaped between Chennai and Texas.
           </motion.p>
 
-          {/* The wave answers the ribbon. */}
-          <motion.div style={reduced ? undefined : { opacity: waveOpacity }}>
+          {/*
+            * The wave is the sound control.
+            *
+            * With sound off it is the seeded shape and swells as the ribbon
+            * passes. With sound on it is driven by an FFT of the video's own
+            * track, so it stops resembling a music line and becomes one.
+            * Putting the control on it means the thing you press is the thing
+            * that answers.
+            */}
+          <motion.button
+            type="button"
+            onClick={sound.toggle}
+            aria-pressed={sound.on}
+            className="group mt-8 block w-full cursor-pointer text-left"
+            style={reduced || sound.on ? undefined : { opacity: waveOpacity }}
+          >
+            <span className="sr-only">
+              {sound.on ? 'Turn hero sound off' : 'Turn hero sound on'}
+            </span>
             <Waveform
               seed={41}
               bars={90}
               intensity={0.5}
-              className="mt-8 h-9 w-full text-ember"
+              levels={sound.on ? levels : undefined}
+              reactive={false}
+              className="h-9 w-full text-ember transition-opacity duration-500 group-hover:opacity-100"
             />
-          </motion.div>
+            <span
+              aria-hidden="true"
+              className="mt-2 flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-faint uppercase transition-colors duration-300 group-hover:text-ember"
+            >
+              <span
+                className={`inline-block h-1.5 w-1.5 rounded-full ${
+                  sound.on ? 'bg-ember' : 'bg-faint/60'
+                }`}
+              />
+              {sound.on ? 'Sound on' : 'Play with sound'}
+            </span>
+          </motion.button>
 
           <motion.div
             className="mt-8 flex flex-wrap items-center gap-4"
@@ -135,12 +168,6 @@ export function Hero() {
             </ButtonLink>
           </motion.div>
 
-          {/*
-            * The video carries sound but cannot start with it: every major
-            * browser refuses to autoplay audible media before the visitor has
-            * interacted with the page. This is how they turn it on.
-            */}
-          <SoundToggle on={sound.on} onToggle={sound.toggle} className="mt-8" />
 
           <Strings className="pointer-events-auto mt-9 hidden h-10 w-full text-ink/60 md:block" />
         </div>

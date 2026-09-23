@@ -12,9 +12,11 @@ import { useReducedMotion } from '@/components/animations/use-reduced-motion'
  *
  *   1. bars rise left to right when the wave scrolls into view, at the pace of
  *      a bow being drawn rather than all at once
- *   2. bars swell toward the pointer, so the wave answers the cursor the way a
- *      string answers a finger
- *   3. an optional playhead lights every bar behind it
+ *   2. given `levels`, the bars ARE the audio: driven from an FFT of the hero
+ *      video's own track, so the wave is the music and not a likeness of it
+ *   3. otherwise bars swell toward the pointer, so the wave answers the cursor
+ *      the way a string answers a finger
+ *   4. an optional playhead lights every bar behind it
  *
  * Amplitudes come from a seeded generator rather than `Math.random`, so the
  * same seed always gives the same wave and a section keeps its shape between
@@ -56,6 +58,12 @@ export function Waveform({
   progress,
   /** Bars swell toward the pointer. Desktop only, off under reduced motion. */
   reactive = true,
+  /**
+   * Live levels, 0..1 per bar. When supplied and returning data, the wave is
+   * the audio rather than the seeded shape, and the pointer swell steps aside
+   * so the two are not fighting over the same bars.
+   */
+  levels,
 }: {
   bars?: number
   seed?: number
@@ -63,6 +71,7 @@ export function Waveform({
   intensity?: number
   progress?: number
   reactive?: boolean
+  levels?: (count: number) => number[] | null
 }) {
   const svgRef = useRef<SVGSVGElement>(null)
   const barsRef = useRef<SVGRectElement[]>([])
@@ -108,10 +117,35 @@ export function Waveform({
     return () => io.disconnect()
   }, [bars, reduced])
 
+  /* --- 1b. live audio: the wave becomes the track --- */
+  useEffect(() => {
+    const svg = svgRef.current
+    if (!svg || !levels || reduced) return
+
+    let raf = 0
+    const tick = () => {
+      raf = requestAnimationFrame(tick)
+      const out = levels(bars)
+      if (!out) return
+      for (let i = 0; i < barsRef.current.length; i++) {
+        const bar = barsRef.current[i]
+        if (!bar) continue
+        // The rect's own height is the seeded shape; this scales it, so a
+        // silent passage collapses to a line rather than to nothing.
+        const v = 0.18 + out[i] * 2.4
+        bar.style.transition = 'transform 90ms linear'
+        bar.style.transitionDelay = '0ms'
+        bar.style.setProperty('--swell', v.toFixed(3))
+      }
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [levels, bars, reduced])
+
   /* --- 2. pointer: bars swell toward the cursor --- */
   useEffect(() => {
     const svg = svgRef.current
-    if (!svg || reduced || !reactive) return
+    if (!svg || reduced || !reactive || levels) return
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
 
     let frame = 0
@@ -160,7 +194,7 @@ export function Waveform({
       svg.removeEventListener('pointerleave', onLeave)
       if (frame) cancelAnimationFrame(frame)
     }
-  }, [bars, reactive, reduced])
+  }, [bars, reactive, reduced, levels])
 
   const playedUpTo = progress === undefined ? -1 : progress * bars
 

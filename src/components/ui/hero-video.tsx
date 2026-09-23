@@ -72,15 +72,19 @@ export function HeroVideo({
   poster = '/video/hero-white-poster.webp',
   src = '/video/hero-white.mp4',
   soundOn = false,
+  videoRef,
 }: {
   className?: string
   time?: MotionValue<number>
   poster?: string
   src?: string
-  /** Sound is off until the visitor asks for it; see SoundToggle. */
+  /** Sound is off until the visitor asks for it. */
   soundOn?: boolean
+  /** Lets the hero reach the element, for the audio analyser. */
+  videoRef?: React.RefObject<HTMLVideoElement | null>
 }) {
-  const ref = useRef<HTMLVideoElement>(null)
+  const own = useRef<HTMLVideoElement>(null)
+  const ref = videoRef ?? own
   const reduced = useReducedMotion()
   const [play, setPlay] = useState(false)
 

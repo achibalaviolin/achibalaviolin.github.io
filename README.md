@@ -212,8 +212,13 @@ close, and moves with arrow keys.
 start unmuted, and this is not a setting: Chrome, Safari and Firefox all refuse
 to autoplay audible media until the visitor has interacted with the page, and a
 video marked `autoplay` without `muted` does not play at all. So it starts
-muted with a labelled Sound on/off control beside the buttons, and the choice
-is remembered in `localStorage`. Worth knowing separately: the audio on that
+muted, and the **waveform under the lede is the control**: press it and the
+sound comes on. The choice is remembered in `localStorage`.
+
+With sound on, that waveform stops being decorative. It is driven by an FFT of
+the video's own audio through a Web Audio analyser, so the bars are the track
+rather than a shape that resembles one. With sound off it falls back to the
+seeded wave, which also swells as the ribbon crosses the headline. Worth knowing separately: the audio on that
 clip is the stock footage's own, not Achi Bala playing, so anyone who turns it
 on hears music that is not his. Replacing it with one of his own recordings
 would fix that; the encode command is in `_source-media/video/NOTES.md`.
