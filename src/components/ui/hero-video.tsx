@@ -87,6 +87,7 @@ export function HeroVideo({
   const ref = videoRef ?? own
   const reduced = useReducedMotion()
   const [play, setPlay] = useState(false)
+  const [onScreen, setOnScreen] = useState(true)
 
   useEffect(() => {
     if (reduced) return
@@ -98,18 +99,37 @@ export function HeroVideo({
     const el = ref.current
     if (!el) return
 
+    /*
+     * Playback follows visibility both ways.
+     *
+     * Starting on first sight is a load optimisation; STOPPING when the video
+     * leaves is about the sound. Once someone turns audio on and scrolls to
+     * the events list, music from a hero they can no longer see is just noise
+     * coming from nowhere, and their only way to stop it is to scroll back up
+     * and find the control. So the observer is kept rather than disconnected,
+     * and the video pauses on its way out and resumes on its way back.
+     */
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setPlay(true)
-          io.disconnect()
-        }
+        setOnScreen(entry.isIntersecting)
+        if (entry.isIntersecting) setPlay(true)
       },
-      { rootMargin: '200px' }
+      // Generous enough that it does not flicker at the boundary, tight
+      // enough that the sound is gone by the time the hero is.
+      { rootMargin: '0px', threshold: 0.12 }
     )
     io.observe(el)
     return () => io.disconnect()
   }, [reduced])
+
+  /* Pause on the way out, resume on the way back. */
+  useEffect(() => {
+    if (!play) return
+    const el = ref.current
+    if (!el) return
+    if (onScreen) void el.play().catch(() => {})
+    else el.pause()
+  }, [onScreen, play])
 
   /* Publish playback position for anything animating against the footage. */
   useEffect(() => {
@@ -161,11 +181,13 @@ export function HeroVideo({
     if (!el) return
     const onVis = () => {
       if (document.visibilityState === 'hidden') el.pause()
-      else void el.play().catch(() => {})
+      // Only resume if the hero is actually on screen; otherwise returning to
+      // the tab would restart audio for a video that is scrolled past.
+      else if (onScreen) void el.play().catch(() => {})
     }
     document.addEventListener('visibilitychange', onVis)
     return () => document.removeEventListener('visibilitychange', onVis)
-  }, [play])
+  }, [play, onScreen])
 
   return (
     <video

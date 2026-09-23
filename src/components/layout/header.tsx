@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { useEffect, useState, type ReactNode } from 'react'
 import { navLinks, primaryActions, secondaryLinks, site } from '@/content/site'
+import { Wordmark } from '@/components/ui/wordmark'
 import { useReducedMotion } from '@/components/animations/use-reduced-motion'
 
 /**
@@ -83,12 +84,8 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
           }`}
         >
           <div className="wrap flex h-[4.5rem] items-center justify-between gap-6">
-            <Link
-              href="/"
-              className="font-display text-lg tracking-tight whitespace-nowrap"
-              aria-label={`${site.name}, home`}
-            >
-              Achi Bala <span className="text-ember">Violin</span>
+            <Link href="/" className="shrink-0" aria-label={`${site.name}, home`}>
+              <Wordmark className="h-8 w-auto text-ink transition-colors duration-500 hover:text-ember sm:h-9" />
             </Link>
 
             <nav aria-label="Primary" className="hidden xl:block">

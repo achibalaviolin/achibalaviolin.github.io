@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { navLinks, primaryActions, secondaryLinks, site, socials } from '@/content/site'
+import { Wordmark } from '@/components/ui/wordmark'
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -9,9 +10,7 @@ export function Footer() {
       <div className="wrap py-20">
         <div className="grid gap-14 lg:grid-cols-[1.5fr_1fr_1fr]">
           <div>
-            <p className="font-display text-recital">
-              Achi Bala <span className="text-ember">Violin</span>
-            </p>
+            <Wordmark className="h-12 w-auto text-ink" />
             <p className="mt-5 max-w-sm text-muted">
               Carnatic, film and world music, between Chennai and Texas.
             </p>
