@@ -4,9 +4,17 @@ Source: `hero-white-source.mp4`, 1920x1080, 10s, 24fps, supplied by the artist.
 Shot on white, subject in the right of frame, with a pale ribbon that leaves
 the violin and sweeps left across the empty half.
 
-    ffmpeg -i hero-white-source.mp4 -an -movflags +faststart \
+    ffmpeg -i hero-white-source.mp4 -movflags +faststart \
       -vf "crop=1700:1080:0:0,scale=1600:-2,hqdn3d=1.5:1:2:2" \
-      -c:v libx264 -crf 29 -preset veryslow -pix_fmt yuv420p hero-white.mp4
+      -c:v libx264 -crf 29 -preset veryslow -pix_fmt yuv420p \
+      -c:a aac -b:a 96k -ac 2 hero-white.mp4
+
+The audio track is kept (AAC 96k; the source measures -20.9 LUFS integrated).
+It costs about 0.12 MB. The video still starts muted, because browsers will
+not autoplay audible media, and the hero carries a Sound on/off control.
+
+The audio is the stock clip's own and is NOT Achi Bala playing. If one of his
+recordings replaces it, mux it in with `-i track.m4a -map 0:v -map 1:a`.
 
 0.71 MB from a 3.3 MB source. The crop to 1700 wide removes a four-point
 sparkle watermark baked into the bottom-right of the frame, and still leaves

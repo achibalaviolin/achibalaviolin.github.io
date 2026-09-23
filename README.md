@@ -208,6 +208,16 @@ plain content rather than degraded content. The marquee becomes a static list of
 words. Focus states are visible and gold; the gallery lightbox traps focus, restores it on
 close, and moves with arrow keys.
 
+**Sound in the hero.** The hero video carries its audio track, but it cannot
+start unmuted, and this is not a setting: Chrome, Safari and Firefox all refuse
+to autoplay audible media until the visitor has interacted with the page, and a
+video marked `autoplay` without `muted` does not play at all. So it starts
+muted with a labelled Sound on/off control beside the buttons, and the choice
+is remembered in `localStorage`. Worth knowing separately: the audio on that
+clip is the stock footage's own, not Achi Bala playing, so anyone who turns it
+on hears music that is not his. Replacing it with one of his own recordings
+would fix that; the encode command is in `_source-media/video/NOTES.md`.
+
 **Performance.** The YouTube and Spotify embeds sit behind click-to-play facades — a cold
 YouTube embed costs over a megabyte before anyone presses play. Images ship as pre-sized
 WebP with inline blur placeholders and explicit dimensions, so nothing shifts as the page

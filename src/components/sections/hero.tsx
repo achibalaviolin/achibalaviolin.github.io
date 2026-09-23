@@ -5,7 +5,8 @@ import { useRef } from 'react'
 import { useReducedMotion } from '@/components/animations/use-reduced-motion'
 import { ButtonLink } from '@/components/ui/button'
 import { Strings } from '@/components/ui/strings'
-import { HeroVideo, useHeroVideo } from '@/components/ui/hero-video'
+import { HeroVideo, useHeroSound, useHeroVideo } from '@/components/ui/hero-video'
+import { SoundToggle } from '@/components/ui/sound-toggle'
 import { Waveform } from '@/components/ui/waveform'
 import { HeroHeadline, SWEEP_IN, SWEEP_OUT } from './hero-headline'
 import { primaryActions } from '@/content/site'
@@ -29,6 +30,7 @@ export function Hero() {
   const reduced = useReducedMotion()
   const ref = useRef<HTMLElement>(null)
   const time = useHeroVideo()
+  const sound = useHeroSound()
 
   /*
    * Driven by raw page scroll rather than the section's own progress. A
@@ -57,7 +59,11 @@ export function Hero() {
     >
       {/* --- the footage, full bleed --- */}
       <motion.div className="absolute inset-0" style={reduced ? undefined : { y: videoY }}>
-        <HeroVideo time={time} className="h-full w-full object-cover object-right" />
+        <HeroVideo
+          time={time}
+          soundOn={sound.on}
+          className="h-full w-full object-cover object-right"
+        />
 
         {/*
           * The wall in shot is bright but not page-white, and it darkens
@@ -128,6 +134,13 @@ export function Hero() {
               Book a collaboration
             </ButtonLink>
           </motion.div>
+
+          {/*
+            * The video carries sound but cannot start with it: every major
+            * browser refuses to autoplay audible media before the visitor has
+            * interacted with the page. This is how they turn it on.
+            */}
+          <SoundToggle on={sound.on} onToggle={sound.toggle} className="mt-8" />
 
           <Strings className="pointer-events-auto mt-9 hidden h-10 w-full text-ink/60 md:block" />
         </div>

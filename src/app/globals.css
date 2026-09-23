@@ -340,3 +340,14 @@
     color: var(--color-ink);
   }
 }
+
+/* The sound toggle's level meter, while sound is on. */
+@keyframes eq {
+  0%,
+  100% {
+    height: 35%;
+  }
+  50% {
+    height: 100%;
+  }
+}
