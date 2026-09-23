@@ -77,7 +77,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
       <article className="font-read">
         <header className="rule-top pt-36 pb-14 md:pt-44">
           <div className="wrap-read">
-            <p className="font-sans text-xs tracking-[0.2em] text-gold uppercase">
+            <p className="font-sans text-xs tracking-[0.2em] text-ember-lit uppercase">
               {article.kicker}
             </p>
             <h1 className="mt-6 font-display text-monumental">{article.title}</h1>
@@ -96,7 +96,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
         <div className="wrap-read pb-8 text-ivory/90">
           <MDXRemote source={article.body} components={mdxComponents} />
 
-          <p aria-hidden="true" className="mt-14 text-center text-2xl text-gold/50">
+          <p aria-hidden="true" className="mt-14 text-center text-2xl text-ember/50">
             &#10086;
           </p>
 
@@ -124,7 +124,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
           {next && next.slug !== slug ? (
             <Link
               href={`/achritique/${next.slug}/`}
-              className="bow-link text-right text-gold-bright"
+              className="bow-link text-right text-ember-lit"
             >
               {next.title} &rarr;
             </Link>

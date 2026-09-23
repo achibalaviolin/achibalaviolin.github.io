@@ -88,7 +88,7 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
               className="font-display text-lg tracking-tight whitespace-nowrap"
               aria-label={`${site.name}, home`}
             >
-              Achi Bala <span className="text-gold">Violin</span>
+              Achi Bala <span className="text-ember-lit">Violin</span>
             </Link>
 
             <nav aria-label="Primary" className="hidden xl:block">
@@ -101,14 +101,14 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
                         href={link.href}
                         aria-current={current ? 'page' : undefined}
                         className={`relative py-1 transition-colors duration-300 ${
-                          current ? 'text-gold-bright' : 'text-ivory/70 hover:text-ivory'
+                          current ? 'text-ember-lit' : 'text-ivory/70 hover:text-ivory'
                         }`}
                       >
                         {link.label}
                         {current ? (
                           <motion.span
                             layoutId="nav-indicator"
-                            className="absolute -bottom-0.5 left-0 h-px w-full bg-gold-bright"
+                            className="absolute -bottom-0.5 left-0 h-px w-full bg-ember-lit"
                             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                           />
                         ) : null}
@@ -122,7 +122,7 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
             <div className="flex items-center gap-3">
               <Link
                 href={primaryActions.book.href}
-                className="hidden rounded-full border border-gold/40 px-5 py-2 text-sm text-gold-bright transition-colors duration-500 hover:bg-gold hover:text-void sm:inline-block"
+                className="hidden rounded-full border border-ember/40 px-5 py-2 text-sm text-ember-lit transition-colors duration-500 hover:bg-ember hover:text-void sm:inline-block"
               >
                 Book
               </Link>
@@ -179,8 +179,8 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
                       aria-current={isCurrent(link.href) ? 'page' : undefined}
                       className={`block py-2 font-display text-[clamp(1.75rem,7vw,3rem)] transition-colors duration-300 ${
                         isCurrent(link.href)
-                          ? 'text-gold-bright'
-                          : 'text-ivory hover:text-gold-bright'
+                          ? 'text-ember-lit'
+                          : 'text-ivory hover:text-ember-lit'
                       }`}
                     >
                       {link.label}
@@ -195,7 +195,7 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
                     {l.label}
                   </Link>
                 ))}
-                <a href={primaryActions.lessons.href} className="bow-link text-gold-bright">
+                <a href={primaryActions.lessons.href} className="bow-link text-ember-lit">
                   {primaryActions.lessons.label}
                 </a>
               </div>

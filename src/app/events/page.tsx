@@ -42,7 +42,7 @@ export default function EventsPage() {
       />
 
       <PageOverture
-        rubric="Events"
+        slate="Events"
         title={['Where to hear', 'him next.']}
         image="events/ilaiyaraaja-night-2026"
         lede={
@@ -55,7 +55,7 @@ export default function EventsPage() {
       {lead ? (
         <Section divider>
           <Reveal>
-            <p className="rubric">{lead.eyebrow}</p>
+            <p className="slate">{lead.eyebrow}</p>
           </Reveal>
 
           <div className="mt-10 grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-20">
@@ -79,7 +79,7 @@ export default function EventsPage() {
 
               {lead.date ? (
                 <Reveal delay={0.14}>
-                  <p className="mt-8 font-display text-recital text-gold-bright">
+                  <p className="mt-8 font-display text-recital text-ember-lit">
                     <time dateTime={lead.date}>{formatEventDate(lead.date)}</time>
                   </p>
                 </Reveal>
@@ -112,7 +112,7 @@ export default function EventsPage() {
       {rest.length > 0 ? (
         <Section divider>
           <Reveal>
-            <h2 className="rubric">Also coming up</h2>
+            <h2 className="slate">Also coming up</h2>
           </Reveal>
           <RevealList as="ul" className="mt-10 border-t border-rule-soft">
             {rest.map((e) => (
@@ -127,7 +127,7 @@ export default function EventsPage() {
       {past.length > 0 ? (
         <Section divider>
           <Reveal>
-            <h2 className="rubric">Recent appearances</h2>
+            <h2 className="slate">Recent appearances</h2>
           </Reveal>
           <RevealList as="ul" className="mt-10 border-t border-rule-soft">
             {past.map((e) => (
@@ -164,7 +164,7 @@ function EventRow({
   return (
     <div className="grid gap-3 py-8 md:grid-cols-[14rem_1fr_auto] md:items-baseline md:gap-10">
       <span
-        className={`text-sm tabular-nums ${muted ? 'text-faint' : 'text-gold-bright'}`}
+        className={`text-sm tabular-nums ${muted ? 'text-faint' : 'text-ember-lit'}`}
       >
         {event.date ? (
           <time dateTime={event.date}>{formatEventDate(event.date)}</time>

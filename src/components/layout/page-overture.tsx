@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { MediaImage } from '@/components/ui/media-image'
-import { Soundhole } from '@/components/ui/soundhole'
+import { Waveform } from '@/components/ui/waveform'
 import { SplitText } from '@/components/animations/split-text'
 import { Reveal } from '@/components/animations/reveal'
 import type { MediaKey } from '@/content/generated/media'
@@ -9,76 +9,63 @@ import type { MediaKey } from '@/content/generated/media'
 /**
  * The opening of every inner page.
  *
- * Same parts in the same places on all nine routes: rubric, display headline
- * on a narrow measure, lede, and the page's photograph in the bout frame with
- * the soundhole turning behind it. That repetition is what makes the site feel
- * like one place rather than a stack of templates.
+ * The composition is a title card: a slate line, the title set large, and a
+ * waveform running the full width beneath it, over a letterboxed still.
+ * Type sits on the page rather than beside a framed portrait, because the
+ * headline is the loudest thing here and does not need an ornament competing
+ * with it from the right.
  *
- * Shorter than the home hero's full viewport. These pages have content to get
- * to, and a screen-height header on every route buries it.
+ * Shorter than the home hero. These pages have content to get to.
  */
 export function PageOverture({
-  rubric,
+  slate,
   title,
   lede,
   image,
-  imageAlt,
   breadcrumb,
   children,
 }: {
-  rubric: string
+  slate: string
   /** Each string is one line, so the break is deliberate rather than reflowed. */
   title: string[]
   lede?: ReactNode
   image?: MediaKey
-  imageAlt?: string
   breadcrumb?: { label: string; href: string }
   children?: ReactNode
 }) {
   return (
-    <header className="relative isolate flex min-h-[72svh] items-center overflow-hidden pt-32 pb-20 md:min-h-[80svh] md:pt-40">
+    <header className="relative isolate overflow-hidden pt-32 pb-16 md:pt-44 md:pb-20">
       {image ? (
         <>
-          {/*
-           * Ring and portrait share one positioned box so they stay
-           * concentric. Sized off the same box as well, so the ring always
-           * reads as the instrument's soundhole behind the body rather than
-           * drifting to one side of it.
-           */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 z-[1] flex w-full items-center justify-center opacity-25 lg:w-[48%] lg:opacity-100"
-          >
-            <div className="relative flex aspect-square h-[76%] items-center justify-center">
-              <Soundhole className="absolute inset-0 h-full w-full text-gold/45" />
-              <div className="bout gpu relative h-[82%] w-[72%]">
-                <MediaImage
-                  img={image}
-                  alt=""
-                  sizes="(min-width: 1024px) 36vw, 70vw"
-                  priority
-                  fill
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
+          <div aria-hidden="true" className="absolute inset-0 -z-10">
+            <MediaImage
+              img={image}
+              alt=""
+              sizes="100vw"
+              priority
+              fill
+              className="h-full w-full object-cover"
+            />
           </div>
-
           {/*
-           * Ivory type over a photograph is unreadable wherever the image goes
-           * pale, so the page colour is carried under the text and faded out
-           * to the right. Painted above the image and below the type.
+           * Ivory type over a photograph is unreadable wherever the image
+           * goes pale, so the page colour is carried across it. Heavier at
+           * the foot, where the waveform and the lede sit.
            */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-r from-void via-void/92 to-void/40 lg:via-void/80 lg:to-transparent"
+            className="absolute inset-0 -z-10 bg-gradient-to-t from-void via-void/92 to-void/70"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 bg-gradient-to-r from-void via-void/75 to-void/45"
           />
         </>
       ) : null}
 
-      <div className="wrap relative z-10">
+      <div className="wrap">
         {breadcrumb ? (
-          <nav aria-label="Breadcrumb" className="mb-10 text-sm text-faint">
+          <nav aria-label="Breadcrumb" className="mb-10 font-mono text-xs text-faint">
             <Link href={breadcrumb.href} className="bow-link hover:text-ivory">
               {breadcrumb.label}
             </Link>
@@ -86,24 +73,34 @@ export function PageOverture({
         ) : null}
 
         <Reveal>
-          <p className="rubric">{rubric}</p>
+          <p className="slate">{slate}</p>
         </Reveal>
 
         <SplitText
           as="h1"
           lines={title}
-          className="mt-7 max-w-4xl font-display text-monumental"
+          className="mt-8 max-w-5xl font-display text-monumental"
           delay={0.1}
         />
 
         {lede ? (
           <Reveal delay={0.35}>
-            <div className="mt-8 max-w-xl text-lede text-muted">{lede}</div>
+            <div className="mt-9 max-w-xl text-lede text-muted">{lede}</div>
           </Reveal>
         ) : null}
 
         {children ? <Reveal delay={0.45}>{children}</Reveal> : null}
       </div>
+
+      {/* The mark: a wave running the full width, under everything. */}
+      <Reveal delay={0.5}>
+        <Waveform
+          seed={title.join('').length + title[0].charCodeAt(0)}
+          bars={120}
+          intensity={0.55}
+          className="mt-16 h-14 w-full text-ember/45 md:mt-20 md:h-20"
+        />
+      </Reveal>
     </header>
   )
 }

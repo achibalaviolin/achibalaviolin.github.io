@@ -73,7 +73,7 @@ export default function RoopaFineArtsPage() {
           </nav>
 
           <Reveal>
-            <p className="rubric mt-10">
+            <p className="slate mt-10">
               {roopa.name} · est. {roopa.established}
             </p>
           </Reveal>
@@ -83,7 +83,7 @@ export default function RoopaFineArtsPage() {
           <Reveal delay={0.16}>
             <p className="mt-8 max-w-2xl text-lede text-muted">
               Roopa Fine Arts is the teaching school of violinist{' '}
-              <Link href="/" className="bow-link text-gold-bright">
+              <Link href="/" className="bow-link text-ember-lit">
                 Achi Bala
               </Link>
               : Carnatic violin, Carnatic vocal, and music theory with exam preparation, in
@@ -106,7 +106,7 @@ export default function RoopaFineArtsPage() {
         <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
           <div>
             <Reveal>
-              <p className="rubric">The school</p>
+              <p className="slate">The school</p>
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="mt-5 text-grand">Classical training, modern classroom.</h2>
@@ -125,7 +125,7 @@ export default function RoopaFineArtsPage() {
               <RevealItem as="div" key={`${stat.value}-${stat.label}`} className="bg-void p-8">
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
-                  <span className="block font-display text-4xl text-gold">
+                  <span className="block font-display text-4xl text-ember-lit">
                     {stat.countTo ? <Counter to={stat.countTo} /> : stat.value}
                   </span>
                   <span className="mt-2 block text-xs tracking-wider text-faint uppercase">
@@ -149,10 +149,10 @@ export default function RoopaFineArtsPage() {
           {programs.map((p) => (
             <RevealItem key={p.number}>
               <article className="flex h-full flex-col bg-void p-9 transition-colors duration-700 hover:bg-surface/70 md:p-11">
-                <span className="font-display text-sm text-gold tabular-nums">{p.number}</span>
+                <span className="font-display text-sm text-ember-lit tabular-nums">{p.number}</span>
                 <h3 className="mt-6 font-display text-recital">{p.title}</h3>
                 <p className="mt-4 text-muted">{p.description}</p>
-                <a href={enquireHref} className="bow-link mt-auto w-fit pt-10 text-sm text-gold-bright">
+                <a href={enquireHref} className="bow-link mt-auto w-fit pt-10 text-sm text-ember-lit">
                   {p.cta}
                 </a>
               </article>
@@ -183,7 +183,7 @@ export default function RoopaFineArtsPage() {
                 ) : (
                   <div
                     aria-hidden="true"
-                    className="strings flex aspect-[4/5] items-center justify-center bg-surface-2"
+                    className="staff flex aspect-[4/5] items-center justify-center bg-surface-2"
                   >
                     <span className="rounded-full border border-rule bg-void px-5 py-2 text-xs tracking-wider text-faint uppercase">
                       Flyer coming soon
@@ -192,7 +192,7 @@ export default function RoopaFineArtsPage() {
                 )}
 
                 <div className="p-8">
-                  <p className="rubric">
+                  <p className="slate">
                     {a.date ? (
                       <time dateTime={a.date}>{formatEventDate(a.date)}</time>
                     ) : (
@@ -214,7 +214,7 @@ export default function RoopaFineArtsPage() {
         <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
           <div>
             <Reveal>
-              <p className="rubric">Where lessons happen</p>
+              <p className="slate">Where lessons happen</p>
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="mt-5 text-grand">Austin, Houston, and online.</h2>
@@ -238,7 +238,7 @@ export default function RoopaFineArtsPage() {
               <RevealItem as="div" key={`${stat.value}-${stat.label}`} className="bg-void p-8">
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
-                  <span className="block font-display text-3xl text-gold">{stat.value}</span>
+                  <span className="block font-display text-3xl text-ember-lit">{stat.value}</span>
                   <span className="mt-2 block text-xs tracking-wider text-faint uppercase">
                     {stat.label}
                   </span>
@@ -261,7 +261,7 @@ export default function RoopaFineArtsPage() {
                   {f.question}
                   <span
                     aria-hidden="true"
-                    className="shrink-0 text-gold transition-transform duration-500 group-open:rotate-45"
+                    className="shrink-0 text-ember-lit transition-transform duration-500 group-open:rotate-45"
                   >
                     +
                   </span>
@@ -276,7 +276,7 @@ export default function RoopaFineArtsPage() {
       {/* --- enquire --- */}
       <Section id="enquire" divider className="text-center">
         <Reveal>
-          <p className="rubric">Enquire</p>
+          <p className="slate">Enquire</p>
         </Reveal>
         <Reveal delay={0.08}>
           <h2 className="mx-auto mt-6 max-w-3xl text-monumental">Begin your Carnatic journey.</h2>
@@ -284,7 +284,7 @@ export default function RoopaFineArtsPage() {
         <Reveal delay={0.16}>
           <a
             href={enquireHref}
-            className="mt-12 inline-block font-display text-[clamp(1.35rem,3.5vw,2.5rem)] text-gold-bright transition-colors duration-500 hover:text-gold"
+            className="mt-12 inline-block font-display text-[clamp(1.35rem,3.5vw,2.5rem)] text-ember-lit transition-colors duration-500 hover:text-ember-lit"
           >
             <span className="bow-link">{roopa.email}</span>
           </a>

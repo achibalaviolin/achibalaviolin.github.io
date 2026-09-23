@@ -42,11 +42,11 @@ export default function AchritiqueIndex() {
       <header className="rule-top pt-40 pb-20 text-center md:pt-48">
         <div className="wrap">
           <Reveal>
-            <p className="rubric">{achritique.est}</p>
+            <p className="slate">{achritique.est}</p>
           </Reveal>
           <Reveal delay={0.08}>
             <h1 className="mt-6 font-display text-colossal">
-              Achri<span className="text-gold">tique</span>
+              Achri<span className="text-ember-lit">tique</span>
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
@@ -54,25 +54,25 @@ export default function AchritiqueIndex() {
               {achritique.strapline}
             </p>
           </Reveal>
-          <div aria-hidden="true" className="strings mx-auto mt-14 h-[25px] w-40 opacity-60" />
+          <div aria-hidden="true" className="staff mx-auto mt-14 h-[25px] w-40 opacity-60" />
         </div>
       </header>
 
       <div className="wrap pb-32">
         <Reveal>
-          <p className="rubric border-t border-rule-soft pt-8">Featured essay</p>
+          <p className="slate border-t border-rule-soft pt-8">Featured essay</p>
         </Reveal>
 
         <Reveal delay={0.08}>
           <article className="mt-10 border-b border-rule-soft pb-16">
             <p className="flex items-center gap-3 text-xs tracking-wider text-faint uppercase">
-              <span className="text-gold">{featured.category}</span>
+              <span className="text-ember-lit">{featured.category}</span>
               <span>{featured.displayDate}</span>
             </p>
             <h2 className="mt-5 max-w-3xl text-monumental">
               <Link
                 href={`/achritique/${featured.slug}/`}
-                className="transition-colors duration-500 hover:text-gold-bright"
+                className="transition-colors duration-500 hover:text-ember-lit"
               >
                 {featured.title}
               </Link>
@@ -80,7 +80,7 @@ export default function AchritiqueIndex() {
             <p className="mt-6 max-w-2xl text-lede text-muted">{featured.excerpt}</p>
             <Link
               href={`/achritique/${featured.slug}/`}
-              className="bow-link mt-8 inline-block text-gold-bright"
+              className="bow-link mt-8 inline-block text-ember-lit"
             >
               Read the essay &rarr;
             </Link>
@@ -88,7 +88,7 @@ export default function AchritiqueIndex() {
         </Reveal>
 
         <Reveal>
-          <p className="rubric mt-16">From the archive</p>
+          <p className="slate mt-16">From the archive</p>
         </Reveal>
 
         <RevealList as="ol" className="mt-8 divide-y divide-rule-soft border-y border-rule-soft">
@@ -103,10 +103,10 @@ export default function AchritiqueIndex() {
                 </span>
                 <span className="flex-1">
                   <span className="flex items-center gap-3 text-xs tracking-wider text-faint uppercase">
-                    <span className="text-gold">{a.category}</span>
+                    <span className="text-ember-lit">{a.category}</span>
                     <span>{a.displayDate}</span>
                   </span>
-                  <span className="mt-3 block font-display text-recital transition-colors duration-500 group-hover:text-gold-bright">
+                  <span className="mt-3 block font-display text-recital transition-colors duration-500 group-hover:text-ember-lit">
                     {a.title}
                   </span>
                   <span className="mt-3 block max-w-2xl text-muted">{a.excerpt}</span>
@@ -119,7 +119,7 @@ export default function AchritiqueIndex() {
 
         <Reveal>
           <p className="mt-20 text-center text-muted">
-            <span aria-hidden="true" className="mb-4 block text-2xl text-gold/50">
+            <span aria-hidden="true" className="mb-4 block text-2xl text-ember/50">
               &#10086;
             </span>
             More essays are on their way from the archive.

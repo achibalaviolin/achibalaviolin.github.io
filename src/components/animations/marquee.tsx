@@ -71,7 +71,7 @@ export function Marquee({
       {items.map((item, i) => (
         <span key={`${copy}-${i}`} className="flex shrink-0 items-center">
           <span className="px-[0.6em] whitespace-nowrap">{item}</span>
-          <span className="text-gold/60 select-none" aria-hidden="true">
+          <span className="text-ember-lit/60 select-none" aria-hidden="true">
             &#10022;
           </span>
         </span>

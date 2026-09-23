@@ -102,7 +102,7 @@ export function Hero() {
         style={reduced ? undefined : { y: copyY, opacity: copyOpacity }}
       >
         <motion.p
-          className="rubric"
+          className="slate"
           initial={reduced ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
@@ -151,7 +151,7 @@ export function Hero() {
             >
               <span
                 className={`block h-px w-10 transition-colors duration-500 ${
-                  i === index ? 'bg-gold-bright' : 'bg-ivory/30 group-hover:bg-ivory/60'
+                  i === index ? 'bg-ember-lit' : 'bg-ivory/30 group-hover:bg-ivory/60'
                 }`}
               />
             </button>

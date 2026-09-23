@@ -43,7 +43,7 @@ export default function ContactPage() {
       />
 
       <PageOverture
-        rubric="Work together"
+        slate="Work together"
         title={['Commissions,', 'collaborations,', 'and bookings.']}
         image="gallery/achi-5"
         lede="Tell me what you are making and when it needs to exist."
@@ -54,11 +54,11 @@ export default function ContactPage() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <div className="flex h-full flex-col rounded-lg border border-rule bg-surface/50 p-9 md:p-12">
-              <p className="rubric">Music, performance and studio</p>
+              <p className="slate">Music, performance and studio</p>
               <Magnetic strength={0.14}>
                 <a
                   href={`mailto:${site.email}`}
-                  className="mt-7 inline-block font-display text-[clamp(1.25rem,2.6vw,2rem)] break-all text-gold-bright transition-colors duration-500 hover:text-gold"
+                  className="mt-7 inline-block font-display text-[clamp(1.25rem,2.6vw,2rem)] break-all text-ember-lit transition-colors duration-500 hover:text-ember-lit"
                 >
                   <span className="bow-link">{site.email}</span>
                 </a>
@@ -72,11 +72,11 @@ export default function ContactPage() {
 
           <Reveal delay={0.1}>
             <div className="flex h-full flex-col rounded-lg border border-rule bg-surface/50 p-9 md:p-12">
-              <p className="rubric">Lessons</p>
+              <p className="slate">Lessons</p>
               <Magnetic strength={0.14}>
                 <a
                   href={lessonsHref}
-                  className="mt-7 inline-block font-display text-[clamp(1.25rem,2.6vw,2rem)] break-all text-gold-bright transition-colors duration-500 hover:text-gold"
+                  className="mt-7 inline-block font-display text-[clamp(1.25rem,2.6vw,2rem)] break-all text-ember-lit transition-colors duration-500 hover:text-ember-lit"
                 >
                   <span className="bow-link">{roopa.email}</span>
                 </a>
@@ -94,7 +94,7 @@ export default function ContactPage() {
       {/* --- services --- */}
       <Section divider>
         <Reveal>
-          <h2 className="rubric">Studio and services</h2>
+          <h2 className="slate">Studio and services</h2>
         </Reveal>
         <Reveal delay={0.08}>
           <p className="mt-6 max-w-2xl text-lede text-muted">
@@ -107,14 +107,14 @@ export default function ContactPage() {
           {services.map((service) => (
             <RevealItem key={service.number}>
               <article className="flex h-full flex-col bg-void p-9 transition-colors duration-700 hover:bg-surface/70 md:p-11">
-                <span className="font-display text-sm text-gold tabular-nums">
+                <span className="font-display text-sm text-ember-lit tabular-nums">
                   {service.number}
                 </span>
                 <h3 className="mt-6 font-display text-recital">{service.title}</h3>
                 <p className="mt-4 text-muted">{service.description}</p>
                 <a
                   href={serviceMailto(service.subject)}
-                  className="bow-link mt-auto w-fit pt-10 text-sm text-gold-bright"
+                  className="bow-link mt-auto w-fit pt-10 text-sm text-ember-lit"
                 >
                   {service.cta}
                 </a>
@@ -127,7 +127,7 @@ export default function ContactPage() {
       {/* --- elsewhere --- */}
       <Section divider>
         <Reveal>
-          <h2 className="rubric">Elsewhere</h2>
+          <h2 className="slate">Elsewhere</h2>
         </Reveal>
         <RevealList as="ul" className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
           {socials.map((s) => (
@@ -138,7 +138,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="group flex items-baseline gap-3"
               >
-                <span className="bow-link font-display text-recital group-hover:text-gold-bright">
+                <span className="bow-link font-display text-recital group-hover:text-ember-lit">
                   {s.label}
                 </span>
                 <span className="text-xs text-faint">{s.handle}</span>

@@ -157,7 +157,7 @@ export function GalleryGrid() {
             <button
               type="button"
               onClick={() => step(-1)}
-              className="absolute top-1/2 left-3 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-rule text-ivory transition-colors hover:border-gold hover:text-gold sm:left-6"
+              className="absolute top-1/2 left-3 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-rule text-ivory transition-colors hover:border-ember hover:text-ember-lit sm:left-6"
               aria-label="Previous image"
             >
               &#8249;
@@ -165,7 +165,7 @@ export function GalleryGrid() {
             <button
               type="button"
               onClick={() => step(1)}
-              className="absolute top-1/2 right-3 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-rule text-ivory transition-colors hover:border-gold hover:text-gold sm:right-6"
+              className="absolute top-1/2 right-3 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-rule text-ivory transition-colors hover:border-ember hover:text-ember-lit sm:right-6"
               aria-label="Next image"
             >
               &#8250;
@@ -174,7 +174,7 @@ export function GalleryGrid() {
               ref={closeRef}
               type="button"
               onClick={close}
-              className="absolute top-4 right-4 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-rule text-ivory transition-colors hover:border-gold hover:text-gold sm:top-6 sm:right-6"
+              className="absolute top-4 right-4 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-rule text-ivory transition-colors hover:border-ember hover:text-ember-lit sm:top-6 sm:right-6"
               aria-label="Close image viewer"
             >
               &times;

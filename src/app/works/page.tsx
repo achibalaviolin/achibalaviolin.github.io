@@ -34,7 +34,7 @@ export default function WorksPage() {
       />
 
       <PageOverture
-        rubric="Works"
+        slate="Works"
         title={['Composed,', 'directed,', 'performed.']}
         image="hero/banner-2"
         lede="Original scores and music direction for film, stage and dance, alongside the records."
@@ -59,7 +59,7 @@ export default function WorksPage() {
                   </span>
 
                   <div>
-                    <h2 className="font-display text-monumental transition-colors duration-500 group-hover:text-gold-bright">
+                    <h2 className="font-display text-monumental transition-colors duration-500 group-hover:text-ember-lit">
                       {work.title}
                     </h2>
                     {work.subtitle ? (
@@ -68,7 +68,7 @@ export default function WorksPage() {
                     <p className="mt-5 max-w-2xl text-muted">{work.summary}</p>
                   </div>
 
-                  <span className="text-xs tracking-rubric text-gold uppercase">
+                  <span className="text-xs tracking-slate text-ember-lit uppercase">
                     {work.kind}
                   </span>
 

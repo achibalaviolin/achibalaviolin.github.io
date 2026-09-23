@@ -37,7 +37,7 @@ export default function ListenPage() {
       />
 
       <PageOverture
-        rubric="Listen and watch"
+        slate="Listen and watch"
         title={['Music for screen,', 'stage, and stream.']}
         image="gallery/achi-3"
         lede="Stream the records on Spotify, or step into the video archive."
@@ -64,7 +64,7 @@ export default function ListenPage() {
           </div>
 
           <Reveal delay={0.12}>
-            <p className="rubric">On Spotify</p>
+            <p className="slate">On Spotify</p>
             <SpotifyFacade className="mt-6" />
           </Reveal>
         </div>
@@ -73,7 +73,7 @@ export default function ListenPage() {
       {/* --- the archive --- */}
       <Section divider>
         <Reveal>
-          <h2 className="rubric">The video archive</h2>
+          <h2 className="slate">The video archive</h2>
         </Reveal>
 
         <RevealList className="mt-12 grid gap-10 sm:grid-cols-2">
@@ -97,7 +97,7 @@ export default function ListenPage() {
       {/* --- platforms --- */}
       <Section divider>
         <Reveal>
-          <h2 className="rubric">Follow along</h2>
+          <h2 className="slate">Follow along</h2>
         </Reveal>
         <RevealList as="ul" className="mt-10 grid gap-px bg-rule-soft sm:grid-cols-2 lg:grid-cols-5">
           {socials.map((s) => (
@@ -108,7 +108,7 @@ export default function ListenPage() {
                 rel="noopener noreferrer"
                 className="group flex h-full flex-col gap-2 p-7 transition-colors duration-500 hover:bg-surface/70"
               >
-                <span className="font-display text-recital transition-colors duration-300 group-hover:text-gold-bright">
+                <span className="font-display text-recital transition-colors duration-300 group-hover:text-ember-lit">
                   {s.label}
                 </span>
                 <span className="text-sm text-faint">{s.handle}</span>

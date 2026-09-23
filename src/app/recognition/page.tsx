@@ -37,7 +37,7 @@ export default function RecognitionPage() {
       />
 
       <PageOverture
-        rubric="Recognition"
+        slate="Recognition"
         title={['Laurels', 'and citations.']}
         image="awards/awards-2"
         lede={`Recognition from ${festivalCount} festivals and competitions, and what the reviews have said.`}
@@ -46,13 +46,13 @@ export default function RecognitionPage() {
       {/* --- the awards, one per row, each with its citation --- */}
       <Section divider>
         <Reveal>
-          <h2 className="rubric">Festival awards</h2>
+          <h2 className="slate">Festival awards</h2>
         </Reveal>
 
         <RevealList as="ul" className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {awards.map((award) => (
             <RevealItem as="li" key={award.id}>
-              <figure className="group flex h-full flex-col overflow-hidden rounded-lg border border-rule bg-surface/50 transition-colors duration-700 hover:border-gold/40">
+              <figure className="group flex h-full flex-col overflow-hidden rounded-lg border border-rule bg-surface/50 transition-colors duration-700 hover:border-ember/40">
                 <div className="aspect-[4/3] overflow-hidden bg-surface-2">
                   <MediaImage
                     img={award.image}
@@ -63,7 +63,7 @@ export default function RecognitionPage() {
                 </div>
 
                 <figcaption className="flex flex-1 flex-col p-7">
-                  <span className="text-xs tracking-rubric text-gold uppercase">
+                  <span className="text-xs tracking-slate text-ember-lit uppercase">
                     {award.category}
                   </span>
                   <span className="mt-3 font-display text-recital">{award.festival}</span>
@@ -84,11 +84,11 @@ export default function RecognitionPage() {
         {additionalRecognition.length > 0 ? (
           <Reveal>
             <div className="mt-14 border-t border-rule-soft pt-8">
-              <h3 className="rubric">Also selected</h3>
+              <h3 className="slate">Also selected</h3>
               <ul className="mt-5 flex flex-wrap gap-x-10 gap-y-3 text-sm text-muted">
                 {additionalRecognition.map((r) => (
                   <li key={r.festival}>
-                    <span className="text-gold/80">{r.category}</span> · {r.festival}
+                    <span className="text-ember-lit/80">{r.category}</span> · {r.festival}
                     {r.place ? (
                       <span className="text-faint"> · {r.place}</span>
                     ) : null}
@@ -103,14 +103,14 @@ export default function RecognitionPage() {
       {/* --- press --- */}
       <Section divider>
         <Reveal>
-          <h2 className="rubric">What the reviews said</h2>
+          <h2 className="slate">What the reviews said</h2>
         </Reveal>
 
         <Reveal delay={0.08}>
-          <figure className="relative mt-12 border-l-2 border-gold/50 pl-8 md:pl-12">
+          <figure className="relative mt-12 border-l-2 border-ember/50 pl-8 md:pl-12">
             <span
               aria-hidden="true"
-              className="absolute -top-8 left-3 font-display text-[7rem] leading-none text-gold/20 select-none md:left-6"
+              className="absolute -top-8 left-3 font-display text-[7rem] leading-none text-ember/20 select-none md:left-6"
             >
               &ldquo;
             </span>
@@ -122,7 +122,7 @@ export default function RecognitionPage() {
                 href={leadQuote.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bow-link text-gold-bright"
+                className="bow-link text-ember-lit"
               >
                 {leadQuote.publication}
               </a>
@@ -142,7 +142,7 @@ export default function RecognitionPage() {
                 className="group grid gap-4 py-10 transition-colors duration-500 md:grid-cols-[12rem_1fr] md:gap-12"
               >
                 <span className="text-sm">
-                  <span className="block text-gold/80">{item.publication}</span>
+                  <span className="block text-ember-lit/80">{item.publication}</span>
                   <span className="block text-xs text-faint tabular-nums">
                     <time dateTime={item.date}>{formatPressDate(item.date)}</time>
                   </span>
@@ -152,7 +152,7 @@ export default function RecognitionPage() {
                 </span>
 
                 <span>
-                  <span className="block font-display text-recital transition-colors duration-500 group-hover:text-gold-bright">
+                  <span className="block font-display text-recital transition-colors duration-500 group-hover:text-ember-lit">
                     {item.headline}
                   </span>
                   <blockquote className="mt-4 max-w-2xl text-muted italic">

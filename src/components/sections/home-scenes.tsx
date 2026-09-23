@@ -3,7 +3,7 @@ import { Reveal, RevealItem, RevealList } from '@/components/animations/reveal'
 import { ClipReveal, Parallax } from '@/components/animations/parallax'
 import { MediaImage } from '@/components/ui/media-image'
 import { ButtonLink } from '@/components/ui/button'
-import { Soundhole } from '@/components/ui/soundhole'
+import { Waveform } from '@/components/ui/waveform'
 import { Section } from '@/components/ui/section'
 import { formatEventDate, upcomingEvents } from '@/content/events'
 import { featuredWork, works } from '@/content/works'
@@ -30,13 +30,13 @@ export function SceneNextDate() {
       <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-16">
         <div>
           <Reveal>
-            <p className="rubric">Next on stage</p>
+            <p className="slate">Next on stage</p>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="mt-6 text-monumental">{next.title}</h2>
           </Reveal>
           <Reveal delay={0.14}>
-            <p className="mt-7 font-display text-recital text-gold-bright">
+            <p className="mt-7 font-display text-recital text-ember-lit">
               {next.date ? (
                 <time dateTime={next.date}>{formatEventDate(next.date)}</time>
               ) : null}
@@ -71,7 +71,7 @@ export function SceneStory() {
       <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-24">
         <ClipReveal>
           <Parallax distance={6}>
-            <div className="bout">
+            <div className="overflow-hidden rounded-sm">
               <MediaImage
                 img="gallery/achi-10"
                 alt="Achi Bala playing violin on a New York street"
@@ -84,7 +84,7 @@ export function SceneStory() {
 
         <div>
           <Reveal>
-            <p className="rubric">The artist</p>
+            <p className="slate">The artist</p>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="mt-6 text-monumental">
@@ -121,16 +121,9 @@ export function SceneFilm() {
 
   return (
     <Section divider className="relative overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 -right-40 hidden -translate-y-1/2 text-gold/40 lg:block"
-      >
-        <Soundhole className="h-[70vmin] w-[70vmin]" />
-      </div>
-
       <div className="relative max-w-3xl">
         <Reveal>
-          <p className="rubric">The film</p>
+          <p className="slate">The film</p>
         </Reveal>
         <Reveal delay={0.08}>
           <h2 className="mt-6 text-colossal">{film.title}</h2>
@@ -140,16 +133,20 @@ export function SceneFilm() {
         </Reveal>
       </div>
 
+      <Reveal delay={0.2}>
+        <Waveform seed={19} bars={140} className="mt-14 h-20 w-full text-ember/40 md:h-28" />
+      </Reveal>
+
       {film.stats ? (
         <RevealList as="dl" className="relative mt-16 grid gap-px bg-rule-soft sm:grid-cols-3">
           {film.stats.map((s) => (
             <RevealItem as="div" key={s.label} className="bg-void p-10">
               <dt className="sr-only">{s.label}</dt>
               <dd>
-                <span className="block font-display text-grand text-gold tabular-nums">
+                <span className="block font-display text-grand text-ember-lit tabular-nums">
                   {s.value}
                 </span>
-                <span className="mt-3 block text-xs tracking-rubric text-faint uppercase">
+                <span className="mt-3 block text-xs tracking-slate text-faint uppercase">
                   {s.label}
                 </span>
               </dd>
@@ -177,7 +174,7 @@ export function SceneProof() {
       <div className="grid gap-14 lg:grid-cols-[1.3fr_0.7fr] lg:gap-20">
         <figure>
           <Reveal>
-            <p className="rubric">Press</p>
+            <p className="slate">Press</p>
           </Reveal>
           <Reveal delay={0.08}>
             <blockquote className="mt-8 font-display text-grand text-balance">
@@ -195,7 +192,7 @@ export function SceneProof() {
 
         <div className="flex flex-col justify-end border-t border-rule-soft pt-8 lg:border-t-0 lg:border-l lg:border-l-rule-soft lg:pt-0 lg:pl-12">
           <Reveal>
-            <p className="font-display text-colossal text-gold tabular-nums">
+            <p className="font-display text-colossal text-ember-lit tabular-nums">
               {festivalCount}
             </p>
           </Reveal>
@@ -206,7 +203,7 @@ export function SceneProof() {
             </p>
           </Reveal>
           <Reveal delay={0.16}>
-            <Link href="/recognition/" className="bow-link mt-8 w-fit text-gold-bright">
+            <Link href="/recognition/" className="bow-link mt-8 w-fit text-ember-lit">
               See the recognition &rarr;
             </Link>
           </Reveal>
@@ -223,7 +220,7 @@ export function SceneTeaching() {
       <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-20">
         <div>
           <Reveal>
-            <p className="rubric">The school</p>
+            <p className="slate">The school</p>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="mt-6 text-monumental">{roopa.name}</h2>

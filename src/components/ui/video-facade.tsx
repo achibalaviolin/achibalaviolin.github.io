@@ -64,7 +64,7 @@ export function VideoFacade({
           />
           <span
             aria-hidden="true"
-            className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold/60 bg-void/55 backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 group-hover:border-gold group-hover:bg-gold group-hover:text-void"
+            className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-ember/60 bg-void/55 backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 group-hover:border-ember group-hover:bg-ember group-hover:text-void"
           >
             <svg viewBox="0 0 24 24" className="ml-0.5 h-5 w-5 fill-current">
               <path d="M8 5v14l11-7z" />

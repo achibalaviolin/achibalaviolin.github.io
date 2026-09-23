@@ -67,13 +67,13 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
       />
 
       <PageOverture
-        rubric={`${work.kind} · ${work.year}`}
+        slate={`${work.kind} · ${work.year}`}
         title={work.title.split(' ').length > 3 ? [work.title] : [work.title]}
         image={work.image}
         breadcrumb={{ label: 'All works', href: '/works/' }}
         lede={work.summary}
       >
-        {work.venue ? <p className="mt-6 text-sm text-gold">{work.venue}</p> : null}
+        {work.venue ? <p className="mt-6 text-sm text-ember-lit">{work.venue}</p> : null}
       </PageOverture>
 
       <Section divider>
@@ -109,7 +109,7 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
 
           <div>
             <Reveal>
-              <h2 className="rubric">Credits</h2>
+              <h2 className="slate">Credits</h2>
             </Reveal>
             <RevealList as="dl" className="mt-8 border-t border-rule-soft">
               {work.credits.map((c) => (
@@ -138,10 +138,10 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
               <RevealItem as="div" key={s.label} className="bg-void p-10 text-center">
                 <dt className="sr-only">{s.label}</dt>
                 <dd>
-                  <span className="block font-display text-colossal text-gold tabular-nums">
+                  <span className="block font-display text-colossal text-ember-lit tabular-nums">
                     {s.value}
                   </span>
-                  <span className="mt-3 block text-xs tracking-rubric text-faint uppercase">
+                  <span className="mt-3 block text-xs tracking-slate text-faint uppercase">
                     {s.label}
                   </span>
                 </dd>
@@ -169,7 +169,7 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
       {related.length > 0 ? (
         <Section divider>
           <Reveal>
-            <h2 className="rubric">Recognition for this work</h2>
+            <h2 className="slate">Recognition for this work</h2>
           </Reveal>
           <RevealList as="ul" className="mt-10 border-t border-rule-soft">
             {related.map((a) => (
@@ -179,7 +179,7 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
                 className="grid gap-2 border-b border-rule-soft py-6 md:grid-cols-[1fr_auto] md:gap-10"
               >
                 <span>
-                  <span className="block text-xs tracking-rubric text-gold uppercase">
+                  <span className="block text-xs tracking-slate text-ember-lit uppercase">
                     {a.category}
                   </span>
                   <span className="mt-2 block font-display text-recital">{a.festival}</span>
@@ -193,7 +193,7 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
             ))}
           </RevealList>
           <Reveal>
-            <Link href="/recognition/" className="bow-link mt-8 inline-block text-gold-bright">
+            <Link href="/recognition/" className="bow-link mt-8 inline-block text-ember-lit">
               All recognition &rarr;
             </Link>
           </Reveal>

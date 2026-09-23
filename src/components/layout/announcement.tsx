@@ -17,7 +17,7 @@ export function Announcement() {
 
   const inner = (
     <>
-      <span className="rubric shrink-0">Next</span>
+      <span className="slate shrink-0">Next</span>
       <span className="truncate">
         {next.title}
         {next.date ? (
@@ -25,7 +25,7 @@ export function Announcement() {
         ) : null}
         {next.city ? <span className="hidden text-muted sm:inline"> · {next.city}</span> : null}
       </span>
-      <span className="shrink-0 text-gold-bright underline-offset-4 group-hover:underline">
+      <span className="shrink-0 text-ember-lit underline-offset-4 group-hover:underline">
         {next.ticketUrl ? 'Tickets' : 'Details'} &rarr;
       </span>
     </>

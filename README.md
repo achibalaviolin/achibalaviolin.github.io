@@ -8,6 +8,7 @@ npm install
 npm run media      # convert _source-media/ → public/media/ (only needed after adding images)
 npm run dev        # http://localhost:3000
 npm run build      # static export → out/
+npm run check:contrast   # assert the palette still passes AA
 ```
 
 ---
@@ -171,11 +172,35 @@ and the page should not imply otherwise.
 whether to commission a score needs the credits before the photographs. Press sits next to
 Awards so the two proof sections read as one argument.
 
-**On light mode.** There isn't one, deliberately. The design is built around a single
-idea — a concert hall after the doors close — and a light variant would need a second set of
-image treatments and a second accent balance to work at all. A single committed look is worth
-more here than a toggle. If you want one later, every colour is a token in `globals.css` and
-nothing is hard-coded.
+**The look, and where it comes from.** A violinist reads left to right, in time, so the
+design is built on the horizontal rather than the radial: waveforms, staff rules, bow
+strokes, letterboxed frames. Nothing turns, things travel. The one recurring mark is a
+waveform, because it stands in for what the site is actually about in a way a decorative
+shape would not.
+
+**The palette is sampled off your own artwork, not invented.** The vermilion `#ca3a12` is
+the CHENNAI wordmark on The Waltz of Chennai poster; the brass `#da7a44` is the Achi Bala
+Violin logo above it. Brass is reserved for awards and laurels so the metallic means
+something.
+
+**Type.** Instrument Serif for display: high contrast, tight, one weight, and it reads as a
+film title card rather than a concert programme, which is the right register for an artist
+whose best-known work is an award-winning music video. Space Grotesk runs the interface.
+Space Mono sets anything that behaves like a studio slate: dates, credits, catalogue lines.
+Newsreader is kept for Achritique long-form only.
+
+**On light mode.** There isn't one, deliberately. A light variant would need a second set of
+image treatments and a second accent balance to work at all, and a single committed look is
+worth more here than a toggle. If you want one later, every colour is a token in
+`globals.css` and nothing is hard-coded.
+
+**Colour rules, and how to keep them.** `ember` is the exact poster red and is a **fill
+only**: at 3.95:1 on the background it fails AA, so it may never carry text and nothing
+readable may sit on it. Buttons use `ember-press`, text accents use `ember-lit`. Run
+`npm run check:contrast` after any colour change. It reads the tokens straight out of
+`globals.css` and asserts all ten pairs the site actually renders, so it cannot drift from
+what ships. Two pairs were failing when it was first written, which is the argument for
+measuring rather than eyeballing.
 
 **Accessibility and motion.** Every animation is gated on `prefers-reduced-motion`: the
 parallax, the pinned sections, the marquee, and the custom cursor all switch off, leaving
@@ -195,5 +220,5 @@ loads. GSAP's ScrollTrigger is registered only in the two components that use it
 Next.js 16 (App Router, static export) · React 19 · TypeScript · Tailwind CSS v4 ·
 Motion · GSAP + ScrollTrigger · Lenis · MDX via `next-mdx-remote` · `sharp` at build time.
 
-Type faces are Fraunces (display), Inter (interface) and Newsreader (long-form reading),
-all self-hosted through `next/font`.
+Type faces are Instrument Serif (display), Space Grotesk (interface), Space Mono (slate
+lines) and Newsreader (long-form reading), all self-hosted through `next/font`.

@@ -30,7 +30,7 @@ export default function GalleryPage() {
       />
 
       <PageOverture
-        rubric="Gallery"
+        slate="Gallery"
         title={['Performance', 'moments.']}
         image="gallery/achi-7"
         lede="Portraits, live shots and square social crops, each at its own proportions."

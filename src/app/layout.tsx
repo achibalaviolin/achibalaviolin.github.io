@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Fraunces, Inter, Newsreader } from 'next/font/google'
+import { Instrument_Serif, Newsreader, Space_Grotesk, Space_Mono } from 'next/font/google'
 import './globals.css'
 
 import { Header } from '@/components/layout/header'
@@ -11,23 +11,38 @@ import { PageTransition } from '@/components/layout/page-transition'
 import { site } from '@/content/site'
 import { jsonLd, personSchema } from '@/lib/structured-data'
 
-/** Display face — variable optical size, so it stays elegant at 8rem. */
-const fraunces = Fraunces({
+/**
+ * Display face.
+ *
+ * Instrument Serif: high contrast, tight fit, one weight. It reads as a film
+ * title card rather than a concert programme, which is the right register for
+ * a violinist whose best-known work is an award-winning music video. One
+ * weight is all a display face needs at these sizes.
+ */
+const instrument = Instrument_Serif({
   subsets: ['latin'],
   display: 'swap',
-  // Variable across both weight and optical size — `axes` requires that the
-  // weight stays variable, so no explicit weight list here.
-  axes: ['opsz'],
-  variable: '--font-fraunces',
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  variable: '--font-instrument',
 })
 
-const inter = Inter({
+/** Interface and body. Grotesk with enough character to belong to an artist. */
+const grotesk = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-grotesk',
 })
 
-/** Reading face, used for Achritique long-form only. */
+/** The slate voice: dates, credits, catalogue lines. */
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '700'],
+  variable: '--font-space-mono',
+})
+
+/** Reading face, for Achritique long-form only. */
 const newsreader = Newsreader({
   subsets: ['latin'],
   display: 'swap',
@@ -72,7 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} ${newsreader.variable}`}
+      className={`${instrument.variable} ${grotesk.variable} ${spaceMono.variable} ${newsreader.variable}`}
     >
       <body>
         <script
@@ -82,7 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-full focus:bg-gold focus:px-5 focus:py-2.5 focus:text-void"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-full focus:bg-ember focus:px-5 focus:py-2.5 focus:text-void"
         >
           Skip to content
         </a>

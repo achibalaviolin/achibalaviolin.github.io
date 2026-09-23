@@ -36,7 +36,7 @@ export default function AboutPage() {
       />
 
       <PageOverture
-        rubric="The artist"
+        slate="The artist"
         title={['Trained in Chennai.', 'Raised in Texas.']}
         image="gallery/achi-10"
         lede={bio.oneLine}
@@ -64,7 +64,7 @@ export default function AboutPage() {
         <RevealList as="dl" className="mt-20 grid grid-cols-1 gap-px bg-rule-soft sm:grid-cols-3">
           {places.map((p) => (
             <RevealItem as="div" key={p.city} className="bg-void p-8">
-              <dt className="font-display text-grand text-gold">{p.city}</dt>
+              <dt className="font-display text-grand text-ember-lit">{p.city}</dt>
               <dd className="mt-2 text-sm text-faint">{p.note}</dd>
             </RevealItem>
           ))}
@@ -76,7 +76,7 @@ export default function AboutPage() {
         <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div>
             <Reveal>
-              <p className="rubric">The teachers</p>
+              <p className="slate">The teachers</p>
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="mt-6 text-grand">A line you can trace.</h2>
@@ -115,7 +115,7 @@ export default function AboutPage() {
       {/* --- milestones --- */}
       <Section divider>
         <Reveal>
-          <p className="rubric">Selected milestones</p>
+          <p className="slate">Selected milestones</p>
         </Reveal>
 
         <RevealList as="ol" className="mt-12 border-t border-rule-soft">
@@ -125,7 +125,7 @@ export default function AboutPage() {
               key={m.year + m.title}
               className="grid gap-4 border-b border-rule-soft py-10 md:grid-cols-[8rem_1fr_auto] md:gap-12"
             >
-              <span className="font-display text-grand text-gold tabular-nums">{m.year}</span>
+              <span className="font-display text-grand text-ember-lit tabular-nums">{m.year}</span>
               <div>
                 <h3 className="font-display text-recital">{m.title}</h3>
                 <p className="mt-3 max-w-2xl text-muted">{m.detail}</p>

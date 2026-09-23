@@ -51,13 +51,13 @@ export function NextStep({
                   href={s.href}
                   className="group flex h-full flex-col gap-2 p-8 transition-colors duration-500 hover:bg-surface/70"
                 >
-                  <span className="font-display text-recital transition-colors duration-300 group-hover:text-gold-bright">
+                  <span className="font-display text-recital transition-colors duration-300 group-hover:text-ember-lit">
                     {s.label}
                   </span>
                   <span className="text-sm text-muted">{s.note}</span>
                   <span
                     aria-hidden="true"
-                    className="mt-auto pt-6 text-gold transition-transform duration-500 group-hover:translate-x-1"
+                    className="mt-auto pt-6 text-ember-lit transition-transform duration-500 group-hover:translate-x-1"
                   >
                     &rarr;
                   </span>

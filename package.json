@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build && node scripts/post-build.mjs",
     "start": "next start",
-    "media": "node scripts/optimize-media.mjs"
+    "media": "node scripts/optimize-media.mjs",
+    "check:contrast": "node scripts/check-contrast.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
