@@ -45,7 +45,7 @@ export const events: EventItem[] = [
   },
   {
     slug: 'arudra-2026',
-    title: 'Arudra 2026 — Navagrahamum Navakailasamum',
+    title: 'Arudra 2026, Navagrahamum Navakailasamum',
     date: '2026-02-08',
     eyebrow: 'Dance production',
     description:
@@ -74,7 +74,7 @@ export const events: EventItem[] = [
   {
     slug: 'samarpana-series',
     title: 'Samarpana Series',
-    date: null, // TODO: date and venue not on record — add to enable structured data.
+    date: null, // TODO: date and venue not on record, add to enable structured data.
     eyebrow: 'Concert series',
     description: 'A highlight from the Samarpana concert series.',
     image: 'events/samarpana-series',

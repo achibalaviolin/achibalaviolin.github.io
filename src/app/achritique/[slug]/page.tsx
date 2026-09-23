@@ -80,7 +80,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
             <p className="font-sans text-xs tracking-[0.2em] text-gold uppercase">
               {article.kicker}
             </p>
-            <h1 className="mt-6 font-display text-h1">{article.title}</h1>
+            <h1 className="mt-6 font-display text-monumental">{article.title}</h1>
             {article.standfirst ? (
               <p className="mt-7 text-[1.25rem] leading-relaxed text-muted italic">
                 {article.standfirst}

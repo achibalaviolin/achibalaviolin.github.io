@@ -68,26 +68,33 @@ export const socials: SocialLink[] = [
 export const spotifyArtistId = '2E2Nkbb3jFT0d6SYp9jwjK'
 
 /**
- * Primary nav. `id` matches the homepage section element id so the header's
- * active indicator can follow the scroll position.
+ * Primary navigation.
+ *
+ * Every entry is its own route. An earlier draft made the homepage a single
+ * scroll with anchor links into it; a visitor who wants the events list should
+ * be able to go straight to it, link someone to it, and land at the top of it,
+ * none of which an anchor into a fourteen-section page does well.
  */
 export const navLinks = [
-  { id: 'lineage', label: 'About', href: '/#lineage' },
-  { id: 'works', label: 'Works', href: '/#works' },
-  { id: 'events', label: 'Events', href: '/#events' },
-  { id: 'listen', label: 'Listen', href: '/#listen' },
-  { id: 'press', label: 'Press', href: '/#press' },
-  { id: 'teaching', label: 'Lessons', href: '/roopa-fine-arts/' },
-  { id: 'achritique', label: 'Writing', href: '/achritique/' },
+  { href: '/about/', label: 'About' },
+  { href: '/works/', label: 'Works' },
+  { href: '/events/', label: 'Events' },
+  { href: '/listen/', label: 'Listen' },
+  { href: '/recognition/', label: 'Recognition' },
+  { href: '/roopa-fine-arts/', label: 'Lessons' },
+  { href: '/achritique/', label: 'Writing' },
+] as const
+
+/** Routes reachable from the footer but kept out of the main bar. */
+export const secondaryLinks = [
+  { href: '/gallery/', label: 'Gallery' },
+  { href: '/contact/', label: 'Work together' },
 ] as const
 
 /** The three jobs every page has to make effortless. */
 export const primaryActions = {
-  watch: { label: 'Watch', href: '/#listen' },
-  book: {
-    label: 'Book a collaboration',
-    href: `mailto:${site.email}?subject=${encodeURIComponent('Collaboration enquiry')}`,
-  },
+  watch: { label: 'Watch', href: '/listen/' },
+  book: { label: 'Book a collaboration', href: '/contact/' },
   lessons: {
     label: 'Enquire about lessons',
     href: `mailto:${site.lessonsEmail}?subject=${encodeURIComponent('Lessons enquiry')}`,

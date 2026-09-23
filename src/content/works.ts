@@ -6,6 +6,8 @@
  * organiser, so they lead the page.
  */
 
+import type { media } from './generated/media'
+
 export type WorkCredit = { role: string; names: string[] }
 
 export type Work = {
@@ -23,7 +25,7 @@ export type Work = {
   /** Longer body copy; each string is a paragraph. */
   body: string[]
   credits: WorkCredit[]
-  image?: string
+  image?: keyof typeof media
   links?: { label: string; href: string }[]
   /** Shown as a stat row on the feature panel. */
   stats?: { value: string; label: string }[]
@@ -40,7 +42,7 @@ export const works: Work[] = [
     summary:
       'An award-winning short film blending violin, dance, and movement, anchored by the Viennese Waltz and traversing seven iconic Tamil film songs.',
     body: [
-      'Anchored by the timeless rhythm of the Viennese Waltz, the film traverses seven iconic Tamil film songs originally composed by AR Rahman and Anirudh Ravichander — each reimagined across a different soundscape: orchestral symphony, jazz, rock, lo-fi, Carnatic, and an explosive dappangkuthu finale.',
+      'Anchored by the timeless rhythm of the Viennese Waltz, the film traverses seven iconic Tamil film songs originally composed by AR Rahman and Anirudh Ravichander, each reimagined across a different soundscape: orchestral symphony, jazz, rock, lo-fi, Carnatic, and an explosive dappangkuthu finale.',
       'It was born from years of travel between Houston and Chennai, a deep love for ballroom dance, and the Tamil film songs that have soundtracked both cities. Director Shara Shanth and the crew at 37Factor guided the project across eighteen months of arrangements and re-arrangements, rehearsals and re-takes.',
     ],
     // Producer and production-company credits are transcribed from the
@@ -89,6 +91,7 @@ export const works: Work[] = [
       { role: 'Mridangam', names: ['Naga Srinidhi Kuruvada', 'Aditya Iswara'] },
       { role: 'Flute', names: ['Visveshwar Nagarajan'] },
     ],
+    image: 'gallery/achi-1',
     source: 'Roopa Arts Cultural Center programme for Arudra 2026',
   },
   {
@@ -112,6 +115,7 @@ export const works: Work[] = [
       { role: 'Carnatic cello', names: ['Jahnavi Murali'] },
       { role: 'Producer', names: ['Silambam Houston'] },
     ],
+    image: 'gallery/achi-6',
     source: 'Miller Outdoor Theatre performance page, 7 June 2024',
   },
   {
@@ -120,13 +124,14 @@ export const works: Work[] = [
     kind: 'Record',
     year: '2024',
     summary:
-      'Winner of Best Song at the World Film Festival in Cannes — Remember the Future.',
+      'Winner of Best Song at the World Film Festival in Cannes, Remember the Future.',
     body: [
       'A collaboration with Kavitha Jayaraman and Avi Patel, credited to the United States, which took the Best Song award at the World Film Festival in Cannes in February 2024.',
     ],
     credits: [
       { role: 'Written and performed by', names: ['Kavitha Jayaraman', 'Avi Patel', 'Abhishek Balakrishnan'] },
     ],
+    image: 'awards/awards-5',
     source: 'World Film Festival in Cannes certificate, February 2024',
   },
   {
@@ -153,6 +158,7 @@ export const works: Work[] = [
         href: 'https://music.apple.com/us/album/1546339138',
       },
     ],
+    image: 'gallery/achi-9',
     source: 'Spotify and Apple Music release listings',
   },
 ]

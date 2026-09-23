@@ -73,12 +73,12 @@ export default function RoopaFineArtsPage() {
           </nav>
 
           <Reveal>
-            <p className="eyebrow mt-10">
+            <p className="rubric mt-10">
               {roopa.name} · est. {roopa.established}
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-6 max-w-4xl text-h1">{roopa.heading}</h1>
+            <h1 className="mt-6 max-w-4xl text-monumental">{roopa.heading}</h1>
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-8 max-w-2xl text-lede text-muted">
@@ -86,7 +86,7 @@ export default function RoopaFineArtsPage() {
               <Link href="/" className="bow-link text-gold-bright">
                 Achi Bala
               </Link>
-              : Carnatic violin, Carnatic vocal, and music theory with exam preparation — in
+              : Carnatic violin, Carnatic vocal, and music theory with exam preparation, in
               person across Austin and Houston, Texas, and online worldwide.
             </p>
           </Reveal>
@@ -106,10 +106,10 @@ export default function RoopaFineArtsPage() {
         <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
           <div>
             <Reveal>
-              <p className="eyebrow">The school</p>
+              <p className="rubric">The school</p>
             </Reveal>
             <Reveal delay={0.08}>
-              <h2 className="mt-5 text-h2">Classical training, modern classroom.</h2>
+              <h2 className="mt-5 text-grand">Classical training, modern classroom.</h2>
             </Reveal>
             <div className="mt-8 space-y-6 text-lede text-muted">
               {roopa.about.map((p, i) => (
@@ -150,7 +150,7 @@ export default function RoopaFineArtsPage() {
             <RevealItem key={p.number}>
               <article className="flex h-full flex-col bg-void p-9 transition-colors duration-700 hover:bg-surface/70 md:p-11">
                 <span className="font-display text-sm text-gold tabular-nums">{p.number}</span>
-                <h3 className="mt-6 font-display text-h3">{p.title}</h3>
+                <h3 className="mt-6 font-display text-recital">{p.title}</h3>
                 <p className="mt-4 text-muted">{p.description}</p>
                 <a href={enquireHref} className="bow-link mt-auto w-fit pt-10 text-sm text-gold-bright">
                   {p.cta}
@@ -192,7 +192,7 @@ export default function RoopaFineArtsPage() {
                 )}
 
                 <div className="p-8">
-                  <p className="eyebrow">
+                  <p className="rubric">
                     {a.date ? (
                       <time dateTime={a.date}>{formatEventDate(a.date)}</time>
                     ) : (
@@ -200,7 +200,7 @@ export default function RoopaFineArtsPage() {
                     )}
                     {a.city ? ` · ${a.city}` : ''}
                   </p>
-                  <h3 className="mt-4 font-display text-h3">{a.student}&rsquo;s Arangetram</h3>
+                  <h3 className="mt-4 font-display text-recital">{a.student}&rsquo;s Arangetram</h3>
                   {a.description ? <p className="mt-4 text-muted">{a.description}</p> : null}
                 </div>
               </article>
@@ -214,10 +214,10 @@ export default function RoopaFineArtsPage() {
         <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
           <div>
             <Reveal>
-              <p className="eyebrow">Where lessons happen</p>
+              <p className="rubric">Where lessons happen</p>
             </Reveal>
             <Reveal delay={0.08}>
-              <h2 className="mt-5 text-h2">Austin, Houston, and online.</h2>
+              <h2 className="mt-5 text-grand">Austin, Houston, and online.</h2>
             </Reveal>
             <div className="mt-8 space-y-6 text-lede text-muted">
               {roopa.locations.map((p, i) => (
@@ -276,10 +276,10 @@ export default function RoopaFineArtsPage() {
       {/* --- enquire --- */}
       <Section id="enquire" divider className="text-center">
         <Reveal>
-          <p className="eyebrow">Enquire</p>
+          <p className="rubric">Enquire</p>
         </Reveal>
         <Reveal delay={0.08}>
-          <h2 className="mx-auto mt-6 max-w-3xl text-h1">Begin your Carnatic journey.</h2>
+          <h2 className="mx-auto mt-6 max-w-3xl text-monumental">Begin your Carnatic journey.</h2>
         </Reveal>
         <Reveal delay={0.16}>
           <a

@@ -2,36 +2,37 @@ import type { MetadataRoute } from 'next'
 import { site } from '@/content/site'
 import { roopa } from '@/content/roopa'
 import { achritique, getArticles } from '@/content/achritique'
+import { works } from '@/content/works'
 
 /**
  * Sitemap.
  *
- * Only canonical (new) URLs are listed. The legacy `.html` paths are
- * deliberately excluded — they exist to redirect old links, and listing them
- * would invite search engines to index both copies.
+ * Only canonical URLs are listed. The legacy `.html` paths are deliberately
+ * excluded: they exist to redirect old links, and listing them would invite
+ * search engines to index both copies of the same article.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const today = new Date()
 
+  const page = (path: string, priority: number, changeFrequency: 'weekly' | 'monthly' | 'yearly') => ({
+    url: `${site.url}${path}`,
+    lastModified: today,
+    changeFrequency,
+    priority,
+  })
+
   return [
-    {
-      url: `${site.url}/`,
-      lastModified: today,
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: `${site.url}${roopa.path}`,
-      lastModified: today,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${site.url}${achritique.path}`,
-      lastModified: today,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
+    page('/', 1, 'monthly'),
+    page('/about/', 0.8, 'yearly'),
+    page('/works/', 0.9, 'monthly'),
+    ...works.map((w) => page(`/works/${w.slug}/`, 0.7, 'yearly')),
+    page('/events/', 0.9, 'weekly'),
+    page('/listen/', 0.8, 'monthly'),
+    page('/recognition/', 0.8, 'monthly'),
+    page('/gallery/', 0.6, 'monthly'),
+    page('/contact/', 0.7, 'yearly'),
+    page(roopa.path, 0.9, 'monthly'),
+    page(achritique.path, 0.7, 'weekly'),
     ...getArticles().map((a) => ({
       url: `${site.url}/achritique/${a.slug}/`,
       lastModified: new Date(a.date),

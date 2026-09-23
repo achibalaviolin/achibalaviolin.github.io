@@ -33,7 +33,7 @@ export const bio = {
    */
   lineage: [
     'He was raised in Texas and trained in Chennai. Initiated into Carnatic violin in Houston, he went on to years of study with All India Radio violinist Kalaimamani Smt. Usha Rajagopalan, and is a disciple of the violin and vocal virtuoso Sri Delhi P. Sunder Rajan.',
-    'The players he grew up listening to in Chennai — Lalgudi G. Jayaraman and Dr. M. Balamuralikrishna — are still the measure. That inheritance is why the writing on this site keeps returning to questions of lineage, memory, and who does the remembering.',
+    'The players he grew up listening to in Chennai, Lalgudi G. Jayaraman and Dr. M. Balamuralikrishna, are still the measure. That inheritance is why the writing on this site keeps returning to questions of lineage, memory, and who does the remembering.',
   ],
 } as const
 
@@ -68,12 +68,12 @@ export const gurus: Guru[] = [
   {
     name: 'Usha Rajagopalan',
     honorific: 'Kalaimamani Smt.',
-    relationship: 'Several years of advanced training — All India Radio violinist',
+    relationship: 'Several years of advanced training, All India Radio violinist',
   },
   {
     name: 'Delhi P. Sunder Rajan',
     honorific: 'Sri',
-    relationship: 'Guru — violin and vocal',
+    relationship: 'Guru, violin and vocal',
   },
 ]
 
@@ -108,7 +108,7 @@ export const milestones: Milestone[] = [
   },
   {
     year: '2026',
-    title: 'Arudra — Navagrahamum Navakailasamum',
+    title: 'Arudra, Navagrahamum Navakailasamum',
     detail:
       'Concept, music composition, lyrics and violin for a full-length dance production.',
     source: 'Roopa Arts Cultural Center programme, 8 February 2026',

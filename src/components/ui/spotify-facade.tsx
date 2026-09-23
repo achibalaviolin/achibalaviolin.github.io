@@ -39,7 +39,7 @@ export function SpotifyFacade({ className }: { className?: string }) {
               </svg>
             </span>
             <span>
-              <span className="block font-display text-h3">Play the records</span>
+              <span className="block font-display text-recital">Play the records</span>
               <span className="mt-1.5 block text-sm text-muted">
                 Load the Spotify player
               </span>

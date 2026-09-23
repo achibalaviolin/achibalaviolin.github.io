@@ -7,7 +7,7 @@
    ground, varnished-violin gold for anything that asks to be touched,
    and a soft ivory for reading.
 
-   Single (dark) theme by choice — see README "On light mode".
+   Single (dark) theme by choice. See README, "On light mode".
    ============================================================ */
 
 @theme {
@@ -16,7 +16,6 @@
   --color-surface: #0b0c14;
   --color-surface-2: #11131d;
   --color-surface-3: #181b28;
-  --color-indigo: #171b36;
 
   /* --- accent: varnished wood into stage light --- */
   --color-gold: #d4a24c;
@@ -39,27 +38,39 @@
 
   /* --- motion --- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+  --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
 
-  /* --- editorial type scale --- */
-  /* The hero headline is bounded by viewport HEIGHT as well as width, so a
-     two-line title cannot push the buttons below the fold on a laptop. */
-  --text-hero: clamp(2.5rem, min(8.5vw, 12vh), 7.5rem);
-  --text-hero--line-height: 0.94;
-  --text-hero--letter-spacing: -0.03em;
-  --text-display: clamp(2.75rem, 9vw, 8.5rem);
-  --text-display--line-height: 0.92;
-  --text-display--letter-spacing: -0.03em;
-  --text-h1: clamp(2.25rem, 6vw, 5rem);
-  --text-h1--line-height: 0.98;
-  --text-h1--letter-spacing: -0.025em;
-  --text-h2: clamp(1.875rem, 4.2vw, 3.5rem);
-  --text-h2--line-height: 1.04;
-  --text-h2--letter-spacing: -0.02em;
-  --text-h3: clamp(1.25rem, 2vw, 1.75rem);
-  --text-h3--line-height: 1.2;
-  --text-lede: clamp(1.0625rem, 1.5vw, 1.375rem);
-  --text-lede--line-height: 1.6;
+  /*
+   * Editorial type scale. Deliberately large: on a page with this little
+   * furniture, the type is the set design.
+   *
+   * `hero` is bounded by viewport HEIGHT as well as width so a two-line
+   * title can never push the buttons below the fold on a laptop.
+   */
+  --text-colossal: clamp(3.25rem, 13vw, 13rem);
+  --text-colossal--line-height: 0.84;
+  --text-colossal--letter-spacing: -0.035em;
+
+  --text-hero: clamp(2.75rem, min(9vw, 13vh), 8.5rem);
+  --text-hero--line-height: 0.92;
+  --text-hero--letter-spacing: -0.032em;
+
+  --text-monumental: clamp(2.5rem, 7.5vw, 6.5rem);
+  --text-monumental--line-height: 0.92;
+  --text-monumental--letter-spacing: -0.03em;
+
+  --text-grand: clamp(2rem, 5vw, 4rem);
+  --text-grand--line-height: 1;
+  --text-grand--letter-spacing: -0.022em;
+
+  --text-recital: clamp(1.375rem, 2.6vw, 2.125rem);
+  --text-recital--line-height: 1.18;
+  --text-recital--letter-spacing: -0.012em;
+
+  --text-lede: clamp(1.0625rem, 1.4vw, 1.3125rem);
+  --text-lede--line-height: 1.62;
+
+  --tracking-rubric: 0.3em;
 }
 
 /* ============================================================
@@ -81,18 +92,10 @@
     background-color: var(--color-void);
     color: var(--color-ivory);
     font-family: var(--font-sans);
-    font-size: 1rem;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
-    /* A faint wash of stage light from above. */
-    background-image: radial-gradient(
-      120ch 60ch at 50% -20ch,
-      rgba(212, 162, 76, 0.09),
-      transparent 70%
-    );
-    background-attachment: fixed;
   }
 
   h1,
@@ -114,7 +117,6 @@
     max-width: 100%;
   }
 
-  /* Visible, gold, and never clipped by an overflow container. */
   :focus-visible {
     outline: 2px solid var(--color-gold-bright);
     outline-offset: 3px;
@@ -126,7 +128,6 @@
     color: var(--color-void);
   }
 
-  /* Lenis */
   html.lenis,
   html.lenis body {
     height: auto;
@@ -140,16 +141,11 @@
 }
 
 /* ============================================================
-   Utilities
+   Layout
    ============================================================ */
 
 @utility wrap {
-  width: min(100% - 2.5rem, 78rem);
-  margin-inline: auto;
-}
-
-@utility wrap-wide {
-  width: min(100% - 2.5rem, 96rem);
+  width: min(100% - 2.5rem, 84rem);
   margin-inline: auto;
 }
 
@@ -158,18 +154,50 @@
   margin-inline: auto;
 }
 
-/** Small caps-ish label that sits above a heading. */
-@utility eyebrow {
+/* ============================================================
+   The signature marks
+
+   A violin gives three shapes worth borrowing, and the site uses
+   exactly these three so every page is recognisably the same site:
+
+     .bout    the instrument's body — a frame with both ends curved,
+              used for every portrait on the site
+     .soundhole  concentric rings turning slowly behind that frame
+     .strings four hairlines, used as a rule
+   ============================================================ */
+
+/**
+ * The bout: a tall frame curved at top and bottom, after the outline of a
+ * violin body. Border-radius rather than clip-path, so the curve stays true
+ * at any size instead of being approximated by straight segments.
+ */
+@utility bout {
+  border-radius: 46% 46% 44% 44% / 30% 30% 34% 34%;
+  overflow: hidden;
+}
+
+/** The four strings, as a hairline rule. */
+@utility strings {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--color-rule) 0 1px,
+    transparent 1px 7px
+  );
+}
+
+/** Small-caps label used instead of an ordinary kicker. */
+@utility rubric {
+  font-family: var(--font-sans);
   font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  font-weight: 500;
+  letter-spacing: var(--tracking-rubric);
   text-transform: uppercase;
   color: var(--color-gold);
 }
 
 /**
- * Bow-stroke underline: a hairline that is drawn on from the left the way a
- * bow is pulled across a string. Used on text links throughout.
+ * Bow-stroke underline: a hairline drawn on from the left, the way a bow is
+ * pulled across a string.
  */
 @utility bow-link {
   position: relative;
@@ -194,46 +222,28 @@
   }
 }
 
-/** Already-underlined variant that retracts on hover, for nav items. */
-@utility bow-link-on {
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -0.2em;
-    width: 100%;
-    height: 1px;
-    background: currentColor;
-    transform-origin: right center;
-    transition: transform 0.55s var(--ease-out-expo);
-  }
-
-  &:hover::after {
-    transform: scaleX(0);
-  }
+/** A line of display type that slides up from behind a mask. */
+@utility mask-line {
+  display: block;
+  overflow: hidden;
+  /* The descender needs room or the tails clip. */
+  padding-bottom: 0.14em;
 }
 
-/** The four violin strings, as a hairline rule. */
-@utility strings {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    var(--color-rule) 0 1px,
-    transparent 1px 7px
-  );
-}
-
-/** Edge-to-edge hairline used between sections. */
 @utility rule-top {
   border-top: 1px solid var(--color-rule-soft);
+}
+
+@utility gpu {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 /* ============================================================
    Reduced motion
 
-   Parallax, pinning, the cursor and the marquee are disabled in JS
-   (see useReducedMotion); this is the CSS backstop.
+   Parallax, pinning and the cursor are disabled in JS (see
+   useReducedMotion); this is the CSS backstop.
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
@@ -245,8 +255,12 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
 
-  .motion-safe-only {
-    display: none !important;
+/* The soundhole's rotation. Declared here so Tailwind's arbitrary
+   `animate-[...]` utility has a keyframe to reference. */
+@keyframes soundhole-turn {
+  to {
+    transform: rotate(360deg);
   }
 }

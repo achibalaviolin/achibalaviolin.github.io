@@ -42,10 +42,10 @@ export default function AchritiqueIndex() {
       <header className="rule-top pt-40 pb-20 text-center md:pt-48">
         <div className="wrap">
           <Reveal>
-            <p className="eyebrow">{achritique.est}</p>
+            <p className="rubric">{achritique.est}</p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-6 font-display text-display">
+            <h1 className="mt-6 font-display text-colossal">
               Achri<span className="text-gold">tique</span>
             </h1>
           </Reveal>
@@ -60,7 +60,7 @@ export default function AchritiqueIndex() {
 
       <div className="wrap pb-32">
         <Reveal>
-          <p className="eyebrow border-t border-rule-soft pt-8">Featured essay</p>
+          <p className="rubric border-t border-rule-soft pt-8">Featured essay</p>
         </Reveal>
 
         <Reveal delay={0.08}>
@@ -69,7 +69,7 @@ export default function AchritiqueIndex() {
               <span className="text-gold">{featured.category}</span>
               <span>{featured.displayDate}</span>
             </p>
-            <h2 className="mt-5 max-w-3xl text-h1">
+            <h2 className="mt-5 max-w-3xl text-monumental">
               <Link
                 href={`/achritique/${featured.slug}/`}
                 className="transition-colors duration-500 hover:text-gold-bright"
@@ -88,7 +88,7 @@ export default function AchritiqueIndex() {
         </Reveal>
 
         <Reveal>
-          <p className="eyebrow mt-16">From the archive</p>
+          <p className="rubric mt-16">From the archive</p>
         </Reveal>
 
         <RevealList as="ol" className="mt-8 divide-y divide-rule-soft border-y border-rule-soft">
@@ -106,7 +106,7 @@ export default function AchritiqueIndex() {
                     <span className="text-gold">{a.category}</span>
                     <span>{a.displayDate}</span>
                   </span>
-                  <span className="mt-3 block font-display text-h3 transition-colors duration-500 group-hover:text-gold-bright">
+                  <span className="mt-3 block font-display text-recital transition-colors duration-500 group-hover:text-gold-bright">
                     {a.title}
                   </span>
                   <span className="mt-3 block max-w-2xl text-muted">{a.excerpt}</span>

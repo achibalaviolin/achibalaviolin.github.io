@@ -12,12 +12,12 @@ export function Announcement() {
   const next = upcomingEvents()[0]
   if (!next) return null
 
-  const href = next.ticketUrl ?? '/#events'
+  const href = next.ticketUrl ?? '/events/'
   const external = Boolean(next.ticketUrl)
 
   const inner = (
     <>
-      <span className="eyebrow shrink-0">Next</span>
+      <span className="rubric shrink-0">Next</span>
       <span className="truncate">
         {next.title}
         {next.date ? (

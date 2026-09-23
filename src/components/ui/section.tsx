@@ -48,10 +48,10 @@ export function SectionHead({
       className={`max-w-3xl ${align === 'center' ? 'mx-auto text-center' : ''} ${className ?? ''}`}
     >
       <Reveal>
-        <p className="eyebrow">{eyebrow}</p>
+        <p className="rubric">{eyebrow}</p>
       </Reveal>
       <Reveal delay={0.08}>
-        <h2 className="mt-5 text-h2">{title}</h2>
+        <h2 className="mt-5 text-grand">{title}</h2>
       </Reveal>
       {children ? (
         <Reveal delay={0.16}>

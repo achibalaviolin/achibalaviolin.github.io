@@ -102,7 +102,7 @@ export function Hero() {
         style={reduced ? undefined : { y: copyY, opacity: copyOpacity }}
       >
         <motion.p
-          className="eyebrow"
+          className="rubric"
           initial={reduced ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
@@ -138,7 +138,7 @@ export function Hero() {
           </ButtonLink>
         </motion.div>
 
-        {/* Slide selector — real buttons, labelled. */}
+        {/* Slide selector, real buttons, labelled. */}
         <div className="mt-10 flex items-center gap-3" role="group" aria-label="Choose image">
           {heroSlides.map((s, i) => (
             <button

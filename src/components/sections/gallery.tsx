@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { MediaImage } from '@/components/ui/media-image'
-import { Section, SectionHead } from '@/components/ui/section'
+import { Section } from '@/components/ui/section'
 import { RevealItem, RevealList } from '@/components/animations/reveal'
 import { useReducedMotion } from '@/components/animations/use-reduced-motion'
 import { gallery } from '@/content/gallery'
@@ -20,7 +20,7 @@ import { media } from '@/content/generated/media'
  * open, returns to the triggering thumbnail on close, and arrow keys move
  * between images.
  */
-export function Gallery() {
+export function GalleryGrid() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const triggersRef = useRef<(HTMLButtonElement | null)[]>([])
   const dialogRef = useRef<HTMLDivElement>(null)
@@ -85,12 +85,8 @@ export function Gallery() {
   const active = openIndex === null ? null : gallery[openIndex]
 
   return (
-    <Section id="gallery" divider>
-      <SectionHead eyebrow="Gallery" title="Performance moments.">
-        Portraits, live shots, and square social crops, each at its own proportions.
-      </SectionHead>
-
-      <RevealList className="mt-16 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
+    <Section divider>
+      <RevealList className="columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
         {gallery.map((image, i) => (
           <RevealItem key={image.key} className="break-inside-avoid">
             <button

@@ -21,20 +21,20 @@ export const roopa = {
 
   title: 'Carnatic Violin Lessons in Austin & Houston | Roopa Fine Arts',
   description:
-    'Roopa Fine Arts offers Carnatic violin lessons, Carnatic vocal classes, and music theory with exam preparation — in person in Austin and Houston, Texas, and online worldwide. Founded in 2016 by violinist Achi Bala.',
+    'Roopa Fine Arts offers Carnatic violin lessons, Carnatic vocal classes, and music theory with exam preparation, in person in Austin and Houston, Texas, and online worldwide. Founded in 2016 by violinist Achi Bala.',
   socialDescription:
     'Carnatic violin, Carnatic vocal, and music theory lessons with exam preparation. In person in Austin and Houston, online worldwide.',
 
   heading: 'Carnatic violin lessons in Austin & Houston.',
-  lede: 'Roopa Fine Arts is the teaching school of violinist Achi Bala: Carnatic violin, Carnatic vocal, and music theory with exam preparation — in person across Austin and Houston, Texas, and online worldwide.',
+  lede: 'Roopa Fine Arts is the teaching school of violinist Achi Bala: Carnatic violin, Carnatic vocal, and music theory with exam preparation. In person across Austin and Houston, Texas, and online worldwide.',
 
   about: [
-    'Founded in 2016 and built on formal teaching since 2014, Roopa Fine Arts grounds every student in the South Indian classical tradition — shruti, laya, and repertoire — while keeping lessons practical and personal. Students progress from first bow strokes and sarali varisai through varnams, kritis, and full concert repertoire.',
-    'Lessons are taught by Achi Bala, an independent violinist whose performing life spans Carnatic kutcheris, film music, and world-music collaborations between Chennai and Texas. Students have completed arangetrams — the traditional debut concert — and won prizes in competition.',
+    'Founded in 2016 and built on formal teaching since 2014, Roopa Fine Arts grounds every student in the South Indian classical tradition, shruti, laya, and repertoire, while keeping lessons practical and personal. Students progress from first bow strokes and sarali varisai through varnams, kritis, and full concert repertoire.',
+    'Lessons are taught by Achi Bala, an independent violinist whose performing life spans Carnatic kutcheris, film music, and world-music collaborations between Chennai and Texas. Students have completed arangetrams, the traditional debut concert, and won prizes in competition.',
   ],
 
   locations: [
-    'In-person Carnatic music lessons are offered in Austin and Houston, Texas — two cities with thriving Indian classical communities. Online lessons follow the same curriculum and connect students from anywhere in the world to the same teacher and tradition.',
+    'In-person Carnatic music lessons are offered in Austin and Houston, Texas: two cities with thriving Indian classical communities. Online lessons follow the same curriculum and connect students from anywhere in the world to the same teacher and tradition.',
     'Whether you are searching for a Carnatic violin teacher near Austin, Carnatic vocal classes in Houston, or online Carnatic music lessons from abroad, the first step is the same: write in, and we will find the right format for the student.',
   ],
 } as const
@@ -51,7 +51,7 @@ export const programs: Program[] = [
     number: '01',
     title: 'Carnatic violin lessons',
     description:
-      "From posture and bowing foundations to gamakas, manodharma, and concert repertoire — the violin taught as the South Indian tradition's singing voice.",
+      "From posture and bowing foundations to gamakas, manodharma, and concert repertoire. The violin is taught as the South Indian tradition's singing voice.",
     cta: 'Start learning violin',
   },
   {
