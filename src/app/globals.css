@@ -1,26 +1,252 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   Achi Bala Violin — design tokens
+
+   Mood: a concert hall after the doors close. A near-black indigo
+   ground, varnished-violin gold for anything that asks to be touched,
+   and a soft ivory for reading.
+
+   Single (dark) theme by choice — see README "On light mode".
+   ============================================================ */
+
+@theme {
+  /* --- ground --- */
+  --color-void: #06060c;
+  --color-surface: #0b0c14;
+  --color-surface-2: #11131d;
+  --color-surface-3: #181b28;
+  --color-indigo: #171b36;
+
+  /* --- accent: varnished wood into stage light --- */
+  --color-gold: #d4a24c;
+  --color-gold-bright: #f0c874;
+  --color-gold-deep: #8a6420;
+
+  /* --- text --- */
+  --color-ivory: #f4efe6;
+  --color-muted: #a99f90;
+  --color-faint: #6f6759;
+
+  /* --- lines --- */
+  --color-rule: rgba(244, 239, 230, 0.12);
+  --color-rule-soft: rgba(244, 239, 230, 0.06);
+
+  /* --- type --- */
+  --font-display: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-read: var(--font-newsreader), Georgia, serif;
+
+  /* --- motion --- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+
+  /* --- editorial type scale --- */
+  /* The hero headline is bounded by viewport HEIGHT as well as width, so a
+     two-line title cannot push the buttons below the fold on a laptop. */
+  --text-hero: clamp(2.5rem, min(8.5vw, 12vh), 7.5rem);
+  --text-hero--line-height: 0.94;
+  --text-hero--letter-spacing: -0.03em;
+  --text-display: clamp(2.75rem, 9vw, 8.5rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.03em;
+  --text-h1: clamp(2.25rem, 6vw, 5rem);
+  --text-h1--line-height: 0.98;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h2: clamp(1.875rem, 4.2vw, 3.5rem);
+  --text-h2--line-height: 1.04;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: clamp(1.25rem, 2vw, 1.75rem);
+  --text-h3--line-height: 1.2;
+  --text-lede: clamp(1.0625rem, 1.5vw, 1.375rem);
+  --text-lede--line-height: 1.6;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ============================================================
+   Base
+   ============================================================ */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    min-width: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    /* Lenis drives scrolling; native smooth would fight it. */
+    scroll-behavior: auto;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+    /* A faint wash of stage light from above. */
+    background-image: radial-gradient(
+      120ch 60ch at 50% -20ch,
+      rgba(212, 162, 76, 0.09),
+      transparent 70%
+    );
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Visible, gold, and never clipped by an overflow container. */
+  :focus-visible {
+    outline: 2px solid var(--color-gold-bright);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-void);
+  }
+
+  /* Lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ============================================================
+   Utilities
+   ============================================================ */
+
+@utility wrap {
+  width: min(100% - 2.5rem, 78rem);
+  margin-inline: auto;
+}
+
+@utility wrap-wide {
+  width: min(100% - 2.5rem, 96rem);
+  margin-inline: auto;
+}
+
+@utility wrap-read {
+  width: min(100% - 2.5rem, 42rem);
+  margin-inline: auto;
+}
+
+/** Small caps-ish label that sits above a heading. */
+@utility eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/**
+ * Bow-stroke underline: a hairline that is drawn on from the left the way a
+ * bow is pulled across a string. Used on text links throughout.
+ */
+@utility bow-link {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.55s var(--ease-out-expo);
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+  }
+}
+
+/** Already-underlined variant that retracts on hover, for nav items. */
+@utility bow-link-on {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.2em;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform-origin: right center;
+    transition: transform 0.55s var(--ease-out-expo);
+  }
+
+  &:hover::after {
+    transform: scaleX(0);
+  }
+}
+
+/** The four violin strings, as a hairline rule. */
+@utility strings {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--color-rule) 0 1px,
+    transparent 1px 7px
+  );
+}
+
+/** Edge-to-edge hairline used between sections. */
+@utility rule-top {
+  border-top: 1px solid var(--color-rule-soft);
+}
+
+/* ============================================================
+   Reduced motion
+
+   Parallax, pinning, the cursor and the marquee are disabled in JS
+   (see useReducedMotion); this is the CSS backstop.
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .motion-safe-only {
+    display: none !important;
+  }
 }

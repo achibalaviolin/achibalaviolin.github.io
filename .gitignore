@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Source images — originals, converted into public/media by `npm run media`.
+# Kept in the repo so images can be re-encoded, but never deployed.
