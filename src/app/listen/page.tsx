@@ -39,7 +39,7 @@ export default function ListenPage() {
       <PageOverture
         slate="Listen and watch"
         title={['Music for screen,', 'stage, and stream.']}
-        image="gallery/achi-3"
+        image="hero/banner-2"
         lede="Stream the records on Spotify, or step into the video archive."
       />
 

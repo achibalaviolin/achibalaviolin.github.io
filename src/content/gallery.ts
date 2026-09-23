@@ -55,18 +55,36 @@ export const gallery: GalleryImage[] = [
     key: 'hero/slider-6',
     alt: 'Achi Bala on stage', // TODO: describe this image properly
   },
+  {
+    key: 'hero/banner-3',
+    alt: 'Achi Bala mid-performance, bow raised, lit against a dark stage',
+  },
+  {
+    key: 'hero/banner-2',
+    alt: 'Achi Bala performing violin on a blue-lit concert stage',
+  },
+  {
+    key: 'hero/abv-white',
+    alt: 'Achi Bala looking upward, holding his violin, in a bright white archway',
+  },
 ]
 
 /**
- * Hero slider frames, in order.
+ * The three frames that used to cycle in the homepage hero.
  *
- * Ordered darkest-first: the opening frame sets the mood, and the bright
- * white-archway portrait reads as a flash of daylight against a near-black
- * page, so it plays last rather than first.
+ * They are no longer a slider. Each one now heads the page it belongs to,
+ * where it is looked at rather than replaced after six seconds, and all three
+ * are in `gallery` above as well, so none of them is lost:
+ *
+ *   hero/banner-3   heads /works
+ *   hero/banner-2   heads /listen
+ *   hero/abv-white  heads /contact
+ *
+ * Kept as a list because it records where they went.
  */
-export const heroSlides = [
+export const formerHeroFrames = [
   {
-    // Was unused in the previous repo — the most cinematic frame of the set.
+    // Was unused in the previous repo, the most cinematic frame of the set.
     key: 'hero/banner-3' as const,
     alt: 'Achi Bala mid-performance, bow raised, lit against a dark stage', // TODO: confirm this description
   },

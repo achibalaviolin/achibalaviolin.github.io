@@ -37,7 +37,7 @@ export default function WorksPage() {
       <PageOverture
         slate="Works"
         title={['Composed,', 'directed,', 'performed.']}
-        image="hero/banner-2"
+        image="hero/banner-3"
         lede="Original scores and music direction for film, stage and dance, alongside the records."
       />
 

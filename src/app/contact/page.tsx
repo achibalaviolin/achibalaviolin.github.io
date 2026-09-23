@@ -45,7 +45,7 @@ export default function ContactPage() {
       <PageOverture
         slate="Work together"
         title={['Commissions,', 'collaborations,', 'and bookings.']}
-        image="gallery/achi-5"
+        image="hero/abv-white"
         lede="Tell me what you are making and when it needs to exist."
       />
 
