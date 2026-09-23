@@ -7,15 +7,16 @@ import {
   SceneNextDate,
   SceneProof,
   SceneStills,
+  SceneSocial,
   SceneStory,
   SceneTeaching,
 } from '@/components/sections/home-scenes'
 import { NextStep } from '@/components/layout/next-step'
 
 /**
- * Home is a six-scene trailer.
+ * Home is a seven-scene trailer.
  *
- * Anything that is not one of those six lives on its own page, and no scene
+ * Anything that is not one of those seven lives on its own page, and no scene
  * is the only place its subject appears. An earlier draft put all fourteen
  * sections here; it made every visitor scroll past the whole site to reach the
  * one thing they came for, and gave nobody a link they could send.
@@ -36,6 +37,7 @@ export default function HomePage() {
       <SceneStills />
       <SceneProof />
       <SceneTeaching />
+      <SceneSocial />
 
       <NextStep
         heading="Let's make something."

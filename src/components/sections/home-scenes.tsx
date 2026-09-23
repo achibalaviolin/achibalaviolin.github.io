@@ -13,6 +13,7 @@ import { festivalCount } from '@/content/awards'
 import { bio, gurus } from '@/content/bio'
 import { roopa } from '@/content/roopa'
 import { gallery } from '@/content/gallery'
+import { socialFeed, socials } from '@/content/site'
 
 /*
  * The homepage is a trailer, not a summary.
@@ -305,6 +306,82 @@ export function SceneStills() {
           </ClipReveal>
           </Layer>
         ))}
+      </div>
+    </Section>
+  )
+}
+
+/**
+ * Scene 7: the live feed. New dates and releases go out on social before
+ * they reach this site, so this is where they land first.
+ *
+ * A real embed, not a link out: Facebook's Page Plugin renders the actual
+ * timeline and keeps itself current. See `socialFeed` in content/site.ts.
+ *
+ * Deliberately not sandboxed: with `sandbox` the plugin renders its header
+ * and then spins forever, because an opaque origin denies it the storage it
+ * needs. The cost is that the frame can set its own cookies.
+ */
+export function SceneSocial() {
+  const params = new URLSearchParams({
+    href: socialFeed.facebookPage,
+    tabs: 'timeline',
+    width: '500',
+    height: String(socialFeed.height),
+    small_header: 'false',
+    adapt_container_width: 'true',
+    hide_cover: 'false',
+    show_facepile: 'true',
+  })
+  const src = socialFeed.embedUrl ?? `https://www.facebook.com/plugins/page.php?${params}`
+
+  return (
+    <Section divider className="bg-mist/40">
+      <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
+        <div>
+          <Reveal>
+            <p className="slate">Follow along</p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 className="mt-6 max-w-xl text-grand">Announcements land here first.</h2>
+          </Reveal>
+          <Reveal delay={0.14}>
+            <p className="mt-7 max-w-md text-lede text-muted">
+              New concerts, releases and collaborations go out on social before they reach this
+              site. This is the live feed.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
+              {socials.map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bow-link slate text-ember"
+                  >
+                    {s.label} <span aria-hidden="true">→</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+
+        <Reveal delay={0.1}>
+          <div className="mx-auto w-full max-w-[500px] overflow-hidden rounded-sm border border-rule bg-raised">
+            <iframe
+              src={src}
+              title={socialFeed.label}
+              height={socialFeed.height}
+              loading="lazy"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              allowFullScreen
+              className="block w-full border-0"
+            />
+          </div>
+        </Reveal>
       </div>
     </Section>
   )

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { navLinks, primaryActions, secondaryLinks, site, socials } from '@/content/site'
 import { Wordmark } from '@/components/ui/wordmark'
+import { JoinAudience } from '@/components/layout/join-audience'
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -8,6 +9,10 @@ export function Footer() {
   return (
     <footer className="rule-top bg-mist/40">
       <div className="wrap py-20">
+        <JoinAudience />
+
+        <div aria-hidden="true" className="staff mb-16 mt-20 h-[25px] opacity-50" />
+
         <div className="grid gap-14 lg:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <Wordmark className="h-12 w-auto text-ink" />

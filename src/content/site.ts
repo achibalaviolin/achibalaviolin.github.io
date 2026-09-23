@@ -64,6 +64,35 @@ export const socials: SocialLink[] = [
   },
 ]
 
+/**
+ * The live social feed on the homepage, carried over from Roopa Arts.
+ *
+ * Facebook's own Page Plugin: no API key, no token, and it keeps itself
+ * current. Instagram is not offered because it cannot be done from a static
+ * site: its feed needs an app token, and there is nowhere here to keep one.
+ *
+ * `embedUrl` overrides the Facebook timeline. Paste a feed widget's embed URL
+ * (Behold.so, LightWidget, SnapWidget, Curator.io) to show Instagram instead.
+ */
+export const socialFeed = {
+  facebookPage: 'https://www.facebook.com/achibalaviolin',
+  /** The plugin caps its own width at 500; this is the frame height. */
+  height: 640,
+  embedUrl: null as string | null,
+  label: 'Latest posts from Achi Bala Violin on Facebook',
+}
+
+/**
+ * "Join the audience": the mailing-list sign-up in the footer.
+ *
+ * Formspree relays each sign-up to email; it does not build a list or send
+ * campaigns. Free tier: 50 submissions a month.
+ */
+export const mailingList = {
+  endpoint: 'https://formspree.io/f/xrpbkjpe',
+  field: 'email',
+}
+
 /** Spotify artist id, reused by the player facade and the JSON-LD `sameAs`. */
 export const spotifyArtistId = '2E2Nkbb3jFT0d6SYp9jwjK'
 
