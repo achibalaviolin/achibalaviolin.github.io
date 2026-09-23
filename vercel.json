@@ -1,5 +1,22 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "redirects": [
+    {
+      "source": "/achritique/notes-on-the-mcu.html",
+      "destination": "/achritique/notes-on-the-mcu/",
+      "permanent": true
+    },
+    {
+      "source": "/achritique/stay-tuned-for-the-waltz-of-chennai.html",
+      "destination": "/achritique/stay-tuned-for-the-waltz-of-chennai/",
+      "permanent": true
+    },
+    {
+      "source": "/achritique/the-lalgudi-bani.html",
+      "destination": "/achritique/the-lalgudi-bani/",
+      "permanent": true
+    }
+  ]
 }

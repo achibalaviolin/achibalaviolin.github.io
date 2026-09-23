@@ -8,7 +8,9 @@
     "start": "next start",
     "media": "node scripts/optimize-media.mjs",
     "check:contrast": "node scripts/check-contrast.mjs",
-    "check:visible": "node scripts/check-visible.mjs"
+    "check:visible": "node scripts/check-visible.mjs",
+    "redirects": "node scripts/sync-redirects.mjs",
+    "check:redirects": "node scripts/sync-redirects.mjs --check"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

@@ -84,8 +84,14 @@ Two components are available inside an essay beyond normal Markdown:
 `src` is a key from the generated media manifest — the path under `_source-media/` without
 the extension.
 
-The index page, the sitemap, and the legacy `.html` redirect are all generated from the file
-list. Nothing else to update.
+The index page and the sitemap are generated from the file list. One extra step:
+
+```
+npm run redirects    # regenerates the legacy .html redirects in vercel.json
+```
+
+Vercel reads `vercel.json` before the build starts, so that file cannot be generated
+during it. `npm run check:redirects` fails if it has drifted.
 
 ### Adding images
 
@@ -121,6 +127,13 @@ path with a canonical tag pointing at the new URL:
 | `/achritique/the-lalgudi-bani.html` | `/achritique/the-lalgudi-bani/` |
 | `/achritique/stay-tuned-for-the-waltz-of-chennai.html` | `/achritique/stay-tuned-for-the-waltz-of-chennai/` |
 | `/achritique/notes-on-the-mcu.html` | `/achritique/notes-on-the-mcu/` |
+
+**Two hosts need two mechanisms, and both come from the same MDX filenames.** GitHub
+Pages has no redirect layer, so it serves the stub files `post-build.mjs` writes into
+`out/`. Vercel never reaches those files: its router applies the `trailingSlash` rule to
+every request and 404s an explicit `.html` path, so the redirect is declared in
+`vercel.json` instead. Miss one and old links break on that host only, which is why
+`npm run check:redirects` exists.
 
 `/`, `/achritique/` and `/roopa-fine-arts/` are unchanged. The stubs are `noindex, follow`
 and are kept out of the sitemap so search engines consolidate on the new paths rather than
