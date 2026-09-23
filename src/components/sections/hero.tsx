@@ -86,7 +86,7 @@ export function Hero() {
                 priority={index === 0}
                 sizes="100vw"
                 fill
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover [filter:contrast(1.1)_saturate(1.06)]"
               />
             </motion.div>
           </motion.div>
@@ -97,14 +97,32 @@ export function Hero() {
           * light ground, so it needs the photograph pulled UP behind it, and
           * hardest on the left where the headline sits.
           */}
+        {/*
+          * Explicit stops, not the default 0/50/100.
+          *
+          * A plain `via-paper/72` puts 72% white across the middle of the
+          * frame, which is where the subject is, and the photograph washes
+          * out everywhere rather than only behind the type. These stops keep
+          * the wash over the headline column and clear it by about 62%.
+          */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-r from-paper via-paper/72 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-paper from-0% via-paper/55 via-34% to-transparent to-62%"
+        />
+        {/*
+          * The header sits over this frame with no background of its own
+          * while the page is at the top, and the nav is ink. Letting the
+          * photograph reach the top edge made "Recognition" through
+          * "Writing" unreadable against the dark side of the image.
+          */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-paper via-paper/80 to-transparent"
         />
         {/* Just enough at the foot to seat the photograph on the page. */}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-paper to-transparent"
+          className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-paper to-transparent"
         />
       </motion.div>
 
@@ -112,7 +130,7 @@ export function Hero() {
         * Four strings across the frame. They sit above the image and below the
         * type, and pluck where the pointer crosses them.
         */}
-      <Strings className="pointer-events-auto absolute inset-x-0 top-[30%] z-[5] h-[46%] text-ink/45" />
+      <Strings className="pointer-events-auto absolute inset-x-0 top-[30%] z-[5] h-[46%] text-ink/75" />
 
       {/* --- copy --- */}
       <motion.div

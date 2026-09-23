@@ -66,7 +66,7 @@ export function Strings({ className }: { className?: string }) {
           if (ring) {
             rings[i] = null
             path.setAttribute('d', `M0 ${y} L${W} ${y}`)
-            path.setAttribute('opacity', String(round(0.14 - i * 0.015)))
+            path.setAttribute('opacity', String(round(0.32 - i * 0.045)))
           }
           return
         }
@@ -77,7 +77,7 @@ export function Strings({ className }: { className?: string }) {
 
         // Light the string in proportion to how hard it is still ringing, so
         // the pluck is what draws the eye rather than the resting lines.
-        const rest = 0.14 - i * 0.015
+        const rest = 0.32 - i * 0.045
         path.setAttribute(
           'opacity',
           String(round(rest + Math.min(1, ring.amp / 11) * 0.5))
@@ -166,10 +166,13 @@ export function Strings({ className }: { className?: string }) {
             stroke="currentColor"
             strokeWidth={s.thickness}
             vectorEffect="non-scaling-stroke"
-            // Near-invisible at rest so the photograph is never veiled; the
-            // ring handler raises this on the string being touched and eases
-            // it back down as the note decays.
-            opacity={0.14 - i * 0.015}
+            // Resting weight, tuned for the light theme: ink on paper reads
+            // at a much lower alpha than the ivory-on-dark version did, and
+            // the old 0.14 came out around 0.06 once the parent's own opacity
+            // was applied, which was invisible. The ring handler raises this
+            // on the string being touched and eases it back as the note
+            // decays.
+            opacity={0.32 - i * 0.045}
           />
         ))}
       </svg>
