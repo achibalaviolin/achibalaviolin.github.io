@@ -3,13 +3,13 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { navLinks, primaryActions, secondaryLinks, site } from '@/content/site'
 import { Wordmark } from '@/components/ui/wordmark'
 import { useReducedMotion } from '@/components/animations/use-reduced-motion'
 
 /**
- * Sticky header that hides on scroll down and returns on scroll up.
+ * Sticky header that hides on scroll down and returns on a deliberate scroll up.
  *
  * The active indicator marks the current route. It used to track the scroll
  * position within one long homepage; with each section on its own route the
@@ -29,14 +29,37 @@ export function Header({ announcement }: { announcement?: ReactNode }) {
   const [atTop, setAtTop] = useState(true)
   const [open, setOpen] = useState(false)
 
+  /*
+   * How far the reader has scrolled back up since they last scrolled down.
+   *
+   * The header used to return on any upward movement at all. On a phone that
+   * is constant: a finger settling while reading, momentum easing off, and
+   * iOS's rubber-band bounce at the foot of the page all register as a few
+   * pixels up, so the logo followed the reader all the way down. It now
+   * takes a deliberate scroll back up to bring it back.
+   */
+  const upTravel = useRef(0)
+  const REVEAL_AFTER = 64
+
   useMotionValueEvent(scrollY, 'change', (y) => {
     const prev = scrollY.getPrevious() ?? 0
     setAtTop(y < 24)
     if (open || y < 140) {
+      upTravel.current = 0
       setHidden(false)
       return
     }
-    setHidden(y > prev)
+    // Overscroll past either end is the bounce, not the reader.
+    const max = document.documentElement.scrollHeight - window.innerHeight
+    if (y > max) return
+
+    if (y > prev) {
+      upTravel.current = 0
+      setHidden(true)
+    } else {
+      upTravel.current += prev - y
+      if (upTravel.current >= REVEAL_AFTER) setHidden(false)
+    }
   })
 
   /* Lock the page and wire Escape while the overlay is open. */

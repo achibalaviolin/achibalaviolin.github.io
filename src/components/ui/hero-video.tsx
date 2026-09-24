@@ -122,14 +122,45 @@ export function HeroVideo({
     return () => io.disconnect()
   }, [reduced])
 
-  /* Pause on the way out, resume on the way back. */
+  /*
+   * Pause on the way out, resume on the way back.
+   *
+   * A refused `play()` is not the end of it. iOS in Low Power Mode refuses
+   * muted autoplay outright, and all the visitor sees is the poster, which
+   * reads as a video that is broken. A tap is a user gesture every browser
+   * honours, so the first one anywhere on the page starts it.
+   */
   useEffect(() => {
     if (!play) return
     const el = ref.current
     if (!el) return
-    if (onScreen) void el.play().catch(() => {})
-    else el.pause()
+    if (!onScreen) {
+      el.pause()
+      return
+    }
+
+    const retry = () => {
+      void el.play().catch(() => {})
+    }
+    const events = ['touchend', 'click'] as const
+    let armed = false
+    el.play().catch(() => {
+      armed = true
+      for (const e of events) document.addEventListener(e, retry, { once: true, passive: true })
+    })
+    return () => {
+      if (armed) for (const e of events) document.removeEventListener(e, retry)
+    }
   }, [onScreen, play])
+
+  /*
+   * Asking for sound is asking for the video. Without this, a visitor with
+   * Data Saver on (where the footage is never loaded) could press the sound
+   * control and get nothing at all.
+   */
+  useEffect(() => {
+    if (soundOn) setPlay(true)
+  }, [soundOn])
 
   /* Publish playback position for anything animating against the footage. */
   useEffect(() => {

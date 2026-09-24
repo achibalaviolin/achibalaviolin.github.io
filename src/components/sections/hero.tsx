@@ -60,7 +60,11 @@ export function Hero() {
       aria-label="Introduction"
     >
       {/* --- the footage, full bleed --- */}
-      <motion.div className="absolute inset-0" style={reduced ? undefined : { y: videoY }}>
+      {/* On phones the frame is shifted right by 45% so he stands at the edge. */}
+      <motion.div
+        className="absolute inset-y-0 -right-[45%] left-[45%] md:inset-0"
+        style={reduced ? undefined : { y: videoY }}
+      >
         <HeroVideo
           time={time}
           soundOn={sound.on}
@@ -88,6 +92,18 @@ export function Hero() {
           className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-paper to-transparent"
         />
       </motion.div>
+
+      {/*
+        * Phones only. The frame is too narrow for an empty half, so the
+        * footage is pushed right (above) until he stands at the right edge,
+        * and this clears the page colour under the copy, fading out before
+        * it reaches him. It lives outside the shifted layer so it is measured
+        * against the screen, not the moved frame.
+        */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper from-0% via-paper/75 via-45% to-transparent to-72% md:hidden"
+      />
 
       {/* --- copy, in the empty half of the frame --- */}
       <motion.div className="wrap relative z-10" style={reduced ? undefined : { y: copyY }}>
