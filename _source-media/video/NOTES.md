@@ -13,8 +13,24 @@ The audio track is kept (AAC 96k; the source measures -20.9 LUFS integrated).
 It costs about 0.12 MB. The video still starts muted, because browsers will
 not autoplay audible media, and the hero carries a Sound on/off control.
 
-The audio is the stock clip's own and is NOT Achi Bala playing. If one of his
-recordings replaces it, mux it in with `-i track.m4a -map 0:v -map 1:a`.
+## The audio: his own recording
+
+The hero plays 2:12–2:22 of The Waltz of Chennai (official music video
+track), 10s to match the loop exactly, with a 0.25s fade in and 0.6s fade
+out so the loop point does not click. His master is left at its own level:
+the cut measures -20.7 LUFS, the stock audio it replaced -20.9.
+
+    ffmpeg -ss 132 -t 10 -i "The Waltz of Chennai - Official Music Video Achi Bala Violin ©.mp3" \
+      -af "afade=t=in:st=0:d=0.25,afade=t=out:st=9.4:d=0.6" \
+      -ar 48000 -c:a pcm_s16le ../audio/waltz-2m12-2m22.wav
+
+    ffmpeg -i hero-white-stock-audio.mp4 -i ../audio/waltz-2m12-2m22.wav \
+      -map 0:v -map 1:a -c:v copy -c:a aac -b:a 128k -ac 2 -shortest \
+      -movflags +faststart hero-white.mp4
+
+The picture is stream-copied, so the headline sweep timings below still hold.
+`hero-white-stock-audio.mp4` is the previous encode, with the stock clip's
+audio, kept in case it is ever wanted back.
 
 0.71 MB from a 3.3 MB source. The crop to 1700 wide removes a four-point
 sparkle watermark baked into the bottom-right of the frame, and still leaves
