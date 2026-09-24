@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Reveal } from '@/components/animations/reveal'
+import { ScrollWords } from '@/components/animations/scroll-words'
 
 /**
  * A page section with its own id (used by the header's scroll spy) and
@@ -50,9 +51,13 @@ export function SectionHead({
       <Reveal>
         <p className="slate">{eyebrow}</p>
       </Reveal>
-      <Reveal delay={0.08}>
-        <h2 className="mt-5 text-grand">{title}</h2>
-      </Reveal>
+      {typeof title === 'string' ? (
+        <ScrollWords as="h2" text={title} className="mt-5 text-grand" />
+      ) : (
+        <Reveal delay={0.08}>
+          <h2 className="mt-5 text-grand">{title}</h2>
+        </Reveal>
+      )}
       {children ? (
         <Reveal delay={0.16}>
           <div className="mt-6 text-lede text-muted">{children}</div>

@@ -21,6 +21,7 @@ export function VideoFacade({
   posterAlt,
   className,
   sizes = '(min-width: 1024px) 50vw, 100vw',
+  dark = false,
 }: {
   id: string
   title: string
@@ -28,6 +29,8 @@ export function VideoFacade({
   posterAlt: string
   className?: string
   sizes?: string
+  /** For a poster sitting on a dark band: shade to ink, not to paper. */
+  dark?: boolean
 }) {
   const [playing, setPlaying] = useState(false)
 
@@ -60,11 +63,11 @@ export function VideoFacade({
           />
           <span
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-paper/85 via-paper/20 to-transparent"
+            className={`absolute inset-0 bg-gradient-to-t ${dark ? 'from-ink/70 via-ink/10' : 'from-paper/85 via-paper/20'} to-transparent`}
           />
           <span
             aria-hidden="true"
-            className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-ember/60 bg-paper/55 backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 group-hover:border-ember group-hover:bg-ember group-hover:text-paper"
+            className={`absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full backdrop-blur-sm transition-all ${dark ? 'h-20 w-20 border border-paper/70 bg-ink/35 text-paper md:h-24 md:w-24' : 'h-16 w-16 border border-ember/60 bg-paper/55'} duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 group-hover:border-ember group-hover:bg-ember group-hover:text-paper`}
           >
             <svg viewBox="0 0 24 24" className="ml-0.5 h-5 w-5 fill-current">
               <path d="M8 5v14l11-7z" />

@@ -15,6 +15,11 @@ import { useReducedMotion } from './use-reduced-motion'
 /**
  * An infinite marquee that speeds up, skews and reverses with scroll velocity.
  *
+ * With `drift={false}` it has no motion of its own: the track is tied to the
+ * page's scroll position, so it moves only while the reader scrolls and stops
+ * the moment they do. A strip that never stops pulls the eye off whatever the
+ * reader is actually looking at.
+ *
  * The track holds two identical copies of the children and wraps at -50%, so
  * the seam is never visible. Scroll velocity feeds a spring, which both scales
  * the base speed and applies a small skew — the visual equivalent of the line
@@ -23,11 +28,14 @@ import { useReducedMotion } from './use-reduced-motion'
 export function Marquee({
   items,
   baseVelocity = 26,
+  drift = true,
   className,
 }: {
   items: readonly string[]
   /** Pixels per second at rest. */
   baseVelocity?: number
+  /** False to move only with the page's scroll, never on its own. */
+  drift?: boolean
   className?: string
 }) {
   const reduced = useReducedMotion()
@@ -48,7 +56,7 @@ export function Marquee({
   const directionRef = useRef(1)
 
   useAnimationFrame((_, delta) => {
-    if (reduced) return
+    if (reduced || !drift) return
 
     let moveBy = directionRef.current * baseVelocity * (delta / 1000)
     const factor = velocityFactor.get()
@@ -64,7 +72,11 @@ export function Marquee({
     baseX.set(next <= -50 ? next + 50 : next >= 0 ? next - 50 : next)
   })
 
-  const x = useTransform(baseX, (v) => `${v}%`)
+  const driftX = useTransform(baseX, (v) => `${v}%`)
+  // One copy (50% of the track) per ~3000px of page scroll: enough travel to
+  // read as motion, slow enough that the words can still be read.
+  const scrollX = useTransform(scrollY, (v) => `${-((v / 60) % 50)}%`)
+  const x = drift ? driftX : scrollX
 
   const row = (copy: number) => (
     <span className="flex shrink-0 items-center" aria-hidden={copy > 0 || undefined}>

@@ -10,6 +10,7 @@ export function DisciplinesMarquee() {
     >
       <Marquee
         items={disciplines}
+        drift={false}
         className="font-display text-2xl text-ink/70 md:text-3xl"
       />
     </section>

@@ -3,10 +3,11 @@
 import Link from 'next/link'
 import { useState, type FormEvent } from 'react'
 import { mailingList, site } from '@/content/site'
+import { ScrollFill } from '@/components/animations/scroll-words'
 
 /**
- * "Join the audience": an oversized outlined call that fills with ember on
- * hover, and the mailing-list sign-up in the space beside it. Carried over
+ * "Join the audience": an oversized outlined call that fills with ember as
+ * it scrolls into view, and the mailing-list sign-up in the space beside it. Carried over
  * from the Roopa Arts footer.
  *
  * The form is a real <form> with a real action, so it submits without
@@ -56,13 +57,12 @@ export function JoinAudience() {
     <div className="grid gap-14 lg:grid-cols-[auto_minmax(0,1fr)] lg:items-center lg:gap-20">
       <Link href="/events/" className="group block">
         <span className="sr-only">Join the audience: upcoming concerts</span>
-        <span
-          aria-hidden="true"
-          className="block font-display text-colossal text-transparent transition-colors duration-700 ease-out-expo [-webkit-text-stroke:1px_rgba(20,17,14,0.5)] group-hover:text-ember"
-        >
-          Join the
-          <br />
-          audience
+        <span aria-hidden="true">
+          <ScrollFill className="font-display text-colossal">
+            Join the
+            <br />
+            audience
+          </ScrollFill>
         </span>
       </Link>
 
