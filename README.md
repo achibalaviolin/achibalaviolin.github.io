@@ -27,14 +27,17 @@ gallery, studio & services, Roopa Fine Arts (teaching), Achritique, contact.
 
 ## Open items
 
-- **Press links**: the three press cards (`Press Release`, `Jwalanti`, `Laya`) are anchors with
-  `href="#press"` and a "Link coming soon" chip. Replace the href with the article URL and
-  remove the `pending` class + `.soon` span. Marked with an HTML comment in `index.html`.
-- **Awards links**: festival/citation links can be added to the award tiles when available
-  (wrap the `<figure>` content in an `<a>`).
-- **Events calendar**: planned; the events section currently shows poster highlights.
-- **Video thumbnails**: currently link to the YouTube channel; swap each `href` for the
-  specific video URL when known.
+(Tracked weekly in the "Achi Bala Violin Admin/Website Briefs" Drive folder; IDs are ABV-n.)
+
+- **Event title/venue (ABV-2)**: confirm the Ilaiyaraaja Night title/venue wording against the
+  ticket page before updating the card.
+- **Awards in text (ABV-4)**: add a text list of awards (festival, category, year) once the
+  wording is approved; festival/citation links can then be added to the award tiles.
+- **`new-site` redesign (ABV-6)**: unmerged Next.js redesign on the `new-site` branch; preview
+  and approve before any work targets it.
+- **Content refresh (ABV-10)**: events intro copy, event dates/venues for the Samarpana and
+  Chithirai cards, a post-release Waltz of Chennai essay, fuller bio, dated press items, and
+  2025–26 gallery photos — all waiting on approved copy/assets.
 - **Blog featured art**: `assets/img/waltz-art.svg` is the last placeholder image.
 
 ## Local preview

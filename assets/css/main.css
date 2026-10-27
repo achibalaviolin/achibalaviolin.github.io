@@ -19,6 +19,41 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 16px;
+  z-index: 100;
+  padding: 12px 20px;
+  border-radius: 0 0 8px 8px;
+  color: var(--white);
+  background: var(--wine-dark);
+  font-size: 13px;
+  font-weight: 700;
+  transition: top 0.2s;
+}
+
+.skip-link:focus { top: 0; }
+
+.carousel-pause {
+  position: absolute;
+  right: 20px;
+  bottom: 24px;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 50%;
+  color: var(--white);
+  background: rgba(9, 7, 5, 0.28);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.carousel-pause:hover { background: rgba(9, 7, 5, 0.56); }
+
 html { scroll-behavior: smooth; }
 
 body {

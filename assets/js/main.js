@@ -63,10 +63,25 @@
       dots.forEach(function (d, j) { d.classList.toggle("on", j === current); });
     };
 
+    var paused = reduceMotion;
+
     var restart = function () {
       if (timer) clearInterval(timer);
-      if (!reduceMotion) timer = setInterval(function () { go(current + 1); }, 5000);
+      timer = null;
+      if (!paused) timer = setInterval(function () { go(current + 1); }, 5000);
     };
+
+    var pauseBtn = document.getElementById("pauseSlides");
+    var syncPause = function () {
+      if (!pauseBtn) return;
+      pauseBtn.setAttribute("aria-pressed", String(paused));
+      pauseBtn.setAttribute("aria-label", paused ? "Play slideshow" : "Pause slideshow");
+      pauseBtn.textContent = paused ? "▶" : "❚❚";
+    };
+    if (pauseBtn) {
+      pauseBtn.addEventListener("click", function () { paused = !paused; syncPause(); restart(); });
+      syncPause();
+    }
 
     var prev = document.getElementById("prevSlide");
     var next = document.getElementById("nextSlide");
