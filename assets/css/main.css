@@ -518,6 +518,15 @@ button { font: inherit; }
 
 .event-card-featured { grid-column: 1 / -1; }
 
+.event-card-upcoming {
+  grid-template-columns: 1fr;
+  margin-bottom: 24px;
+  border-color: rgba(196, 154, 58, 0.55);
+  background:
+    linear-gradient(135deg, rgba(196, 154, 58, 0.09), transparent 42%),
+    var(--paper);
+}
+
 .event-card .event-details {
   margin-top: 16px;
   color: var(--ink);
